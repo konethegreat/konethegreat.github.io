@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { accounts, githubSnapshot, hygiene, langColor, repoMeta } from "@/data/github"
+import { account, githubSnapshot, hygiene, langColor, repoMeta } from "@/data/github"
 import { links } from "@/data/profile"
 import { projectBySlug, projects } from "@/data/projects"
 import type { Project } from "@/data/types"
@@ -22,22 +22,24 @@ const toneDot: Record<Project["status"]["tone"], string> = {
   muted: "bg-slate-400",
 }
 
-/** Every public repository on konethegreat that a project card links to, in project order. */
-const personalRepos = projects.flatMap((p) =>
+/** Every public repository that a project card links to, in project order. */
+const repos = projects.flatMap((p) =>
   p.links
-    .filter((l) => l.kind === "code" && l.href.startsWith(`${links.githubPersonal}/`))
+    .filter((l) => l.kind === "code" && l.href.startsWith(`${links.github}/`))
     .map((l) => ({
-      repo: l.href.slice(links.githubPersonal.length + 1),
+      repo: l.href.slice(links.github.length + 1),
       href: l.href,
       project: p,
       subtitle: p.title,
     })),
 )
-const personalProjects = personalRepos.filter((r) => r.project.group !== "coursework")
-const personalCoursework = personalRepos.filter((r) => r.project.group === "coursework")
+const publicProjects = repos.filter((r) => r.project.group !== "coursework")
+const coursework = repos.filter((r) => r.project.group === "coursework")
 
-const orgProjects = projects.filter((p) => p.home === "org")
 const vigil = projectBySlug("vigil")
+
+/** The side column follows you down the long repository list on tall screens, and only sticks when it fits. */
+const stickyOnTall = "lg:[@media(min-height:780px)]:sticky lg:[@media(min-height:780px)]:top-24"
 
 export function GitHub() {
   return (
@@ -49,36 +51,50 @@ export function GitHub() {
           eyebrow="GitHub"
           title={
             <>
-              Two accounts, <span className="text-gradient">one body of work.</span>
+              Everything I can show, <span className="text-gradient">in the open.</span>
             </>
           }
-          lead={`I keep two GitHub accounts on purpose: konethegreatest for the firm's platforms and Vigil, konethegreat for my public projects and coursework. Repository facts are a snapshot from ${githubSnapshot}.`}
+          lead={`My projects, studio work and coursework live on one public account, ${account.handle}. Vigil is the exception and stays in a private repository. Repository facts are a snapshot from ${githubSnapshot}.`}
         />
 
-        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <Reveal className="h-full">
-            <AccountCard account={accounts.primary} tone="primary">
-              {vigil && (
-                <Terminal title="konethegreatest · own repositories">
-                  <ProjectRow project={vigil} />
-                </Terminal>
-              )}
-              <div className="mt-4">
-                <Terminal title="motsoeneng-bill-tech · private">
-                  {orgProjects.map((p) => (
-                    <ProjectRow key={p.slug} project={p} />
-                  ))}
-                </Terminal>
-              </div>
-              <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
-                <Lock className="mt-0.5 size-3.5 shrink-0 text-violet-300" aria-hidden="true" />
-                Private means private: open a row for the case study, honest status and what can be shared. The one public organisation
-                repository is the delivery-telemetry profile.
-              </p>
+            <AccountCard>
+              <Terminal title="konethegreat · public repositories">
+                {publicProjects.map((r) => (
+                  <RepoRow key={r.repo} {...r} />
+                ))}
+                <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># IBM coursework</p>
+                {coursework.map((r) => (
+                  <RepoRow key={r.repo} {...r} />
+                ))}
+              </Terminal>
+            </AccountCard>
+          </Reveal>
 
-              <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+          <Reveal delay={0.06} className={cn("space-y-6", stickyOnTall)}>
+            {vigil && (
+              <TiltCard max={0}>
+                <div className="p-6 sm:p-7">
+                  <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-violet-300">
+                    <Lock className="size-3.5" aria-hidden="true" /> Private by design
+                  </p>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                    Vigil is the one project I keep in a private repository, so there is no code link. Open its row for the case study.
+                  </p>
+                  <div className="mt-4">
+                    <Terminal title="private repository">
+                      <ProjectRow project={vigil} />
+                    </Terminal>
+                  </div>
+                </div>
+              </TiltCard>
+            )}
+
+            <TiltCard max={0}>
+              <div className="p-6 sm:p-7">
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cyan-300">How I keep repositories trustworthy</p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
+                <ul className="mt-4 flex flex-wrap gap-1.5">
                   {hygiene.map((h) => (
                     <li key={h} className="max-w-full">
                       <Chip className="max-w-full whitespace-normal py-1.5 text-left leading-snug">{h}</Chip>
@@ -86,21 +102,7 @@ export function GitHub() {
                   ))}
                 </ul>
               </div>
-            </AccountCard>
-          </Reveal>
-
-          <Reveal delay={0.06} className="h-full">
-            <AccountCard account={accounts.personal} tone="personal">
-              <Terminal title="konethegreat · public repositories">
-                {personalProjects.map((r) => (
-                  <RepoRow key={r.repo} {...r} />
-                ))}
-                <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># IBM coursework</p>
-                {personalCoursework.map((r) => (
-                  <RepoRow key={r.repo} {...r} />
-                ))}
-              </Terminal>
-            </AccountCard>
+            </TiltCard>
           </Reveal>
         </div>
       </div>
@@ -108,15 +110,7 @@ export function GitHub() {
   )
 }
 
-function AccountCard({
-  account,
-  tone,
-  children,
-}: {
-  account: (typeof accounts)[keyof typeof accounts]
-  tone: "primary" | "personal"
-  children: ReactNode
-}) {
+function AccountCard({ children }: { children: ReactNode }) {
   return (
     <TiltCard max={0} className="h-full">
       <div className="flex h-full flex-col p-6 sm:p-7">
@@ -137,7 +131,7 @@ function AccountCard({
             </span>
             <ArrowUpRight className="hidden size-5 text-slate-400 transition group-hover:text-cyan-300 sm:block" aria-hidden="true" />
           </a>
-          <Badge variant={tone === "primary" ? "live" : "code"} className="font-mono text-[11px] font-medium uppercase tracking-wider">
+          <Badge variant="code" className="font-mono text-[11px] font-medium uppercase tracking-wider">
             {account.badge}
           </Badge>
         </div>
@@ -189,7 +183,6 @@ function Terminal({ title, children }: { title: string; children: ReactNode }) {
 
 function ProjectRow({ project }: { project: Project }) {
   const { openProject } = useProjects()
-  const isPublicLink = project.slug === "telemetry"
   return (
     <button
       type="button"
@@ -198,10 +191,7 @@ function ProjectRow({ project }: { project: Project }) {
     >
       <span className={cn("size-2 shrink-0 rounded-full", toneDot[project.status.tone])} aria-hidden="true" />
       <span className="min-w-0 flex-1">
-        <span className="block truncate text-sm font-medium text-foreground">
-          {project.title}
-          {isPublicLink && <span className="ml-2 font-mono text-[10px] uppercase tracking-wider text-cyan-300">public</span>}
-        </span>
+        <span className="block truncate text-sm font-medium text-foreground">{project.title}</span>
         <span className="block truncate text-xs text-muted-foreground">
           {project.kicker} · {project.status.label}
         </span>

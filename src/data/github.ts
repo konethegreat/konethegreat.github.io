@@ -1,13 +1,11 @@
-import { links } from "./profile"
+import { links, publicRepoCount } from "./profile"
 
 /** Snapshot date for the repository facts on the GitHub section. */
 export const githubSnapshot = "October 2026"
 
 /** Primary language (as GitHub reports it) and fork status for each public repository on konethegreat. */
 export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
-  "MB-IQ": { lang: "TypeScript" },
   scratch: { lang: "JavaScript" },
-  "mostoeneng-pms": { lang: "JavaScript" },
   Diary: { lang: "Python" },
   "munisolve-za": { lang: "JavaScript" },
   "timelex-automated-time-tracking": { lang: "JavaScript" },
@@ -34,40 +32,26 @@ export const langColor: Record<string, string> = {
   Shell: "#89e051",
 }
 
-export const accounts = {
-  primary: {
-    handle: "konethegreatest",
-    href: links.githubMain,
-    badge: "Primary · most active",
-    blurb:
-      "Where the day-to-day engineering happens. I work inside the Motsoeneng Bill Technology organisation, where the firm's AI platforms live in private repositories, and Vigil lives here too.",
-    facts: [
-      { label: "Organisation", value: "Motsoeneng-Bill-Tech (member, administrator)" },
-      { label: "Organisation repos", value: "14 repositories, 13 of them private" },
-      { label: "Own repositories", value: "Vigil (private)" },
-    ],
-  },
-  personal: {
-    handle: "konethegreat",
-    href: links.githubPersonal,
-    badge: "Personal · public work",
-    blurb:
-      "Public home for my own projects: live products, source snapshots of earlier builds, studio work and my IBM coursework. Everything listed below can be opened.",
-    facts: [
-      { label: "Public repositories", value: "19, including my profile README" },
-      { label: "Live products", value: "MuniSolve ZA and a TimeLex prototype" },
-      { label: "Coursework", value: "IBM Full Stack capstones (several are forks of course templates)" },
-    ],
-  },
+export const account = {
+  handle: "konethegreat",
+  href: links.github,
+  badge: "Public work",
+  blurb:
+    "The public home for my own projects: live products, source snapshots of earlier builds, studio work and my IBM coursework. Everything listed below can be opened.",
+  facts: [
+    { label: "Public repositories", value: `${publicRepoCount}, including my profile README` },
+    { label: "Live products", value: "MuniSolve ZA and a TimeLex prototype" },
+    { label: "Coursework", value: "IBM Full Stack capstones (several are forks of course templates)" },
+  ],
 } as const
 
-/** Repository practices, taken from the CV. */
+/** Repository practices, each one visible in my own projects. */
 export const hygiene = [
-  "CLAUDE.md and AGENTS.md instruction files",
-  "ADRs (architecture decision records)",
-  "GitHub Actions pipelines with OIDC",
-  "Secret scanning (gitleaks)",
-  "SBOM and CVE gates",
-  "Dependabot",
-  "Audit trails around AI-assisted code",
+  "An INSTRUCTIONS.md contract that binds humans and AI agents (Vigil)",
+  "Architecture decision records (12 in Vigil)",
+  "Phased roadmaps (43 phases planned for Vigil)",
+  "Automated tests (65 server tests in SA-JAS)",
+  "Clean public snapshots, private history kept separate",
+  "Licences and upstream attribution kept",
+  "Usage ledgers and budget guards on AI spend (SA-JAS)",
 ]

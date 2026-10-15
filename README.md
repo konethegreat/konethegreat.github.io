@@ -2,7 +2,7 @@
 
 **Live: [konethegreat.github.io](https://konethegreat.github.io)**
 
-The portfolio of Kone Tshivhinda, an AI systems engineer and full-stack developer in Johannesburg. It brings the work from both of my GitHub accounts ([konethegreatest](https://github.com/konethegreatest) and [konethegreat](https://github.com/konethegreat)) and the Motsoeneng Bill Technology organisation together on one page: case studies, the stack, a career timeline, the GitHub record and a few photos from outside the code.
+The portfolio of Kone Tshivhinda, an AI systems engineer and full-stack developer in Johannesburg. It brings my own work together on one page: case studies, the stack, a career timeline, the public GitHub record ([konethegreat](https://github.com/konethegreat)) and a few photos from outside the code.
 
 It is a static single-page site, built with React and deployed to GitHub Pages by a GitHub Actions workflow.
 
@@ -10,15 +10,15 @@ It is a static single-page site, built with React and deployed to GitHub Pages b
 
 | Section | What it shows |
 | --- | --- |
-| Hero | Name, a one-line pitch, the headline numbers and a link to the CV |
+| Hero | Name, a one-line pitch and the headline numbers (counted from the project data) |
 | About | Who I am, the principles I build by and the AI tools I use every day |
 | Work | Featured case studies plus a filterable archive of every project, each with an honest status label |
 | Stack | Skills grouped by area, filterable, with the projects that prove each one |
 | Journey | A radial timeline of the path so far (a plain vertical timeline on phones) |
 | Career | Roles, education, certifications and the IBM course list |
-| GitHub | Both accounts and the organisation, with every public repository and its language |
+| GitHub | The public account with its repositories and their languages, plus the one private project |
 | Beyond | Photos from outside the code, with a lightbox |
-| Contact | Email (revealed on request), LinkedIn, both GitHub accounts, the CV |
+| Contact | Email (revealed on request), LinkedIn, GitHub, Credly and the IBM certificate |
 
 Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>⌘</kbd> + <kbd>K</kbd>) anywhere for the command menu: jump to a section, open a case study, copy the email address or turn the visual effects off.
 
@@ -27,9 +27,9 @@ Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>⌘</kbd> + <kbd>K</kbd>) anywhere
 Every project carries one of these, and none is rounded up:
 
 - **Live**: it runs today at the linked address (some behind staff sign-in).
-- **Public source** / **Public demo snapshot**: the code can be read on GitHub. Snapshots use synthetic data.
-- **Private**, **Internal**: client or employer work. It is described without client names or confidential figures, and samples are available on request.
-- **In development**, **Local project**, **Coursework**: exactly what they say.
+- **Public source** / **Public source snapshot**: the code can be read on GitHub. A snapshot is a cleaned copy of the working code.
+- **Private**: the repository is not public (Vigil), so the card is a case study without a code link.
+- **Local project**, **Coursework**: exactly what they say.
 
 ## Stack
 
@@ -61,7 +61,6 @@ src/
   lib/          hooks, the case-study dialog and its URL/history handling, effects switch
 public/
   images/       web-sized WebP photos
-  Kone_Tshivhinda_CV_2026.pdf   the public edition of the CV (no phone number, no references)
 scripts/        photo processing and make-assets.mjs (icons and the social-share image)
 ```
 
@@ -78,7 +77,7 @@ Nothing is hard-coded in the components. Change the data and the page follows:
 | `src/data/github.ts` | The repository snapshot shown in the GitHub section (dated) |
 | `src/data/gallery.ts` | Photo captions |
 
-A case study can be linked directly: `https://konethegreat.github.io/#project/sentinel`.
+A case study can be linked directly: `https://konethegreat.github.io/#project/vigil`.
 
 ## Deployment
 
@@ -100,4 +99,4 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which installs from the l
 
 ## Copyright
 
-© 2026 Kone Tshivhinda. The text, photographs and CV are mine and all rights are reserved. The code is published so it can be read; if you would like to reuse parts of it, please get in touch first.
+© 2026 Kone Tshivhinda. The text and photographs are mine and all rights are reserved. The code is published so it can be read; if you would like to reuse parts of it, please get in touch first.

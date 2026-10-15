@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from "react"
-import { ArrowUpRight, Award, BadgeCheck, Check, Copy, Download, Eye, Mail } from "lucide-react"
+import { ArrowUpRight, Award, BadgeCheck, Check, Copy, Eye, Mail } from "lucide-react"
 import { Reveal } from "@/components/fx/Reveal"
 import { Button } from "@/components/ui/button"
 import { buildEmail, links, site } from "@/data/profile"
@@ -9,8 +9,7 @@ type IconType = ComponentType<SVGProps<SVGSVGElement> & { className?: string }>
 
 const channels: { label: string; handle: string; href: string; Icon: IconType }[] = [
   { label: "LinkedIn", handle: "Kone Tshivhinda", href: links.linkedin, Icon: LinkedinIcon },
-  { label: "GitHub · primary", handle: "@konethegreatest", href: links.githubMain, Icon: GithubIcon },
-  { label: "GitHub · personal", handle: "@konethegreat", href: links.githubPersonal, Icon: GithubIcon },
+  { label: "GitHub", handle: "@konethegreat", href: links.github, Icon: GithubIcon },
   { label: "Credly", handle: "Verified badges", href: links.credly, Icon: BadgeCheck },
   { label: "IBM certificate", handle: "Verify on Coursera", href: links.ibmCert, Icon: Award },
 ]
@@ -86,8 +85,8 @@ export function Contact() {
 }
 
 /**
- * The email button and the CV download sit side by side. The address is assembled in the browser
- * and only on request, so it never sits in the page source as plain text for scrapers.
+ * The email button reveals the address on request. The address is assembled in the browser, so it
+ * never sits in the page source as plain text for scrapers.
  */
 function ContactActions() {
   const [shown, setShown] = useState(false)
@@ -129,11 +128,6 @@ function ContactActions() {
             <Mail aria-hidden="true" /> Show my email address <Eye aria-hidden="true" />
           </Button>
         )}
-        <Button asChild variant="outline" size="lg">
-          <a href={links.cv} download>
-            <Download aria-hidden="true" /> Download CV (PDF)
-          </a>
-        </Button>
       </div>
       {shown && (
         <p role="status" aria-live="polite" className="mt-3 min-h-5 text-sm text-emerald-300">

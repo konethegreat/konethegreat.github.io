@@ -8,11 +8,6 @@ export interface GalleryItem {
 /** "Beyond the code". The two portraits are used in the hero and About sections. */
 export const gallery: GalleryItem[] = [
   {
-    photo: "convention",
-    alt: "Kone in a blue patterned short-sleeve shirt, light jeans and a cap, standing in front of a magazine-cover style backdrop for the Motsoeneng Bill Convention 2026.",
-    caption: "Cover star at the Motsoeneng Bill convention, 2026.",
-  },
-  {
     photo: "cap",
     alt: "A smiling selfie of Kone in a black cap and dark zip-up top on a sunny rooftop, with trees and a quiet street behind him.",
     caption: "Sunny day, cap on.",

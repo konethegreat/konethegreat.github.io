@@ -1,3 +1,5 @@
+import { projects } from "./projects"
+
 export const site = {
   url: "https://konethegreat.github.io",
   name: "Kone Tshivhinda",
@@ -8,14 +10,14 @@ export const site = {
 } as const
 
 export const links = {
-  githubMain: "https://github.com/konethegreatest",
-  githubPersonal: "https://github.com/konethegreat",
+  github: "https://github.com/konethegreat",
   linkedin: "https://www.linkedin.com/in/kone-tshivhinda-32a760233/",
   credly: "https://www.credly.com/users/kone-tshivhinda/badges",
   ibmCert: "https://www.coursera.org/account/accomplishments/specialization/ESSIQ8HCQBA6",
-  orgTelemetry: "https://github.com/Motsoeneng-Bill-Tech/.github",
-  cv: "/Kone_Tshivhinda_CV_2026.pdf",
 } as const
+
+/** Public repositories on the GitHub account, including the profile README (a snapshot, see data/github.ts). */
+export const publicRepoCount = 19
 
 /** Assembled in the browser so the address is not sitting in the page source as plain text. */
 export const emailParts = { user: "erictshivhinda", domain: "gmail.com" } as const
@@ -25,32 +27,45 @@ export const rotatingWords = [
   "agentic",
   "auditable",
   "grounded",
-  "multi-tenant",
+  "local-first",
   "cost-capped",
   "sovereign",
 ] as const
 
 export const heroIntro =
-  "AI systems engineer and full-stack developer in Johannesburg. Founding engineer at Motsoeneng Bill Technology, where I lead POPIA-aligned platforms built on Claude, hybrid RAG and MCP, with a human signing off every decision that matters."
+  "AI systems engineer and full-stack developer in Johannesburg. I design and build agentic, auditable, local-first software, from a sovereign intelligence platform to a desktop agent that finds jobs and tailors applications, with a human signing off every decision that matters."
 
 export const aboutParagraphs = [
-  "I ship agent-driven software from the first commit to production. As founding engineer in the technology division of Motsoeneng Bill, a law, forensics and advisory firm, I help set up and grow a new software engineering department and lead multi-tenant platforms for due diligence, tendering, engineering delivery and case management.",
-  "Outside the firm's repositories I build civic tech, legal tech and local-first AI of my own, from a municipal fault-reporting platform to a desktop agent that finds jobs and tailors applications, and I run K-ONE IT SOLUTIONS, a small independent studio.",
-  "I use every major AI coding tool every day (Claude Code, OpenAI Codex, GitHub Copilot, Gemini, Cursor, Kiro, Antigravity) and I am just as comfortable on local and sovereign models with Ollama and LM Studio. I also administer the firm's GitHub organisation, AWS estate and AI keys.",
+  "I ship agent-driven software from the first commit to production, mostly on my own: a sovereign operational-intelligence platform, a desktop agent that finds South African vacancies and tailors each application, and a live municipal service-delivery site with an AI assistant.",
+  "I also build civic tech, legal tech and local-first AI, from a private diary you can question with RAG to a prototype that drafts lawyers' time entries for approval, and I run K-ONE IT SOLUTIONS, a small independent studio.",
+  "I use every major AI coding tool every day (Claude Code, OpenAI Codex, GitHub Copilot, Gemini, Cursor, Kiro, Antigravity) and I am just as comfortable on local and sovereign models with Ollama and LM Studio.",
 ]
 
+/** The headline numbers are counted from the project data, so they cannot drift from the cards. */
+const built = projects.filter((p) => p.group !== "coursework")
+
 export const stats = [
-  { value: 20, suffix: "+", label: "Projects built", hint: "AI, legal-tech, civic-tech & enterprise" },
-  { value: 5, suffix: "", label: "Live deployments", hint: "Public or staff-access systems running today" },
-  { value: 6, suffix: "", label: "AI platforms", hint: "Led, built solo or primary developer" },
-  { value: 20, suffix: "+", label: "Sentinel integrations", hint: "Sanctions, PEP, registry & media sources" },
+  { value: built.length, suffix: "", label: "Projects built", hint: "AI, legal-tech, civic-tech & studio work" },
+  {
+    value: projects.filter((p) => p.access === "live").length,
+    suffix: "",
+    label: "Live deployments",
+    hint: "Public products running today",
+  },
+  { value: publicRepoCount, suffix: "", label: "Public repositories", hint: "On GitHub, coursework included" },
+  {
+    value: built.filter((p) => p.tags.includes("AI")).length,
+    suffix: "",
+    label: "AI projects",
+    hint: "Agents, RAG and local models",
+  },
 ] as const
 
 export const moreNumbers = [
   { value: "12", label: "SA job boards covered by SA-JAS scrapers" },
-  { value: "13", label: "MCP tools exposed by MB IQ's endpoint" },
-  { value: "78", label: "database migrations behind Sentinel" },
-  { value: "6", label: "specialised agents inside MB IQ" },
+  { value: "65", label: "server tests behind SA-JAS" },
+  { value: "12", label: "architecture decision records in Vigil" },
+  { value: "43", label: "roadmap phases planned for Vigil" },
 ] as const
 
 export interface Principle {
@@ -66,34 +81,32 @@ export const principles: Principle[] = [
     id: "humans-sign-off",
     title: "Humans sign off",
     line: "AI drafts. People decide.",
-    body: "Every system I build has a human gate before anything consequential happens: sign-off before a report is issued, a pack is authorised or an application is submitted. AI never verifies credentials, never finalises a review and never presses Submit.",
+    body: "Every system I build has a human gate before anything consequential happens: analyst review before a model's proposal is published, a person approving every drafted time entry, a person pressing Submit on every application. AI never finalises anything on its own and never presses Submit.",
     proof: [
-      { label: "Sentinel", slug: "sentinel" },
-      { label: "Tender Intelligence", slug: "tender-intelligence" },
+      { label: "Vigil", slug: "vigil" },
       { label: "SA-JAS", slug: "sa-jas" },
-      { label: "Attest", slug: "attest" },
+      { label: "TimeLex v2", slug: "timelex-v2" },
     ],
   },
   {
     id: "cheap-first",
     title: "Cheap first, capped always",
     line: "Predictable LLM spend by design.",
-    body: "Cheap-first relevance cascades, capability-tier model routing, prompt caching, the Batch API, usage metering and hard cost circuit-breakers keep AI features useful without surprise invoices.",
+    body: "Usage ledgers, daily budget guards and per-hour rate limits keep AI features useful without surprise invoices, and where it fits a local model does the work with no per-token cost.",
     proof: [
-      { label: "Tender Intelligence", slug: "tender-intelligence" },
-      { label: "MB IQ", slug: "mb-iq" },
       { label: "SA-JAS", slug: "sa-jas" },
+      { label: "MuniSolve ZA", slug: "munisolve" },
+      { label: "Diary", slug: "diary" },
     ],
   },
   {
     id: "honest-status",
     title: "Honest about status",
     line: "Live, simulated, private or demo, said plainly.",
-    body: "Claims match verified behaviour. Public snapshots say they use synthetic data, simulated integrations are labelled as simulated, and licences are respected. If it has not been verified, I do not call it production-ready.",
+    body: "Claims match verified behaviour. Public snapshots say what they are, simulated integrations are labelled as simulated, and licences are respected. If it has not been verified, I do not call it production-ready.",
     proof: [
       { label: "TimeLex v2", slug: "timelex-v2" },
-      { label: "MB IQ v0.6", slug: "mb-iq" },
-      { label: "PMS", slug: "pms" },
+      { label: "SA-JAS", slug: "sa-jas" },
       { label: "Diary", slug: "diary" },
     ],
   },
@@ -101,20 +114,19 @@ export const principles: Principle[] = [
     id: "sovereign",
     title: "Sovereign by design",
     line: "Local models and data that stay home.",
-    body: "Privacy-sensitive work runs on local or open-weight models, with POPIA-aware data handling and South African data residency, so prompts and evidence do not have to leave the country.",
+    body: "Privacy-sensitive work runs on local or open-weight models, with POPIA-aware data handling, so prompts and evidence do not have to leave the machine, or the country.",
     proof: [
       { label: "Vigil", slug: "vigil" },
       { label: "Diary", slug: "diary" },
       { label: "Local AI Document Generator", slug: "local-ai-docgen" },
-      { label: "Sentinel", slug: "sentinel" },
     ],
   },
 ]
 
 export const nowItems = [
-  { label: "Founding engineer", detail: "Motsoeneng Bill Technology" },
+  { label: "Founder", detail: "K-ONE IT SOLUTIONS" },
   { label: "Building", detail: "Vigil, sovereign intelligence for Africa" },
-  { label: "Next", detail: "Public case studies of the private work" },
+  { label: "Next", detail: "A public case study of Vigil" },
 ] as const
 
 export const languages = [

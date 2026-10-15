@@ -35,7 +35,7 @@ export function Career() {
               Where I have worked, <span className="text-gradient">and what I have earned.</span>
             </>
           }
-          lead="A founding-engineer role inside a law, forensics and advisory firm, an independent studio of my own, and a remote leadership internship before that. Credentials sit alongside."
+          lead="My own studio, and a remote leadership internship before it. Credentials sit alongside."
         />
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] lg:gap-14">
@@ -74,16 +74,18 @@ export function Career() {
                       </p>
                       {role.summary && <p className="mt-3 text-sm leading-relaxed text-slate-300">{role.summary}</p>}
 
-                      <ul className="mt-5 space-y-4">
-                        {role.bullets.map((b) => (
-                          <li key={b.lead} className="flex gap-3">
-                            <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-[image:var(--grad)]" />
-                            <p className="text-sm leading-relaxed text-muted-foreground">
-                              <span className="font-semibold text-foreground">{b.lead}.</span> {b.text}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
+                      {role.bullets.length > 0 && (
+                        <ul className="mt-5 space-y-4">
+                          {role.bullets.map((b) => (
+                            <li key={b.lead} className="flex gap-3">
+                              <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-[image:var(--grad)]" />
+                              <p className="text-sm leading-relaxed text-muted-foreground">
+                                <span className="font-semibold text-foreground">{b.lead}.</span> {b.text}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
 
                       {role.id === "kone" && <StudioWorks />}
                     </article>

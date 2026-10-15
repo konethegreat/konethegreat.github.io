@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowDown, Command, Download, RefreshCw } from "lucide-react"
+import { ArrowDown, Command, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Photo } from "@/components/ui/photo"
 import { Counter } from "@/components/fx/Counter"
@@ -15,6 +15,9 @@ import { scrollToId } from "@/lib/hooks"
 interface HeroProps {
   onOpenPalette: () => void
 }
+
+/** The rotating words as one sentence fragment for screen readers: "a, b and c". */
+const spokenWords = `${rotatingWords.slice(0, -1).join(", ")} and ${rotatingWords[rotatingWords.length - 1]}`
 
 export function Hero({ onOpenPalette }: HeroProps) {
   const [replay, setReplay] = useState(0)
@@ -74,9 +77,7 @@ export function Hero({ onOpenPalette }: HeroProps) {
           </div>
 
           <p className="mt-8 text-2xl font-medium leading-snug tracking-tight sm:text-4xl">
-            <span className="sr-only">
-              I build AI systems that are agentic, auditable, grounded, multi-tenant, cost-capped and sovereign.
-            </span>
+            <span className="sr-only">I build AI systems that are {spokenWords}.</span>
             <span aria-hidden="true">
               I build AI&nbsp;systems that&nbsp;are <RotatingWords words={rotatingWords} />
             </span>
@@ -96,12 +97,7 @@ export function Hero({ onOpenPalette }: HeroProps) {
                 See the work <ArrowDown aria-hidden="true" />
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href={links.cv} download>
-                Download CV <Download aria-hidden="true" />
-              </a>
-            </Button>
-            <Button variant="ghost" size="lg" onClick={onOpenPalette} className="hidden sm:inline-flex">
+            <Button variant="outline" size="lg" onClick={onOpenPalette} className="hidden sm:inline-flex">
               <Command aria-hidden="true" /> Quick menu
               <kbd className="ml-1 rounded border border-white/15 bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400">
                 Ctrl K
@@ -111,15 +107,7 @@ export function Hero({ onOpenPalette }: HeroProps) {
 
           <div className="mt-6 flex items-center gap-4 text-slate-400">
             <a
-              href={links.githubMain}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm transition hover:text-white"
-            >
-              <GithubIcon className="size-4" /> konethegreatest
-            </a>
-            <a
-              href={links.githubPersonal}
+              href={links.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm transition hover:text-white"
@@ -208,8 +196,8 @@ function Portrait() {
           </div>
           <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
             <div className="glass-strong rounded-xl px-3.5 py-2.5">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-300">Founding engineer</p>
-              <p className="text-sm font-medium text-foreground">Motsoeneng Bill Technology</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-300">Founder</p>
+              <p className="text-sm font-medium text-foreground">K-ONE IT SOLUTIONS</p>
             </div>
             <span className="glass-strong hidden rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-emerald-300 sm:inline-flex">
               Johannesburg
@@ -219,7 +207,7 @@ function Portrait() {
       </div>
 
       <div className="fx-anim animate-float glass-strong absolute -left-6 top-[26%] hidden rounded-xl px-3 py-2 font-mono text-xs text-cyan-200 lg:block">
-        claude · mcp · rag
+        claude · ollama · rag
       </div>
       <div
         className="fx-anim animate-float glass-strong absolute -right-5 top-[56%] hidden rounded-xl px-3 py-2 font-mono text-xs text-emerald-200 lg:block"

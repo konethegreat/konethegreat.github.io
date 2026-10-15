@@ -66,7 +66,7 @@ export function ProjectDialogProvider({ children }: { children: ReactNode }) {
     else if (hasProjectHash()) clearHash()
   }, [hide])
 
-  // Deep links and history: /#project/sentinel opens that case study on load and whenever the address
+  // Deep links and history: /#project/vigil opens that case study on load and whenever the address
   // changes to it; Back, Forward or an edited address that leaves a case study closes it.
   useEffect(() => {
     const sync = () => {
