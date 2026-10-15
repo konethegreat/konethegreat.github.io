@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, Globe, HardDrive, Lock, Code2, Info } from "lucide-react"
+import { ArrowLeft, ArrowRight, ArrowUpRight, Globe, HardDrive, Lock, Code2, Info } from "lucide-react"
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,6 @@ const accessInfo: Record<Access, { label: string; Icon: typeof Globe }> = {
   live: { label: "Live system", Icon: Globe },
   code: { label: "Source is public", Icon: Code2 },
   private: { label: "Private repository", Icon: Lock },
-  internal: { label: "Internal tool", Icon: Building2 },
   local: { label: "Local project", Icon: HardDrive },
 }
 
@@ -85,7 +84,7 @@ export default function ProjectDialog({ slug, open, onClose, onNavigate }: Props
               <div>
                 <p className="text-sm font-medium text-foreground">{accessLabel}</p>
                 <p className="text-xs text-muted-foreground">
-                  Lives under {homeLabels[project.home]} · {groupLabels[project.group]}
+                  {groupLabels[project.group]} · {homeLabels[project.home]}
                 </p>
               </div>
             </div>

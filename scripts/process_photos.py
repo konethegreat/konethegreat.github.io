@@ -47,9 +47,6 @@ metas = {}
 metas["portrait"] = save_sizes(load("Media (3).jpg"), "portrait", [640, 1000], 82)
 metas["portrait-alt"] = save_sizes(load("Media (2).jpg"), "portrait-alt", [640, 1000], 82)
 
-# Convention "cover star"
-metas["convention"] = save_sizes(load("Media.jpg"), "convention", [640, 1000], 82)
-
 # Graduation: crop bystanders out (full-body, tall crop)
 g = load("Media (5).jpg")
 g = g.crop((169, 356, 882, 1628))

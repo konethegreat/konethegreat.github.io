@@ -1,15 +1,11 @@
-export type Access = "live" | "code" | "private" | "internal" | "local"
+export type Access = "live" | "code" | "private" | "local"
 
 export type Tone = "live" | "code" | "wip" | "private" | "muted"
 
-export type ProjectGroup =
-  | "ai-platform"
-  | "personal-ai"
-  | "enterprise"
-  | "web-civic"
-  | "coursework"
+export type ProjectGroup = "ai" | "web-civic" | "coursework"
 
-export type Home = "org" | "konethegreatest" | "konethegreat" | "local"
+/** Where the code lives: the public GitHub account, a private repository, or only on my machine. */
+export type Home = "konethegreat" | "private" | "local"
 
 export interface ProjectLink {
   label: string
@@ -24,7 +20,7 @@ export interface Project {
   kicker: string
   period: string
   group: ProjectGroup
-  /** Where the work lives: the firm's org, the primary account or the personal account. */
+  /** Where the code lives. */
   home: Home
   role: string
   access: Access

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
-import { ArrowUpRight, Download, Menu, Search, Sparkles } from "lucide-react"
+import { ArrowUpRight, Menu, Search, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { GithubIcon, LinkedinIcon } from "@/lib/icons"
@@ -147,13 +147,8 @@ export function Navbar({ onOpenPalette }: NavbarProps) {
             </nav>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild variant="glow">
-                <a href={links.cv} download>
-                  Download CV <Download aria-hidden="true" />
-                </a>
-              </Button>
               <Button
-                variant="outline"
+                variant="glow"
                 onClick={() => {
                   setSheetOpen(false)
                   window.setTimeout(onOpenPalette, 220)
@@ -164,10 +159,7 @@ export function Navbar({ onOpenPalette }: NavbarProps) {
             </div>
 
             <div className="mt-auto flex items-center gap-5 pt-10 text-slate-300">
-              <a href={links.githubMain} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white">
-                <GithubIcon className="size-4" /> konethegreatest
-              </a>
-              <a href={links.githubPersonal} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white">
+              <a href={links.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white">
                 <GithubIcon className="size-4" /> konethegreat
               </a>
               <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:text-white">

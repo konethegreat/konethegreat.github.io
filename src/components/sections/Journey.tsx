@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils"
 import OrbitalTimeline from "./OrbitalTimeline"
 import { JourneyBody, JourneyMeta, journeyIcons, statusMeta } from "./journey-shared"
 
+const numberWords = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"]
+/** Counted from the data, so the sentence stays true when a chapter is added or removed. */
+const chapterCount = numberWords[journey.length] ?? String(journey.length)
+
 export function Journey() {
   // The orbit needs room. Below the md breakpoint the same chapters become a vertical timeline.
   const wide = useMediaQuery("(min-width: 768px)", true)
@@ -24,8 +28,8 @@ export function Journey() {
           }
           lead={
             wide
-              ? "Ten chapters, from school leadership to founding engineer, and what comes next. Select a node to bring it to the front, then follow the dashed lines to the chapters it connects to."
-              : "Ten chapters, from school leadership to founding engineer, and what comes next. Oldest at the top."
+              ? `${chapterCount} chapters, from school leadership to building Vigil, and what comes next. Select a node to bring it to the front, then follow the dashed lines to the chapters it connects to.`
+              : `${chapterCount} chapters, from school leadership to building Vigil, and what comes next. Oldest at the top.`
           }
         />
         {wide ? (

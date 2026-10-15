@@ -6,7 +6,6 @@ import {
   Compass,
   CornerDownLeft,
   Copy,
-  Download,
   FolderGit2,
   Mail,
   Search,
@@ -142,15 +141,10 @@ export default function CommandPalette({ open, onOpenChange }: Props) {
             </Command.Group>
 
             <Command.Group heading="Links" className={groupClass}>
-              <LinkItem icon={<GithubIcon className="size-4" />} label="GitHub · konethegreatest (primary)" onSelect={() => external(links.githubMain)} />
-              <LinkItem icon={<GithubIcon className="size-4" />} label="GitHub · konethegreat (personal & coursework)" onSelect={() => external(links.githubPersonal)} />
+              <LinkItem icon={<GithubIcon className="size-4" />} label="GitHub · konethegreat" onSelect={() => external(links.github)} />
               <LinkItem icon={<LinkedinIcon className="size-4" />} label="LinkedIn" onSelect={() => external(links.linkedin)} />
               <LinkItem icon={<BadgeCheck className="size-4" />} label="Credly badges" onSelect={() => external(links.credly)} />
               <LinkItem icon={<BadgeCheck className="size-4" />} label="Verify the IBM certificate" onSelect={() => external(links.ibmCert)} />
-              <Command.Item value="download cv resume pdf" onSelect={() => run(() => window.open(links.cv, "_blank", "noopener"))} className={itemClass}>
-                <Download className="size-4 text-emerald-300" aria-hidden="true" />
-                Download CV (PDF)
-              </Command.Item>
               <Command.Item value="copy email address contact" onSelect={copyEmail} className={itemClass}>
                 <Copy className="size-4 text-emerald-300" aria-hidden="true" />
                 Copy email address

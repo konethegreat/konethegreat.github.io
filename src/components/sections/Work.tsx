@@ -12,15 +12,17 @@ import { cn } from "@/lib/utils"
 const legend = [
   { dot: "bg-emerald-400", label: "Live", text: "running today" },
   { dot: "bg-cyan-400", label: "Public source", text: "code you can read" },
-  { dot: "bg-amber-300", label: "In development", text: "not shipped yet" },
-  { dot: "bg-violet-400", label: "Private", text: "samples on request" },
+  { dot: "bg-violet-400", label: "Private or local", text: "no public code" },
   { dot: "bg-slate-400", label: "Coursework", text: "IBM capstones" },
 ]
 
 /** On a phone the archive is one long column, so it opens with this many cards and a button for the rest. */
 const PHONE_LIMIT = 6
 
-const groups: ("all" | ProjectGroup)[] = ["all", "ai-platform", "personal-ai", "enterprise", "web-civic", "coursework"]
+const groups: ("all" | ProjectGroup)[] = ["all", "ai", "web-civic", "coursework"]
+
+/** Three columns on wide screens only when the cards fill the rows evenly; otherwise two, so no card is left alone on the last row. */
+const featuredColumns = featuredProjects.length % 3 === 0 ? "xl:grid-cols-3" : "xl:grid-cols-2"
 
 export function Work() {
   return (
@@ -35,7 +37,7 @@ export function Work() {
               Systems that <span className="text-gradient">think, cite and hand over.</span>
             </>
           }
-          lead="Six AI systems I lead or build, from a live forensics platform to a sovereign intelligence engine. Open any card for the case study, honest status and links."
+          lead="Systems I built on my own, from a sovereign intelligence platform to a job-hunting desktop agent, a live municipal service-delivery site and an AI-coached diary. Open any card for the case study, honest status and links."
         />
 
         <Reveal>
@@ -49,18 +51,18 @@ export function Work() {
           </ul>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className={cn("grid grid-cols-1 gap-5 md:grid-cols-2", featuredColumns)}>
           {featuredProjects.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 3) * 0.06} className="h-full">
-              <FeatureCard project={p} flagship={p.slug === "sentinel"} />
+              <FeatureCard project={p} flagship={p.slug === "vigil"} />
             </Reveal>
           ))}
         </div>
 
         <p className="mt-6 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
           <Lock className="mt-0.5 size-3.5 shrink-0 text-violet-300" aria-hidden="true" />
-          Most employer work lives in private repositories. It is described at CV level here: no client names and no confidential
-          figures. Code samples and walkthroughs are available on request.
+          Vigil is the one private project here, so its card is a case study without a code link. The rest link to public source
+          or a live site; the status labels say which.
         </p>
 
         <Archive />
@@ -119,8 +121,8 @@ function Archive() {
           Everything else I have built
         </h3>
         <p className="mt-3 max-w-3xl text-muted-foreground">
-          The rest of the archive across both GitHub accounts: team-delivered systems, personal AI projects, civic tech,
-          studio work and my IBM capstones. Sentinel above is one of five live systems; four more are listed here.
+          The rest of the archive: an offline AI report writer, the TimeLex legal-tech prototypes, studio work, a UI component
+          library and my IBM capstones.
         </p>
       </Reveal>
 

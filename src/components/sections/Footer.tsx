@@ -28,10 +28,7 @@ export function Footer() {
               {site.title}. Building agentic, auditable and sovereign AI systems from {site.location}.
             </p>
             <div className="mt-5 flex items-center gap-4 text-slate-300">
-              <a href={links.githubMain} target="_blank" rel="noopener noreferrer" aria-label="konethegreatest on GitHub (opens in a new tab)" className="transition hover:text-white">
-                <GithubIcon className="size-5" />
-              </a>
-              <a href={links.githubPersonal} target="_blank" rel="noopener noreferrer" aria-label="konethegreat on GitHub (opens in a new tab)" className="transition hover:text-white">
+              <a href={links.github} target="_blank" rel="noopener noreferrer" aria-label="konethegreat on GitHub (opens in a new tab)" className="transition hover:text-white">
                 <GithubIcon className="size-5" />
               </a>
               <a href={links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" className="transition hover:text-white">
@@ -57,11 +54,6 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a href={links.cv} download className="text-slate-300 transition hover:text-white">
-                  CV (PDF)
-                </a>
-              </li>
             </ul>
           </nav>
 
@@ -86,7 +78,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.07] pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl leading-relaxed">
             Status labels are meant literally: <span className="text-slate-300">Live</span> runs today, <span className="text-slate-300">Public source</span>{" "}
-            can be read, <span className="text-slate-300">Private</span> stays private. Employer work is described without client names or confidential figures.
+            can be read, <span className="text-slate-300">Private</span> stays private.
           </p>
           <div className="flex items-center gap-4">
             <p className="font-mono">&copy; 2026 {site.name} · updated {site.updated}</p>

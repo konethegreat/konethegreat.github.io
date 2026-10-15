@@ -100,7 +100,7 @@ export function Beyond() {
               The rest of <span className="text-gradient">the picture.</span>
             </>
           }
-          lead="The firm's convention, graduation day, some puppies, an open road and a match-day shirt. Tap a photo to see it larger."
+          lead="A sunny rooftop, graduation day, some puppies, an open road and a match-day shirt. Tap a photo to see it larger."
         />
 
         <div className="flex gap-4 sm:gap-5">
