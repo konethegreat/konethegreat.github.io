@@ -17,9 +17,11 @@ export function Footer() {
                 scrollToId("top")
               }}
               className="inline-flex items-center gap-3"
-              aria-label="Back to the top"
+              aria-label={`${site.name}, back to the top`}
             >
-              <span className="grid size-10 place-items-center rounded-xl bg-[image:var(--grad)] font-display text-xl font-bold text-[#05060d]">K</span>
+              <span aria-hidden="true" className="grid size-10 place-items-center rounded-xl bg-[image:var(--grad)] font-display text-xl font-bold text-[#05060d]">
+                K
+              </span>
               <span className="font-display text-xl font-semibold tracking-tight">{site.name}</span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">

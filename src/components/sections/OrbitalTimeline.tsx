@@ -390,7 +390,6 @@ export default function OrbitalTimeline() {
                   autoRef.current = nextAuto
                   setAuto(nextAuto)
                 }}
-                aria-label={auto ? "Pause the orbit rotation" : "Resume the orbit rotation"}
               >
                 {auto ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
                 {auto ? "Pause rotation" : "Resume rotation"}

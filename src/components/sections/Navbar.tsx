@@ -49,10 +49,13 @@ export function Navbar({ onOpenPalette }: NavbarProps) {
           className="group flex items-center gap-3"
           aria-label="Kone Tshivhinda, back to top"
         >
-          <span className="grid size-9 place-items-center rounded-xl bg-[image:var(--grad)] font-display text-lg font-bold text-[#05060d] shadow-[0_8px_30px_-8px_rgb(139_92_246/0.9)] transition group-hover:scale-105">
+          <span
+            aria-hidden="true"
+            className="grid size-9 place-items-center rounded-xl bg-[image:var(--grad)] font-display text-lg font-bold text-[#05060d] shadow-[0_8px_30px_-8px_rgb(139_92_246/0.9)] transition group-hover:scale-105"
+          >
             K
           </span>
-          <span className="hidden font-mono text-sm text-slate-300 sm:block">
+          <span aria-hidden="true" className="hidden font-mono text-sm text-slate-300 sm:block">
             kone<span className="text-cyan-300">@</span>jhb<span className="fx-anim animate-blink text-cyan-300">_</span>
           </span>
         </a>
@@ -66,12 +69,16 @@ export function Navbar({ onOpenPalette }: NavbarProps) {
             variant="outline"
             size="sm"
             onClick={onOpenPalette}
-            aria-label="Open the command menu"
+            aria-label="Search: open the command menu"
+            aria-keyshortcuts="Control+K Meta+K"
             className="gap-2 pr-2.5 text-slate-300"
           >
             <Search aria-hidden="true" />
             <span className="hidden md:inline">Search</span>
-            <kbd className="hidden rounded border border-white/15 bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 md:inline">
+            <kbd
+              aria-hidden="true"
+              className="hidden rounded border border-white/15 bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 md:inline"
+            >
               Ctrl K
             </kbd>
           </Button>

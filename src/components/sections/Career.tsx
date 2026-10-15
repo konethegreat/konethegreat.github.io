@@ -277,7 +277,6 @@ function StudioWorks() {
               href={w.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${w.title}: source on GitHub (opens in a new tab)`}
               className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-white/[0.06]"
             >
               <span className="flex items-center justify-between gap-2 text-sm font-medium text-foreground">
@@ -290,6 +289,8 @@ function StudioWorks() {
                   <Chip key={s}>{s}</Chip>
                 ))}
               </span>
+              {/* No aria-label here: the link's name is its visible text, plus this hint (WCAG 2.5.3, label in name). */}
+              <span className="sr-only">Source on GitHub, opens in a new tab.</span>
             </a>
           </li>
         ))}
