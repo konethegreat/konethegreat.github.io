@@ -1,0 +1,16 @@
+# dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# local environment and tooling
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+.vite/
+
+# scratch output from scripts/make-assets.mjs
+scripts/.og-render.html

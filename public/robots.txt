@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://konethegreat.github.io/sitemap.xml
