@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { ChevronDown, ChevronUp, Lock, Search, X } from "lucide-react"
+import { ChevronDown, ChevronUp, HardDrive, Search, X } from "lucide-react"
 import { Reveal } from "@/components/fx/Reveal"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 const legend = [
   { dot: "bg-emerald-400", label: "Live", text: "running today" },
   { dot: "bg-cyan-400", label: "Public source", text: "code you can read" },
-  { dot: "bg-violet-400", label: "Private or local", text: "no public code" },
+  { dot: "bg-violet-400", label: "Local", text: "on my machine, no public code" },
   { dot: "bg-slate-400", label: "Coursework", text: "IBM capstones" },
 ]
 
@@ -37,7 +37,7 @@ export function Work() {
               Systems that <span className="text-gradient">think, cite and hand over.</span>
             </>
           }
-          lead="Systems I built on my own, from a sovereign intelligence platform to a job-hunting desktop agent, a live municipal service-delivery site and an AI-coached diary. Open any card for the case study, honest status and links."
+          lead="Systems I built on my own, from a sovereign intelligence platform to a job-hunting desktop agent, an MCP-native invoicing core, a live municipal service-delivery site and an AI-coached diary. Open any card for the case study, honest status and links."
         />
 
         <Reveal>
@@ -60,9 +60,9 @@ export function Work() {
         </div>
 
         <p className="mt-6 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
-          <Lock className="mt-0.5 size-3.5 shrink-0 text-violet-300" aria-hidden="true" />
-          Vigil is the one private project here, so its card is a case study without a code link. The rest link to public source
-          or a live site; the status labels say which.
+          <HardDrive className="mt-0.5 size-3.5 shrink-0 text-violet-300" aria-hidden="true" />
+          Every card links to public source or a live site. The two local projects in the archive live only on my machine, so they
+          have no link; the status labels say which is which.
         </p>
 
         <Archive />

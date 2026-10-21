@@ -1,5 +1,5 @@
 import { Children, type ReactNode } from "react"
-import { ArrowUpRight, Lock } from "lucide-react"
+import { ArrowUpRight, HardDrive } from "lucide-react"
 import { Reveal } from "@/components/fx/Reveal"
 import { TiltCard } from "@/components/fx/TiltCard"
 import { Badge } from "@/components/ui/badge"
@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { account, githubSnapshot, hygiene, langColor, repoMeta } from "@/data/github"
+import { firmWorks } from "@/data/experience"
 import { links } from "@/data/profile"
-import { projectBySlug, projects } from "@/data/projects"
+import { projects } from "@/data/projects"
 import type { Project } from "@/data/types"
 import { GithubIcon } from "@/lib/icons"
 import { useProjects } from "@/lib/project-dialog"
@@ -36,7 +37,17 @@ const repos = projects.flatMap((p) =>
 const publicProjects = repos.filter((r) => r.project.group !== "coursework")
 const coursework = repos.filter((r) => r.project.group === "coursework")
 
-const vigil = projectBySlug("vigil")
+/** Published demo snapshots from engineering work (linked from the Career section), plus this site and the profile README. */
+const snapshotRepos = firmWorks
+  .filter((w) => w.href)
+  .map((w) => ({ repo: (w.href as string).slice(links.github.length + 1), href: w.href as string, subtitle: `${w.title} · demo snapshot` }))
+const siteRepos = [
+  { repo: "konethegreat.github.io", href: `${links.github}/konethegreat.github.io`, subtitle: "This portfolio, source and deploy workflow" },
+  { repo: "konethegreat", href: `${links.github}/konethegreat`, subtitle: "Profile README" },
+]
+
+/** Projects that live only on my machine: no repository, so no link. */
+const localProjects = projects.filter((p) => p.access === "local")
 
 /** The side column follows you down the long repository list on tall screens, and only sticks when it fits. */
 const stickyOnTall = "lg:[@media(min-height:780px)]:sticky lg:[@media(min-height:780px)]:top-24"
@@ -47,14 +58,14 @@ export function GitHub() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="github-title"
-          index="06"
+          index="07"
           eyebrow="GitHub"
           title={
             <>
               Everything I can show, <span className="text-gradient">in the open.</span>
             </>
           }
-          lead={`My projects, studio work and coursework live on one public account, ${account.handle}. Vigil is the exception and stays in a private repository. Repository facts are a snapshot from ${githubSnapshot}.`}
+          lead={`My projects, studio work and coursework live on one public account, ${account.handle}. Two small projects only exist on my machine and are listed separately below. Repository facts are a snapshot from ${githubSnapshot}.`}
         />
 
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
@@ -68,23 +79,33 @@ export function GitHub() {
                 {coursework.map((r) => (
                   <RepoRow key={r.repo} {...r} />
                 ))}
+                <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># Demo snapshots from engineering work</p>
+                {snapshotRepos.map((r) => (
+                  <RepoRow key={r.repo} {...r} />
+                ))}
+                <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># This site and my profile</p>
+                {siteRepos.map((r) => (
+                  <RepoRow key={r.repo} {...r} />
+                ))}
               </Terminal>
             </AccountCard>
           </Reveal>
 
           <Reveal delay={0.06} className={cn("space-y-6", stickyOnTall)}>
-            {vigil && (
+            {localProjects.length > 0 && (
               <TiltCard max={0}>
                 <div className="p-6 sm:p-7">
                   <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-violet-300">
-                    <Lock className="size-3.5" aria-hidden="true" /> Private by design
+                    <HardDrive className="size-3.5" aria-hidden="true" /> Local only
                   </p>
                   <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                    Vigil is the one project I keep in a private repository, so there is no code link. Open its row for the case study.
+                    {localProjects.length === 2 ? "Two" : localProjects.length} projects have never been pushed to GitHub, so there is no code link. Open a row for the case study.
                   </p>
                   <div className="mt-4">
-                    <Terminal title="private repository">
-                      <ProjectRow project={vigil} />
+                    <Terminal title="on my machine">
+                      {localProjects.map((p) => (
+                        <ProjectRow key={p.slug} project={p} />
+                      ))}
                     </Terminal>
                   </div>
                 </div>
@@ -201,9 +222,9 @@ function ProjectRow({ project }: { project: Project }) {
   )
 }
 
-function RepoRow({ repo, href, subtitle, project }: { repo: string; href: string; subtitle: string; project: Project }) {
+function RepoRow({ repo, href, subtitle, project }: { repo: string; href: string; subtitle: string; project?: Project }) {
   const meta = repoMeta[repo]
-  const live = project.links.some((l) => l.kind === "live")
+  const live = project?.links.some((l) => l.kind === "live") ?? false
   return (
     <a
       href={href}

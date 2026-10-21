@@ -63,7 +63,7 @@ export const journey: JourneyNode[] = [
     icon: "Landmark",
     content:
       "A run of solo builds: MuniSolve ZA (live), TimeLex v1 and v2, the SA-JAS job agent and Diary, each with honest status labels.",
-    related: [4, 6, 7],
+    related: [4, 6, 7, 10],
     status: "done",
     tech: ["React", "Next.js", "Claude", "PostgreSQL"],
     projectSlug: "munisolve",
@@ -82,6 +82,19 @@ export const journey: JourneyNode[] = [
     tech: ["Django", "React", "Node.js", "Flask", "Docker"],
   },
   {
+    id: 10,
+    title: "Founding engineer at a law firm",
+    short: "Law firm",
+    date: "Jun 2026 – now",
+    category: "Experience",
+    icon: "Briefcase",
+    content:
+      "Joined a six-member founding engineering team at a law firm to build its software department from scratch: multi-tenant, POPIA-aligned AI platforms, agentic pipelines with human sign-off, and the cloud estate underneath them.",
+    related: [5, 7, 11],
+    status: "now",
+    tech: ["Multi-agent pipelines", "Hybrid RAG", "MCP", "AWS", "Terraform"],
+  },
+  {
     id: 7,
     title: "Vigil",
     short: "Vigil",
@@ -90,7 +103,7 @@ export const journey: JourneyNode[] = [
     icon: "Shield",
     content:
       "Started Vigil, a sovereign operational-intelligence platform designed so no prompt ever leaves South Africa. Built solo with Claude and OpenAI Codex agents.",
-    related: [5, 6, 8],
+    related: [5, 6, 8, 10],
     status: "now",
     tech: ["Java", "Python", "Ollama", "Next.js"],
     projectSlug: "vigil",
@@ -103,9 +116,23 @@ export const journey: JourneyNode[] = [
     category: "Talk",
     icon: "Mic",
     content: "Developed a keynote on AGI and Africa's next century for a legal-sector audience.",
-    related: [7, 9],
+    related: [7, 11],
     status: "done",
     tech: ["AGI", "Africa", "Legal sector"],
+  },
+  {
+    id: 11,
+    title: "ClearCut and TimeLex",
+    short: "ClearCut",
+    date: "Oct 2026",
+    category: "Projects",
+    icon: "Rocket",
+    content:
+      "Opened two Rust projects in public: ClearCut, an agent-native invoicing core with its own MCP server, and TimeLex, the design and walking skeleton of a policy-governed legal time-capture platform. Both say plainly what is not built yet.",
+    related: [7, 10],
+    status: "now",
+    tech: ["Rust", "MCP", "PostgreSQL", "ADRs"],
+    projectSlug: "clearcut",
   },
   {
     id: 9,
@@ -116,7 +143,7 @@ export const journey: JourneyNode[] = [
     icon: "BookOpen",
     content:
       "Writing a public case study of Vigil, with sensitive details left out, as the material becomes ready to share.",
-    related: [7, 8],
+    related: [7, 11],
     status: "next",
     tech: ["Case study", "Architecture write-up"],
   },

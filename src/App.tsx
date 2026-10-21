@@ -9,6 +9,7 @@ import { Footer } from "@/components/sections/Footer"
 import { GitHub } from "@/components/sections/GitHub"
 import { Hero } from "@/components/sections/Hero"
 import { Journey } from "@/components/sections/Journey"
+import { Lab } from "@/components/sections/Lab"
 import { Navbar } from "@/components/sections/Navbar"
 import { Stack } from "@/components/sections/Stack"
 import { Work } from "@/components/sections/Work"
@@ -68,6 +69,7 @@ function Shell() {
         <Hero onOpenPalette={openPalette} />
         <About />
         <Work />
+        <Lab />
         <Stack />
         <Journey />
         <Career />

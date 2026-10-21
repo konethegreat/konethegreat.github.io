@@ -93,7 +93,7 @@ export function Beyond() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="beyond-title"
-          index="07"
+          index="08"
           eyebrow="Beyond the code"
           title={
             <>

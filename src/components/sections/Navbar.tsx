@@ -74,10 +74,10 @@ export function Navbar({ onOpenPalette }: NavbarProps) {
             className="gap-2 pr-2.5 text-slate-300"
           >
             <Search aria-hidden="true" />
-            <span className="hidden md:inline">Search</span>
+            <span className="hidden md:inline xl:hidden 2xl:inline">Search</span>
             <kbd
               aria-hidden="true"
-              className="hidden rounded border border-white/15 bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 md:inline"
+              className="hidden rounded border border-white/15 bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 md:inline xl:hidden 2xl:inline"
             >
               Ctrl K
             </kbd>

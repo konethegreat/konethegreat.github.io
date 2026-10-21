@@ -1,5 +1,5 @@
-import type { ReactNode } from "react"
-import { ArrowUpRight, Award, BadgeCheck, GraduationCap, ListChecks, Mic, School, Users } from "lucide-react"
+import { useState, type ReactNode } from "react"
+import { ArrowUpRight, Award, BadgeCheck, ChevronDown, ChevronUp, GraduationCap, ListChecks, Mic, School, Users } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { Reveal } from "@/components/fx/Reveal"
 import { TiltCard } from "@/components/fx/TiltCard"
@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { SectionHeading } from "@/components/ui/section-heading"
+import { StatusBadge } from "@/components/ui/status-badge"
 import { education, gaoCertificates, ibmCertificate, leadership } from "@/data/credentials"
-import { roles } from "@/data/experience"
+import { firmWorks, roles } from "@/data/experience"
 import { links, studio, talk } from "@/data/profile"
+import type { FirmWork } from "@/data/types"
 import { GithubIcon } from "@/lib/icons"
 import { cn } from "@/lib/utils"
 
@@ -28,14 +30,14 @@ export function Career() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="career-title"
-          index="05"
+          index="06"
           eyebrow="Career"
           title={
             <>
               Where I have worked, <span className="text-gradient">and what I have earned.</span>
             </>
           }
-          lead="My own studio, and a remote leadership internship before it. Credentials sit alongside."
+          lead="A founding engineering team at a law firm, my own studio, and a remote leadership internship before them. The systems I built in each role, and my credentials, sit alongside."
         />
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] lg:gap-14">
@@ -87,6 +89,7 @@ export function Career() {
                         </ul>
                       )}
 
+                      {role.id === "firm" && <FirmWorks />}
                       {role.id === "kone" && <StudioWorks />}
                     </article>
                   </Reveal>
@@ -298,5 +301,95 @@ function StudioWorks() {
         ))}
       </ul>
     </div>
+  )
+}
+
+/** How many systems show before the toggle; the rest follow on request so the timeline stays readable. */
+const FIRM_PREVIEW = 4
+
+/**
+ * The systems built in the law-firm role. The firm is never named. Most of the code is private, so the cards say so
+ * plainly; only the two published demo snapshots link out.
+ */
+function FirmWorks() {
+  const [open, setOpen] = useState(false)
+  const shown = open ? firmWorks : firmWorks.slice(0, FIRM_PREVIEW)
+  const hidden = firmWorks.length - FIRM_PREVIEW
+
+  const toggle = () => {
+    if (open) document.getElementById("firm-works-title")?.scrollIntoView({ block: "center" })
+    setOpen((v) => !v)
+  }
+
+  return (
+    <div className="mt-6 border-t border-white/10 pt-5">
+      <p id="firm-works-title" className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400">
+        Systems built here · {firmWorks.length}
+      </p>
+      <ul id="firm-works" className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {shown.map((w) => (
+          <FirmWorkCard key={w.id} work={w} />
+        ))}
+      </ul>
+      {hidden > 0 && (
+        <div className="mt-4">
+          <Button variant="outline" size="sm" onClick={toggle} aria-expanded={open} aria-controls="firm-works">
+            {open ? (
+              <>
+                Show fewer <ChevronUp aria-hidden="true" />
+              </>
+            ) : (
+              <>
+                Show {hidden} more systems <ChevronDown aria-hidden="true" />
+              </>
+            )}
+          </Button>
+        </div>
+      )}
+      <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+        The firm&apos;s own code is in private repositories, so those systems have no link. The two published demo snapshots use
+        fictional data and can be read on GitHub.
+      </p>
+    </div>
+  )
+}
+
+function FirmWorkCard({ work }: { work: FirmWork }) {
+  const body = (
+    <>
+      <span className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1.5">
+        <StatusBadge status={work.status} className="text-[10px]" />
+        <span className="font-mono text-[11px] text-slate-400">{work.role}</span>
+      </span>
+      <span className="mt-3 flex items-start justify-between gap-2 text-[15px] font-medium leading-snug text-foreground">
+        {work.title}
+        {work.href && <GithubIcon className="mt-0.5 size-4 shrink-0 text-slate-400 transition group-hover:text-cyan-300" />}
+      </span>
+      <span className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{work.detail}</span>
+      <span className="mt-auto flex flex-wrap gap-1.5 pt-3">
+        {work.stack.map((s) => (
+          <Chip key={s}>{s}</Chip>
+        ))}
+      </span>
+      {work.href && <span className="sr-only">Source on GitHub, opens in a new tab.</span>}
+    </>
+  )
+
+  const cardClass = "group flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-4"
+  return (
+    <li>
+      {work.href ? (
+        <a
+          href={work.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(cardClass, "transition hover:border-cyan-300/40 hover:bg-white/[0.06]")}
+        >
+          {body}
+        </a>
+      ) : (
+        <div className={cardClass}>{body}</div>
+      )}
+    </li>
   )
 }

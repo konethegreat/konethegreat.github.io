@@ -48,6 +48,19 @@ export interface Role {
   bullets: { lead: string; text: string }[]
 }
 
+/** A system built in the law-firm role. The firm is deliberately never named; only public repositories carry a link. */
+export interface FirmWork {
+  id: string
+  title: string
+  /** Honest label: whether the code can be read, and whether the system is finished. */
+  status: { label: string; tone: Tone }
+  role: string
+  detail: string
+  stack: string[]
+  /** Set only when the repository is public, so a link here can never lead to a 404. */
+  href?: string
+}
+
 export interface SkillGroup {
   id: string
   title: string
