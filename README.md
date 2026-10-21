@@ -13,10 +13,11 @@ It is a static single-page site, built with React and deployed to GitHub Pages b
 | Hero | Name, a one-line pitch and the headline numbers (counted from the project data) |
 | About | Who I am, the principles I build by and the AI tools I use every day |
 | Work | Featured case studies plus a filterable archive of every project, each with an honest status label |
+| AI Lab | Four small working models of agents, hybrid RAG, agentic RAG and an autonomy ladder, each labelled real or scripted, plus a practices grid that says which are built and which are only designed |
 | Stack | Skills grouped by area, filterable, with the projects that prove each one |
 | Journey | A radial timeline of the path so far (a plain vertical timeline on phones) |
-| Career | Roles, education, certifications and the IBM course list |
-| GitHub | The public account with its repositories and their languages, plus the one private project |
+| Career | Roles (the current one at a law firm, deliberately unnamed, with the systems built there), education, certifications and the IBM course list |
+| GitHub | The public account with its repositories and their languages, demo snapshots from engineering work, and the projects that live only on my machine |
 | Beyond | Photos from outside the code, with a lightbox |
 | Contact | Email (revealed on request), LinkedIn, GitHub, Credly and the IBM certificate |
 
@@ -28,8 +29,10 @@ Every project carries one of these, and none is rounded up:
 
 - **Live**: it runs today at the linked address (some behind staff sign-in).
 - **Public source** / **Public source snapshot**: the code can be read on GitHub. A snapshot is a cleaned copy of the working code.
-- **Private**: the repository is not public (Vigil), so the card is a case study without a code link.
-- **Local project**, **Coursework**: exactly what they say.
+- **Public source · alpha** / **pre-alpha**: the code is public and the card says what is not built yet (ClearCut, TimeLex).
+- **Local project**, **Coursework**: exactly what they say. A local project has never been pushed to GitHub, so it has no code link.
+
+Test counts on the cards are Rust test functions counted from the source, not CI claims.
 
 ## Stack
 
@@ -55,14 +58,20 @@ npm run preview   # serve the production build on http://localhost:4173
 src/
   components/
     sections/   one file per page section, plus the navbar, footer and command menu
+    lab/        the interactive demos inside the AI Lab section
     ui/         buttons, dialog, photo and other primitives
     fx/         particles, splash cursor, vortex, shutter text, counters, marquee
   data/         all of the content, as typed TypeScript (see below)
   lib/          hooks, the case-study dialog and its URL/history handling, effects switch
+    lab/        retrieval engine (BM25, trigrams, Reciprocal Rank Fusion), agentic pipeline, corpus
 public/
   images/       web-sized WebP photos
 scripts/        photo processing and make-assets.mjs (icons and the social-share image)
 ```
+
+### The AI Lab's retrieval engine
+
+The hybrid and agentic RAG demos search the portfolio's own project data. `src/lib/lab/retrieval.ts` implements BM25 over lightly stemmed words, character-trigram cosine similarity (a stand-in for dense embeddings, so nothing is downloaded), Reciprocal Rank Fusion and an abstain rule, with no dependencies. `src/lib/lab/agentic.ts` adds routing, decomposition, grading and a query rewrite on top. The planner is rule-based, so every run is deterministic. The abstain thresholds were tuned on this small corpus and are not universal.
 
 ### Editing the content
 
@@ -72,7 +81,8 @@ Nothing is hard-coded in the components. Change the data and the page follows:
 | --- | --- |
 | `src/data/projects.ts` | Every project: pitch, highlights, stack, links, status, metrics |
 | `src/data/profile.ts` | Name, links, hero copy, principles, headline numbers, the email parts |
-| `src/data/experience.ts`, `credentials.ts` | Roles, education, certifications, the IBM courses |
+| `src/data/experience.ts`, `credentials.ts` | Roles, the systems built in the current role, education, certifications, the IBM courses |
+| `src/data/lab.ts` | The AI Lab's scripted trace, autonomy ladder data, practices and example questions |
 | `src/data/skills.ts`, `journey.ts` | Stack groups and the timeline chapters |
 | `src/data/github.ts` | The repository snapshot shown in the GitHub section (dated) |
 | `src/data/gallery.ts` | Photo captions |

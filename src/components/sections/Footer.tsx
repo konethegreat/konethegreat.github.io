@@ -78,7 +78,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.07] pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl leading-relaxed">
             Status labels are meant literally: <span className="text-slate-300">Live</span> runs today, <span className="text-slate-300">Public source</span>{" "}
-            can be read, <span className="text-slate-300">Private</span> stays private.
+            can be read, <span className="text-slate-300">Local</span> lives only on my machine.
           </p>
           <div className="flex items-center gap-4">
             <p className="font-mono">&copy; 2026 {site.name} · updated {site.updated}</p>

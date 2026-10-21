@@ -48,7 +48,7 @@ export function Stack() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="stack-title"
-          index="03"
+          index="04"
           eyebrow="Stack"
           title={
             <>

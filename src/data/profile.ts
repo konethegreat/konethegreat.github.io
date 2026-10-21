@@ -16,8 +16,8 @@ export const links = {
   ibmCert: "https://www.coursera.org/account/accomplishments/specialization/ESSIQ8HCQBA6",
 } as const
 
-/** Public repositories on the GitHub account, including the profile README (a snapshot, see data/github.ts). */
-export const publicRepoCount = 19
+/** Public repositories on the GitHub account as GitHub counts them, profile README and this site's own repository included (a snapshot, see data/github.ts). */
+export const publicRepoCount = 23
 
 /** Assembled in the browser so the address is not sitting in the page source as plain text. */
 export const emailParts = { user: "erictshivhinda", domain: "gmail.com" } as const
@@ -37,7 +37,8 @@ export const heroIntro =
 
 export const aboutParagraphs = [
   "I ship agent-driven software from the first commit to production, mostly on my own: a sovereign operational-intelligence platform, a desktop agent that finds South African vacancies and tailors each application, and a live municipal service-delivery site with an AI assistant.",
-  "I also build civic tech, legal tech and local-first AI, from a private diary you can question with RAG to a prototype that drafts lawyers' time entries for approval, and I run K-ONE IT SOLUTIONS, a small independent studio.",
+  "I also build civic tech, legal tech and local-first AI, from a private diary you can question with RAG, to an open invoicing core that agents call over MCP, to the design of a legal time-capture platform that asks a person only when it must. I run K-ONE IT SOLUTIONS, a small independent studio.",
+  "By day I am a founding engineer on a law firm's new engineering team, building multi-tenant, POPIA-aligned AI platforms with hybrid RAG, MCP tool use and human sign-off, alongside five colleagues.",
   "I use every major AI coding tool every day (Claude Code, OpenAI Codex, GitHub Copilot, Gemini, Cursor, Kiro, Antigravity) and I am just as comfortable on local and sovereign models with Ollama and LM Studio.",
 ]
 
@@ -105,7 +106,8 @@ export const principles: Principle[] = [
     line: "Live, simulated, private or demo, said plainly.",
     body: "Claims match verified behaviour. Public snapshots say what they are, simulated integrations are labelled as simulated, and licences are respected. If it has not been verified, I do not call it production-ready.",
     proof: [
-      { label: "TimeLex v2", slug: "timelex-v2" },
+      { label: "ClearCut", slug: "clearcut" },
+      { label: "TimeLex", slug: "timelex" },
       { label: "SA-JAS", slug: "sa-jas" },
       { label: "Diary", slug: "diary" },
     ],
@@ -125,7 +127,7 @@ export const principles: Principle[] = [
 
 export const nowItems = [
   { label: "Founder", detail: "K-ONE IT SOLUTIONS" },
-  { label: "Building", detail: "Vigil, sovereign intelligence for Africa" },
+  { label: "Building", detail: "ClearCut and TimeLex, open agent-native tools" },
   { label: "Next", detail: "A public case study of Vigil" },
 ] as const
 

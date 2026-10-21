@@ -19,7 +19,7 @@ export function Journey() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="journey-title"
-          index="04"
+          index="05"
           eyebrow="Journey"
           title={
             <>

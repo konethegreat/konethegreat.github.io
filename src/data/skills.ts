@@ -12,6 +12,7 @@ export const aiSkills: SkillGroup[] = [
       "Tool & function calling",
       "MCP hosts & servers",
       "Human-in-the-loop sign-off",
+      "Autonomy ladders & policy-gated actions",
       "Agent governance (CLAUDE.md, AGENTS.md, ADRs)",
     ],
   },
@@ -55,6 +56,7 @@ export const aiSkills: SkillGroup[] = [
       "Prompt-injection fencing",
       "Source attribution",
       "Never-fabricate guardrails",
+      "Number guards (no figure without evidence)",
       "POPIA-aware data handling",
       "Data residency",
     ],
@@ -99,7 +101,7 @@ export const techSkills: SkillGroup[] = [
   {
     id: "languages",
     title: "Languages",
-    items: ["Python", "TypeScript", "JavaScript (ES6+)", "Java", "C#", "SQL", "HTML/CSS", "PHP", "PowerShell", "Bash"],
+    items: ["Python", "TypeScript", "JavaScript (ES6+)", "Rust", "Java", "C#", "SQL", "HTML/CSS", "PHP", "PowerShell", "Bash"],
   },
   {
     id: "backend",
@@ -239,6 +241,7 @@ export const marqueeTools = [
   "React",
   "TypeScript",
   "Python",
+  "Rust",
   "Java",
   "AWS",
   "Terraform",
