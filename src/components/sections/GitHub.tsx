@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Chip } from "@/components/ui/chip"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { account, githubSnapshot, hygiene, langColor, repoMeta } from "@/data/github"
-import { firmWorks } from "@/data/experience"
 import { links } from "@/data/profile"
 import { projects } from "@/data/projects"
 import type { Project } from "@/data/types"
@@ -37,10 +36,7 @@ const repos = projects.flatMap((p) =>
 const publicProjects = repos.filter((r) => r.project.group !== "coursework")
 const coursework = repos.filter((r) => r.project.group === "coursework")
 
-/** Published demo snapshots from engineering work (linked from the Career section), plus this site and the profile README. */
-const snapshotRepos = firmWorks
-  .filter((w) => w.href)
-  .map((w) => ({ repo: (w.href as string).slice(links.github.length + 1), href: w.href as string, subtitle: `${w.title} · demo snapshot` }))
+/** This site and the profile README. */
 const siteRepos = [
   { repo: "konethegreat.github.io", href: `${links.github}/konethegreat.github.io`, subtitle: "This portfolio, source and deploy workflow" },
   { repo: "konethegreat", href: `${links.github}/konethegreat`, subtitle: "Profile README" },
@@ -77,10 +73,6 @@ export function GitHub() {
                 ))}
                 <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># IBM coursework</p>
                 {coursework.map((r) => (
-                  <RepoRow key={r.repo} {...r} />
-                ))}
-                <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># Demo snapshots from engineering work</p>
-                {snapshotRepos.map((r) => (
                   <RepoRow key={r.repo} {...r} />
                 ))}
                 <p className="px-3 pb-1 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400"># This site and my profile</p>
