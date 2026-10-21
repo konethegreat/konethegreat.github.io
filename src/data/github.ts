@@ -24,8 +24,6 @@ export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
   clearcut: { lang: "Rust" },
   timelex: { lang: "Rust" },
   Vigil: { lang: "Java" },
-  "performance-management-tool": { lang: "JavaScript" },
-  "systems-project-management-": { lang: "TypeScript" },
   "konethegreat.github.io": { lang: "TypeScript" },
 }
 

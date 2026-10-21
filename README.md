@@ -16,8 +16,8 @@ It is a static single-page site, built with React and deployed to GitHub Pages b
 | AI Lab | Four small working models of agents, hybrid RAG, agentic RAG and an autonomy ladder, each labelled real or scripted, plus a practices grid that says which are built and which are only designed |
 | Stack | Skills grouped by area, filterable, with the projects that prove each one |
 | Journey | A radial timeline of the path so far (a plain vertical timeline on phones) |
-| Career | Roles (the current one at a law firm, deliberately unnamed, with the systems built there), education, certifications and the IBM course list |
-| GitHub | The public account with its repositories and their languages, demo snapshots from engineering work, and the projects that live only on my machine |
+| Career | Roles (the current one at a law firm, deliberately unnamed and described in general terms only), education, certifications and the IBM course list |
+| GitHub | The public account with its repositories and their languages, and the projects that live only on my machine |
 | Beyond | Photos from outside the code, with a lightbox |
 | Contact | Email (revealed on request), LinkedIn, GitHub, Credly and the IBM certificate |
 
@@ -81,7 +81,7 @@ Nothing is hard-coded in the components. Change the data and the page follows:
 | --- | --- |
 | `src/data/projects.ts` | Every project: pitch, highlights, stack, links, status, metrics |
 | `src/data/profile.ts` | Name, links, hero copy, principles, headline numbers, the email parts |
-| `src/data/experience.ts`, `credentials.ts` | Roles, the systems built in the current role, education, certifications, the IBM courses |
+| `src/data/experience.ts`, `credentials.ts` | Roles, education, certifications, the IBM courses |
 | `src/data/lab.ts` | The AI Lab's scripted trace, autonomy ladder data, practices and example questions |
 | `src/data/skills.ts`, `journey.ts` | Stack groups and the timeline chapters |
 | `src/data/github.ts` | The repository snapshot shown in the GitHub section (dated) |
