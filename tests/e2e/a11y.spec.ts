@@ -3,6 +3,12 @@ import { test, expect, type Page } from "@playwright/test"
 
 const routes = ["/", "/work", "/work/vigil", "/services", "/about", "/playground", "/contact", "/credits"]
 
+test.beforeEach(async ({ page }) => {
+  // Sample the static composition: entrance animations can otherwise leave text
+  // mid-fade when axe reads the computed colours.
+  await page.emulateMedia({ reducedMotion: "reduce" })
+})
+
 async function blockingFindings(page: Page) {
   const results = await new AxeBuilder({ page }).analyze()
   return results.violations.filter(
