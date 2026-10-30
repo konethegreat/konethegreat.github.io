@@ -13,6 +13,26 @@ export const caseStudies: CaseStudy[] = [
       "A sovereign operational-intelligence platform that models evidence, investigations and missions as a governed ontology, designed so that no prompt ever leaves South Africa.",
     heroAlt: "Abstract brass evidence lines converging on a teal audit seal",
     accent: "teal",
+    decisions: [
+      {
+        title: "Evidence before prose",
+        choice: "Model proposals must quote exact evidence and pass analyst review before publication.",
+        why: "A claim without a record behind it is not usable in an investigation.",
+        tradeoff: "The first answer is slower than a chat reply.",
+      },
+      {
+        title: "The model gets no tools",
+        choice: "Untrusted material is fenced as data and the planner receives no tools.",
+        why: "Instructions hidden in captured content cannot trigger an action.",
+        tradeoff: "The planner cannot fetch anything on its own.",
+      },
+      {
+        title: "Run inside the country",
+        choice: "A local Ollama reasoner is supported end to end.",
+        why: "Sensitive evidence and prompts stay in South Africa.",
+        tradeoff: "Smaller models and more operational work.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -64,6 +84,26 @@ export const caseStudies: CaseStudy[] = [
       "An agent-native invoicing core for South Africa: one Rust codebase exposed as a REST API, an MCP server and a Claude plugin, with the VAT rules already written as tested code.",
     heroAlt: "A brass invoice grid with a teal approval seal",
     accent: "brass",
+    decisions: [
+      {
+        title: "Integer cents",
+        choice: "Money is stored and calculated as integer cents with explicit rounding.",
+        why: "Totals do not drift between services.",
+        tradeoff: "Every boundary needs a conversion rule.",
+      },
+      {
+        title: "Tax rules as tested code",
+        choice: "VAT and invoice thresholds live in the library with tests beside them.",
+        why: "An agent cannot invent a figure the rules do not allow.",
+        tradeoff: "The rules must be maintained as tax law changes.",
+      },
+      {
+        title: "One core, three surfaces",
+        choice: "REST, MCP and a Claude plugin all call the same Rust core.",
+        why: "Agent access does not fork the source of truth.",
+        tradeoff: "Each surface needs its own adapter and tests.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -122,6 +162,26 @@ export const caseStudies: CaseStudy[] = [
       "An open, API-first legal practice platform designed to capture work signals, attribute them to the right matter and prepare the bill, asking a person only when it must.",
     heroAlt: "A teal ladder of autonomy rising through brass legal columns",
     accent: "copper",
+    decisions: [
+      {
+        title: "Earned autonomy",
+        choice: "The autonomy ladder stops before trust money and fee notes.",
+        why: "Consequential decisions keep a person in the loop.",
+        tradeoff: "Some work stays manual until the evidence earns more autonomy.",
+      },
+      {
+        title: "Bring your own keys",
+        choice: "Each firm supplies and pays for its own model access.",
+        why: "Cost and control stay with the firm.",
+        tradeoff: "Setup is a real onboarding task.",
+      },
+      {
+        title: "Capture signals, not surveillance",
+        choice: "The system records work signals instead of hoarding client material.",
+        why: "The platform does not deserve trust it has not earned.",
+        tradeoff: "Coverage is narrower than passive capture.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -181,6 +241,26 @@ export const caseStudies: CaseStudy[] = [
       "A desktop suite where three AI agents find real South African vacancies, tailor an application for each role and drive a visible browser copilot, always leaving the final Submit to the person.",
     heroAlt: "A warm copper desk with job cards and a visible browser window",
     accent: "copper",
+    decisions: [
+      {
+        title: "Never press Submit",
+        choice: "The copilot fills forms but leaves the final action to the applicant.",
+        why: "The person keeps agency over every application.",
+        tradeoff: "One manual step per application.",
+      },
+      {
+        title: "A visible browser",
+        choice: "The copilot drives a browser the user can watch.",
+        why: "The work stays inspectable and debuggable.",
+        tradeoff: "Visible automation is slower than headless.",
+      },
+      {
+        title: "Real listings, checked links",
+        choice: "Twelve South African boards feed grounded search and every link is validated.",
+        why: "No invented vacancies.",
+        tradeoff: "Scrapers break and need repair.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -230,6 +310,26 @@ export const caseStudies: CaseStudy[] = [
       "A municipal service-delivery platform where citizens report faults, administrators triage them on a live heat map and an assistant answers common questions within a rate limit.",
     heroAlt: "A brass map pin over a teal heat map of a city",
     accent: "teal",
+    decisions: [
+      {
+        title: "Three roles, logged actions",
+        choice: "Citizen, admin and super-admin permissions are enforced server-side with activity logs.",
+        why: "Every consequential action has an owner.",
+        tradeoff: "More permission paths to test.",
+      },
+      {
+        title: "A bounded assistant",
+        choice: "Siyanda is limited to thirty messages per hour.",
+        why: "The assistant cannot become an unbounded cost centre.",
+        tradeoff: "Some questions wait or go to a person.",
+      },
+      {
+        title: "One shared operational picture",
+        choice: "Faults appear on a live map for administrators.",
+        why: "Teams triage from the same view.",
+        tradeoff: "Location data needs care.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -280,6 +380,26 @@ export const caseStudies: CaseStudy[] = [
       "A free, open, community-grown memory of South African culture: plants, practices and languages, with community-controlled consent and a mission-native AI.",
     heroAlt: "A teal reservoir of knowledge with brass roots",
     accent: "brass",
+    decisions: [
+      {
+        title: "Consent in the data model",
+        choice: "Communities set attribution and reuse rules per record.",
+        why: "Consent is enforceable, not a checkbox.",
+        tradeoff: "More states to model and explain.",
+      },
+      {
+        title: "Offline first",
+        choice: "Capture works without a connection and syncs later.",
+        why: "Contributors are not blocked by connectivity.",
+        tradeoff: "Sync and conflict handling add complexity.",
+      },
+      {
+        title: "Mission-native AI",
+        choice: "The assistant serves the archive and its communities.",
+        why: "The technology follows the mission, not the reverse.",
+        tradeoff: "A narrower assistant than a general chatbot.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -329,6 +449,26 @@ export const caseStudies: CaseStudy[] = [
       "A curated index of UI and UX patterns with live demos, an API, a CLI and a read-only MCP server, built around the question of where a component came from and what its license allows.",
     heroAlt: "A brass card catalogue of interface patterns",
     accent: "brass",
+    decisions: [
+      {
+        title: "Provenance per entry",
+        choice: "Every entry records its author, source and license.",
+        why: "Rights are decidable before a component is used.",
+        tradeoff: "The catalogue needs upkeep.",
+      },
+      {
+        title: "Rights tiers",
+        choice: "Only permissive work is installable; unknown work is inspiration only.",
+        why: "The vault does not launder unlicensed code.",
+        tradeoff: "Some attractive patterns stay out of reach.",
+      },
+      {
+        title: "A read-only MCP server",
+        choice: "Agents can search and read the vault but cannot change it.",
+        why: "Consultation stays safe and predictable.",
+        tradeoff: "No agent-driven curation.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -378,6 +518,26 @@ export const caseStudies: CaseStudy[] = [
       "K-ONE IT SOLUTIONS is the studio I founded in Johannesburg in 2025: a company site, a React social platform and a Dockerised server health monitor, built for real clients and real operations.",
     heroAlt: "A copper studio stamp on warm paper",
     accent: "copper",
+    decisions: [
+      {
+        title: "Small scope, running system",
+        choice: "Engagements end with a working system, not a slide deck.",
+        why: "Delivery is the proof.",
+        tradeoff: "Fewer projects run in parallel.",
+      },
+      {
+        title: "Rand quote after scoping",
+        choice: "Work is quoted in rand after a short scoping conversation.",
+        why: "No invented prices.",
+        tradeoff: "There is no instant checkout.",
+      },
+      {
+        title: "A link for every project",
+        choice: "Each project on the site has a live link or public source.",
+        why: "Claims stay checkable.",
+        tradeoff: "Work without public artefacts stays off the site.",
+      },
+    ],
     sections: [
       {
         kind: "facts",
@@ -417,3 +577,9 @@ export const caseStudies: CaseStudy[] = [
 ]
 
 export const caseStudyBySlug = (slug: string) => caseStudies.find((study) => study.slug === slug)
+
+export function nextCaseStudy(slug: string): CaseStudy {
+  const index = caseStudies.findIndex((study) => study.slug === slug)
+  const next = index < 0 ? 0 : (index + 1) % caseStudies.length
+  return caseStudies[next]
+}

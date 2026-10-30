@@ -78,6 +78,13 @@ export type CaseStudySection =
   | { kind: "quote"; quote: string; attribution?: string }
   | { kind: "figure"; src: string; alt: string; caption?: string; width: number; height: number }
 
+export interface CaseDecision {
+  title: string
+  choice: string
+  why: string
+  tradeoff: string
+}
+
 export interface CaseStudy {
   slug: string
   tagline: string
@@ -89,6 +96,7 @@ export interface CaseStudy {
   summary: string
   heroAlt: string
   accent: "brass" | "copper" | "teal"
+  decisions?: CaseDecision[]
   sections: CaseStudySection[]
   technicalBrief?: string
   gallery?: { src: string; alt: string; width: number; height: number }[]
