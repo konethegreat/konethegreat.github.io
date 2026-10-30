@@ -1,7 +1,7 @@
 import { ArrowDownRight, MapPin } from "lucide-react"
 import { MascotFigure } from "@/components/home/MascotFigure"
 import { Link } from "@/components/ui/link"
-import { buildEmail } from "@/data/profile"
+import { availability, buildEmail } from "@/data/profile"
 
 export function HomeHero() {
   return (
@@ -17,7 +17,7 @@ export function HomeHero() {
                 <span className="absolute inline-flex size-full animate-ping-soft rounded-full bg-teal/70" />
                 <span className="relative inline-flex size-2 rounded-full bg-teal" />
               </span>
-              Available for select work
+              {availability.status}
             </span>
             <span aria-hidden="true" className="text-border">/</span>
             <span className="inline-flex items-center gap-1.5">

@@ -16,6 +16,12 @@ export const links = {
   ibmCert: "https://www.coursera.org/account/accomplishments/specialization/ESSIQ8HCQBA6",
 } as const
 
+export const availability = {
+  status: "Open to select work",
+  detail: "Johannesburg, South Africa (SAST)",
+  reply: "I read every message myself and reply by email.",
+} as const
+
 /** Public repositories on the GitHub account as GitHub counts them, profile README and this site's own repository included (a snapshot, see data/github.ts). */
 export const publicRepoCount = 23
 
