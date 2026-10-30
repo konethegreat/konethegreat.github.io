@@ -28,10 +28,10 @@
   --ring: #d8a24a;
   --brass: #d8a24a;
   --copper: #c0653b;
-  --teal: #2f7a72;
+  --teal: #4f9c93;
   --paper: #f2eadc;
   --glass: rgb(20 19 26 / 0.55);
-  --grad: linear-gradient(100deg, #d8a24a 0%, #c0653b 55%, #2f7a72 100%);
+  --grad: linear-gradient(100deg, #d8a24a 0%, #c0653b 55%, #4f9c93 100%);
 }
 
 [data-theme="light"] {

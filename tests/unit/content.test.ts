@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs"
+import { existsSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
@@ -162,6 +162,20 @@ describe("content model", () => {
   it("hosts the license texts the credits page links to", () => {
     for (const file of ["mit.txt", "isc.txt", "ofl-1.1.txt", "apache-2.0.txt"]) {
       expect(existsSync(join(process.cwd(), "public", "licenses", file))).toBe(true)
+    }
+  })
+
+  it("has a committed PDF for every brief", () => {
+    for (const study of caseStudies) {
+      const file = join(process.cwd(), "public", "docs", `${study.slug}-brief.pdf`)
+      expect(existsSync(file), file).toBe(true)
+      expect(statSync(file).size, file).toBeGreaterThan(15_000)
+    }
+  })
+
+  it("uses no em dashes in the data that becomes copy", () => {
+    for (const file of ["case-studies.ts", "projects.ts", "services.ts", "about.ts", "credits.ts"]) {
+      expect(readFileSync(join(process.cwd(), "src", "data", file), "utf8")).not.toContain("—")
     }
   })
 })
