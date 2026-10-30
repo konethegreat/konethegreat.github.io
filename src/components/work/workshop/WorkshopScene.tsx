@@ -16,6 +16,17 @@ const ACCENT: Record<StationId, "brass" | "copper" | "teal"> = {
   quality: "teal",
 }
 
+const SPIN: Record<StationId, number> = {
+  agents: 0.34,
+  retrieval: 0.22,
+  product: 0,
+  "local-first": 0.42,
+  cloud: 0.2,
+  quality: 0.55,
+}
+
+const DUST_COUNT = 110
+
 type Palette = Record<"brass" | "copper" | "teal", THREE.Color>
 
 function readPalette(): Palette {
@@ -32,7 +43,12 @@ function readPalette(): Palette {
 interface Unit {
   id: StationId
   group: THREE.Group
+  sculpture: THREE.Group
   baseX: number
+  baseY: number
+  phase: number
+  spin: number
+  oscillate: boolean
   hoverMaterials: THREE.MeshStandardMaterial[]
   paletteMaterials: THREE.MeshStandardMaterial[]
   ringMaterial: THREE.MeshStandardMaterial
@@ -88,12 +104,15 @@ export default function WorkshopScene({ active, onSelect }: Props) {
     const cool = new THREE.PointLight(palette.teal.getHex(), 16, 12, 2)
     cool.position.set(4.5, 2.6, -2.5)
     scene.add(cool)
+    const overhead = new THREE.PointLight(0xfff1dc, 18, 16, 2)
+    overhead.position.set(0, 7, 1.5)
+    scene.add(overhead)
 
     const floorGeometry = new THREE.CircleGeometry(6.6, 96)
     const floorMaterial = new THREE.MeshBasicMaterial({
-      color: 0x17141b,
+      color: 0x1d1923,
       transparent: true,
-      opacity: 0.94,
+      opacity: 0.96,
     })
     geometries.add(floorGeometry)
     materials.add(floorMaterial)
@@ -106,7 +125,7 @@ export default function WorkshopScene({ active, onSelect }: Props) {
     const outerRingMaterial = new THREE.MeshBasicMaterial({
       color: palette.brass.clone(),
       transparent: true,
-      opacity: 0.32,
+      opacity: 0.38,
       side: THREE.DoubleSide,
     })
     geometries.add(outerRingGeometry)
@@ -120,7 +139,7 @@ export default function WorkshopScene({ active, onSelect }: Props) {
     const innerRingMaterial = new THREE.MeshBasicMaterial({
       color: palette.teal.clone(),
       transparent: true,
-      opacity: 0.26,
+      opacity: 0.32,
       side: THREE.DoubleSide,
     })
     geometries.add(innerRingGeometry)
@@ -140,14 +159,14 @@ export default function WorkshopScene({ active, onSelect }: Props) {
     geometries.add(hitGeometry)
 
     const baseMaterial = new THREE.MeshStandardMaterial({
-      color: 0x2c2933,
-      roughness: 0.6,
-      metalness: 0.55,
+      color: 0x3a3442,
+      roughness: 0.55,
+      metalness: 0.32,
     })
     const plateMaterial = new THREE.MeshStandardMaterial({
-      color: 0x38343f,
-      roughness: 0.45,
-      metalness: 0.65,
+      color: 0x46404f,
+      roughness: 0.4,
+      metalness: 0.4,
     })
     const hitMaterial = new THREE.MeshBasicMaterial({
       transparent: true,
@@ -303,12 +322,43 @@ export default function WorkshopScene({ active, onSelect }: Props) {
       units.push({
         id: station.id,
         group: body,
+        sculpture,
         baseX: station.position[0],
+        baseY: sculpture.position.y,
+        phase: units.length * 1.15,
+        spin: SPIN[station.id],
+        oscillate: station.id === "product",
         hoverMaterials,
         paletteMaterials,
         ringMaterial,
       })
     }
+
+    const dustPositions = new Float32Array(DUST_COUNT * 3)
+    const dustSpeeds = new Float32Array(DUST_COUNT)
+    for (let i = 0; i < DUST_COUNT; i += 1) {
+      const angle = Math.random() * Math.PI * 2
+      const radius = Math.sqrt(Math.random()) * 4.8
+      dustPositions[i * 3] = Math.cos(angle) * radius
+      dustPositions[i * 3 + 1] = Math.random() * 2.3
+      dustPositions[i * 3 + 2] = Math.sin(angle) * radius
+      dustSpeeds[i] = 0.5 + Math.random()
+    }
+    const dustGeometry = new THREE.BufferGeometry()
+    dustGeometry.setAttribute("position", new THREE.BufferAttribute(dustPositions, 3))
+    const dustMaterial = new THREE.PointsMaterial({
+      color: palette.brass.clone(),
+      size: 0.045,
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    })
+    const dust = new THREE.Points(dustGeometry, dustMaterial)
+    scene.add(dust)
+    geometries.add(dustGeometry)
+    materials.add(dustMaterial)
 
     const raycaster = new THREE.Raycaster()
     const pointer = new THREE.Vector2()
@@ -365,6 +415,7 @@ export default function WorkshopScene({ active, onSelect }: Props) {
       cool.color.copy(next.teal)
       outerRingMaterial.color.copy(next.brass)
       innerRingMaterial.color.copy(next.teal)
+      dustMaterial.color.copy(next.brass)
       needsRender = true
     }
 
@@ -392,6 +443,8 @@ export default function WorkshopScene({ active, onSelect }: Props) {
       if (!visible || document.hidden) return
 
       const delta = Math.min(clock.getDelta(), 0.1)
+      const time = clock.elapsedTime
+      const ambient = document.documentElement.dataset.fx !== "off"
       const current = activeRef.current
       if (current !== lastActive) {
         lastActive = current
@@ -406,7 +459,17 @@ export default function WorkshopScene({ active, onSelect }: Props) {
         unit.group.scale.setScalar(scale)
         if (Math.abs(scale - targetScale) > 0.0008) settling = true
 
-        const targetGlow = lit ? 0.85 : 0.2
+        if (ambient) {
+          unit.sculpture.position.y = unit.baseY + Math.sin(time * 0.9 + unit.phase) * 0.028
+          if (unit.oscillate) {
+            unit.sculpture.rotation.y = Math.sin(time * 0.5 + unit.phase) * 0.42
+          } else {
+            unit.sculpture.rotation.y += delta * unit.spin
+          }
+        }
+
+        const targetGlow =
+          (lit ? 0.85 : 0.2) + (ambient ? Math.sin(time * 1.1 + unit.phase) * 0.06 : 0)
         for (const material of unit.hoverMaterials) {
           material.emissiveIntensity = THREE.MathUtils.damp(
             material.emissiveIntensity,
@@ -417,7 +480,8 @@ export default function WorkshopScene({ active, onSelect }: Props) {
           if (Math.abs(material.emissiveIntensity - targetGlow) > 0.004) settling = true
         }
 
-        const targetRing = lit ? 1 : 0.35
+        const targetRing =
+          (lit ? 1 : 0.35) + (ambient ? Math.sin(time * 1.4 + unit.phase) * 0.1 : 0)
         unit.ringMaterial.emissiveIntensity = THREE.MathUtils.damp(
           unit.ringMaterial.emissiveIntensity,
           targetRing,
@@ -427,7 +491,19 @@ export default function WorkshopScene({ active, onSelect }: Props) {
         if (Math.abs(unit.ringMaterial.emissiveIntensity - targetRing) > 0.004) settling = true
       }
 
-      if (needsRender || settling) {
+      warm.intensity = ambient ? 22 + Math.sin(time * 0.7) * 2.4 : 22
+      cool.intensity = ambient ? 16 + Math.cos(time * 0.55) * 1.8 : 16
+
+      if (ambient) {
+        for (let i = 0; i < DUST_COUNT; i += 1) {
+          const y = dustPositions[i * 3 + 1] + delta * 0.09 * dustSpeeds[i]
+          dustPositions[i * 3 + 1] = y > 2.3 ? 0.02 : y
+        }
+        dustGeometry.attributes.position.needsUpdate = true
+        dust.rotation.y += delta * 0.02
+      }
+
+      if (needsRender || settling || ambient) {
         renderer.render(scene, camera)
         needsRender = false
       }
@@ -447,7 +523,7 @@ export default function WorkshopScene({ active, onSelect }: Props) {
     intersectionObserver.observe(element)
     themeObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["data-theme"],
+      attributeFilter: ["data-theme", "data-fx"],
     })
     canvas.addEventListener("pointermove", onPointerMove)
     canvas.addEventListener("pointerleave", onPointerLeave)
