@@ -1,11 +1,16 @@
+import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { Command } from "cmdk"
-import { ArrowUpRight, CornerDownLeft, Search } from "lucide-react"
+import { ArrowUpRight, Copy, CornerDownLeft, FileDown, Moon, Search, Sparkles, Sun } from "lucide-react"
 import { navItems } from "@/data/nav"
+import { caseMedia } from "@/data/case-media"
 import { caseStudies } from "@/data/case-studies"
 import { liveProjects } from "@/data/live"
+import { buildEmail } from "@/data/profile"
 import { projectBySlug } from "@/data/projects"
+import { useFx } from "@/lib/fx"
 import { useRouter } from "@/lib/router"
+import { useTheme } from "@/lib/theme"
 
 interface CommandMenuProps {
   open: boolean
@@ -22,6 +27,9 @@ const groupClass =
 
 export function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
   const { navigate } = useRouter()
+  const { resolved, toggle } = useTheme()
+  const { effects, toggleEffects } = useFx()
+  const [notice, setNotice] = useState("")
 
   const go = (to: string) => {
     onOpenChange(false)
@@ -89,6 +97,26 @@ export function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
                 })}
               </Command.Group>
 
+              <Command.Group heading="Technical briefs" className={groupClass}>
+                {caseStudies.map((study) => (
+                  <Command.Item
+                    key={study.slug}
+                    value={`brief pdf ${projectBySlug(study.slug)?.title ?? study.slug}`}
+                    onSelect={() => {
+                      onOpenChange(false)
+                      window.open(caseMedia[study.slug].technicalBrief, "_blank", "noopener")
+                    }}
+                    className={itemClass}
+                  >
+                    <FileDown className="size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    <span className="min-w-0 flex-1 truncate">
+                      {projectBySlug(study.slug)?.title ?? study.slug} brief
+                    </span>
+                    <span className="shrink-0 text-xs text-muted-foreground">PDF</span>
+                  </Command.Item>
+                ))}
+              </Command.Group>
+
               <Command.Group heading="Live now" className={groupClass}>
                 {liveProjects.map((project) => (
                   <Command.Item
@@ -106,13 +134,55 @@ export function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
                   </Command.Item>
                 ))}
               </Command.Group>
+
+              <Command.Group heading="Actions" className={groupClass}>
+                <Command.Item
+                  value="switch theme toggle dark light mode"
+                  onSelect={() => {
+                    onOpenChange(false)
+                    toggle()
+                  }}
+                  className={itemClass}
+                >
+                  {resolved === "dark" ? (
+                    <Sun className="size-3.5 shrink-0" aria-hidden="true" />
+                  ) : (
+                    <Moon className="size-3.5 shrink-0" aria-hidden="true" />
+                  )}
+                  <span>{resolved === "dark" ? "Switch to light mode" : "Switch to dark mode"}</span>
+                </Command.Item>
+                <Command.Item
+                  value="toggle ambient effects motion"
+                  onSelect={() => {
+                    onOpenChange(false)
+                    toggleEffects()
+                  }}
+                  className={itemClass}
+                >
+                  <Sparkles className="size-3.5 shrink-0" aria-hidden="true" />
+                  <span>{effects ? "Turn ambient effects off" : "Turn ambient effects on"}</span>
+                </Command.Item>
+                <Command.Item
+                  value="copy email address contact"
+                  onSelect={() => {
+                    navigator.clipboard
+                      .writeText(buildEmail())
+                      .then(() => setNotice("Email copied to the clipboard."))
+                      .catch(() => setNotice(buildEmail()))
+                  }}
+                  className={itemClass}
+                >
+                  <Copy className="size-3.5 shrink-0" aria-hidden="true" />
+                  <span>Copy email address</span>
+                </Command.Item>
+              </Command.Group>
             </Command.List>
 
             <div className="flex items-center justify-between gap-4 border-t border-border px-4 py-2.5 text-xs text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <CornerDownLeft className="size-3.5" aria-hidden="true" /> to select
               </span>
-              <span className="hidden sm:inline">Ctrl K opens this menu</span>
+              <span className="min-w-0 truncate">{notice || "Ctrl K opens this menu"}</span>
             </div>
           </Command>
         </Dialog.Content>

@@ -28,3 +28,11 @@ test("Vigil keeps its labelled illustrated cover", async ({ page }) => {
   await page.goto("/work/vigil")
   await expect(page.getByRole("img", { name: /Illustrated cover, not a screenshot/ })).toBeVisible()
 })
+
+test("the technical brief downloads as a PDF", async ({ page }) => {
+  await page.goto("/work/vigil")
+  await expect(page.getByRole("link", { name: /Technical brief \(PDF\)/ })).toHaveAttribute(
+    "href",
+    "/docs/vigil-brief.pdf",
+  )
+})

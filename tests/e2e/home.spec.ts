@@ -40,6 +40,23 @@ test("a folder file opens its case study and the back button returns home", asyn
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Kone")
 })
 
+test("Ctrl K can switch theme and effects", async ({ page }) => {
+  await page.goto("/")
+  const html = page.locator("html")
+  const before = await html.getAttribute("data-theme")
+  await page.keyboard.press("Control+k")
+  await page.getByRole("combobox").fill("switch theme")
+  await page.keyboard.press("Enter")
+  await expect(page.getByRole("dialog")).toBeHidden()
+  await expect(html).not.toHaveAttribute("data-theme", before ?? "")
+  await page.keyboard.press("Control+k")
+  const input = page.getByRole("combobox")
+  await expect(input).toBeFocused()
+  await input.fill("ambient effects")
+  await page.keyboard.press("Enter")
+  await expect(html).toHaveAttribute("data-fx", "off")
+})
+
 test("home does not scroll sideways at 320px", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 720 })
   await page.goto("/")

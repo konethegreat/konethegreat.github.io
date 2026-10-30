@@ -1,9 +1,11 @@
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, FileDown } from "lucide-react"
 import { StatusBadge } from "@/components/ui/status-badge"
 import { Link } from "@/components/ui/link"
+import { caseMedia } from "@/data/case-media"
 import type { Project } from "@/data/types"
 
 export function ProjectCard({ project }: { project: Project }) {
+  const brief = caseMedia[project.slug]?.technicalBrief
   return (
     <article className="group flex h-full flex-col rounded-3xl border border-border bg-card/60 p-6 transition hover:border-primary/50 hover:bg-card">
       <div className="flex items-start justify-between gap-3">
@@ -42,6 +44,17 @@ export function ProjectCard({ project }: { project: Project }) {
             <ArrowUpRight className="size-3.5" aria-hidden="true" />
           </a>
         ))}
+        {brief ? (
+          <a
+            href={brief}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 font-medium underline-offset-4 hover:underline"
+          >
+            Brief (PDF)
+            <FileDown className="size-3.5" aria-hidden="true" />
+          </a>
+        ) : null}
         <Link
           to={`/work/${project.slug}`}
           onClick={(event) => {
