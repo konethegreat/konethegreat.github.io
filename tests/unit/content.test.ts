@@ -1,6 +1,9 @@
+import { existsSync } from "node:fs"
+import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
 import { caseStudies, nextCaseStudy } from "@/data/case-studies"
+import { credits } from "@/data/credits"
 import { liveProjects } from "@/data/live"
 import { principles } from "@/data/profile"
 import { projects, projectBySlug } from "@/data/projects"
@@ -134,6 +137,28 @@ describe("content model", () => {
         if (!link.to.startsWith("/work/")) continue
         expect(studySlugs.has(link.to.replace("/work/", ""))).toBe(true)
       }
+    }
+  })
+
+  it("credits every third-party piece with what changed", () => {
+    expect(credits.length).toBeGreaterThanOrEqual(15)
+    for (const credit of credits) {
+      expect(credit.author.trim()).not.toBe("")
+      expect(credit.href.startsWith("https://")).toBe(true)
+      expect(credit.usedFor.trim()).not.toBe("")
+      expect(credit.adapted.trim()).not.toBe("")
+      expect(["components", "libraries", "typefaces"]).toContain(credit.group)
+    }
+    const unlicensed = credits.filter((credit) => credit.license === "inspiration")
+    expect(unlicensed.length).toBeGreaterThanOrEqual(2)
+    for (const credit of unlicensed) {
+      expect(credit.adapted).toContain("No source copied")
+    }
+  })
+
+  it("hosts the license texts the credits page links to", () => {
+    for (const file of ["mit.txt", "isc.txt", "ofl-1.1.txt"]) {
+      expect(existsSync(join(process.cwd(), "public", "licenses", file))).toBe(true)
     }
   })
 })

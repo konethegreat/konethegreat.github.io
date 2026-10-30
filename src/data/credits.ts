@@ -6,28 +6,40 @@ export const credits: CreditEntry[] = [
     author: "Kedhareswer Naidu",
     license: "MIT",
     href: "https://21st.dev/@kedhareswer/components/glass-folder-cards",
-    usedFor: "The folder shelf on the home page and the case-study covers",
+    usedFor: "The folder shelf on the home page",
+    adapted:
+      "Rebuilt as this site's folder shelf: project files, keyboard support and case-study links.",
+    group: "components",
   },
   {
     name: "Mascot Portfolio Hero",
     author: "Kedhareswer Naidu",
     license: "MIT",
     href: "https://21st.dev/@kedhareswer/components/mascot-portfolio-hero",
-    usedFor: "The illustrated character in the home hero, adapted to the night workshop palette",
+    usedFor: "The illustrated character in the home hero",
+    adapted:
+      "Adapted the character's skin tone, beanie and palette, and wrote new copy for this site.",
+    group: "components",
   },
   {
     name: "Circular Navigation Bar",
     author: "Kaif UI",
     license: "inspiration",
     href: "https://21st.dev/@kaif-ui/components/cicular-navigation-bar",
-    usedFor: "Inspiration for the original circular menu. No source was copied.",
+    usedFor: "The radial menu in the site header",
+    adapted:
+      "No source copied. The original radial menu borrows only the circular arrangement.",
+    group: "components",
   },
   {
     name: "Interactive 3D Machine",
     author: "Evgeny Shilov (eugeneshilow)",
     license: "inspiration",
     href: "https://agentic-factory-3d.vercel.app",
-    usedFor: "Inspiration for the original 3D workshop. No source was copied.",
+    usedFor: "The six-station workshop on the work page",
+    adapted:
+      "No source copied. The original three.js workshop borrows only the station metaphor.",
+    group: "components",
   },
   {
     name: "React",
@@ -35,6 +47,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://react.dev",
     usedFor: "The interface runtime",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "Vite",
@@ -42,6 +56,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://vite.dev",
     usedFor: "Development server and production build",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "Tailwind CSS",
@@ -49,6 +65,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://tailwindcss.com",
     usedFor: "Styling and design tokens",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "Framer Motion",
@@ -56,6 +74,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://www.framer.com/motion/",
     usedFor: "Interface motion",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "Radix UI",
@@ -63,6 +83,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://www.radix-ui.com",
     usedFor: "Accessible dialog primitives",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "lucide",
@@ -70,6 +92,8 @@ export const credits: CreditEntry[] = [
     license: "ISC",
     href: "https://lucide.dev",
     usedFor: "Interface icons",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "cmdk",
@@ -77,6 +101,8 @@ export const credits: CreditEntry[] = [
     license: "MIT",
     href: "https://cmdk.paco.me",
     usedFor: "The command menu",
+    adapted: "Used as a dependency, unmodified.",
+    group: "libraries",
   },
   {
     name: "Inter",
@@ -84,6 +110,8 @@ export const credits: CreditEntry[] = [
     license: "OFL",
     href: "https://rsms.me/inter/",
     usedFor: "Body type",
+    adapted: "Self-hosted with Fontsource, unmodified.",
+    group: "typefaces",
   },
   {
     name: "Archivo Black",
@@ -91,6 +119,8 @@ export const credits: CreditEntry[] = [
     license: "OFL",
     href: "https://fonts.google.com/specimen/Archivo+Black",
     usedFor: "Display headings",
+    adapted: "Self-hosted with Fontsource, unmodified.",
+    group: "typefaces",
   },
   {
     name: "Instrument Serif",
@@ -98,6 +128,8 @@ export const credits: CreditEntry[] = [
     license: "OFL",
     href: "https://fonts.google.com/specimen/Instrument+Serif",
     usedFor: "Editorial headings",
+    adapted: "Self-hosted with Fontsource, unmodified.",
+    group: "typefaces",
   },
   {
     name: "JetBrains Mono",
@@ -105,5 +137,7 @@ export const credits: CreditEntry[] = [
     license: "OFL",
     href: "https://www.jetbrains.com/lp/mono/",
     usedFor: "Labels, metadata and code",
+    adapted: "Self-hosted with Fontsource, unmodified.",
+    group: "typefaces",
   },
 ]

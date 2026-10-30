@@ -150,6 +150,9 @@ export interface CreditEntry {
   license: "MIT" | "ISC" | "OFL" | "original" | "inspiration"
   href: string
   usedFor: string
+  /** Plain statement of what this site changed, or that nothing was copied. */
+  adapted: string
+  group: "components" | "libraries" | "typefaces"
 }
 
 export interface LiveProject {
