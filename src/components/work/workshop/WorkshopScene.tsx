@@ -429,6 +429,9 @@ export default function WorkshopScene({ active, onSelect }: Props) {
       if (!width || !height) return
       camera.aspect = width / height
       camera.updateProjectionMatrix()
+      const fit = THREE.MathUtils.clamp(1.65 / camera.aspect, 1, 1.9)
+      camera.position.set(0, 5.4 * fit, 7.4 * fit)
+      camera.lookAt(0, 0.5, 0)
       renderer.setSize(width, height, false)
       const stretch = THREE.MathUtils.clamp(camera.aspect * 0.62, 1, 1.9)
       for (const unit of units) unit.group.position.x = unit.baseX * stretch

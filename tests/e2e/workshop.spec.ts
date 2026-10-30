@@ -32,3 +32,17 @@ test("the live workshop keeps moving while the pointer rests", async ({ page }, 
   const second = await canvas.screenshot()
   expect(Buffer.compare(first, second)).not.toBe(0)
 })
+
+test("the workshop fits its card on a narrow screen", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 })
+  await page.goto("/work")
+  const workshop = page.getByRole("region", { name: "The workshop" })
+  await workshop.scrollIntoViewIfNeeded()
+  await expect(workshop.locator("canvas")).toHaveCount(0)
+  const card = await workshop.boundingBox()
+  const stations = workshop.getByRole("group", { name: "Workshop stations" })
+  for (const button of await stations.getByRole("button").all()) {
+    const box = await button.boundingBox()
+    expect(box!.x + box!.width).toBeLessThanOrEqual(card!.x + card!.width)
+  }
+})

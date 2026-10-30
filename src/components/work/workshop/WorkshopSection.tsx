@@ -24,10 +24,21 @@ const DOT: Record<StationId, string> = {
 export function WorkshopSection({ active, onSelect }: Props) {
   const reduced = usePrefersReducedMotion()
   const [capable, setCapable] = useState(false)
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches,
+  )
 
   useEffect(() => setCapable(canRenderWorkshop()), [])
 
-  const sceneReady = capable && !reduced
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 639px)")
+    const update = () => setNarrow(query.matches)
+    update()
+    query.addEventListener("change", update)
+    return () => query.removeEventListener("change", update)
+  }, [])
+
+  const sceneReady = capable && !reduced && !narrow
 
   return (
     <section
@@ -79,7 +90,9 @@ export function WorkshopSection({ active, onSelect }: Props) {
         <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
           {sceneReady
             ? "Hover a station to light it. Click to filter the bench."
-            : "Simplified workshop view. The full scene needs WebGL and a fine pointer."}
+            : narrow
+              ? "Simplified view for small screens. The full scene runs on wider displays."
+              : "Simplified workshop view. The full scene needs WebGL and a fine pointer."}
         </p>
 
         <div role="group" aria-label="Workshop stations" className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -90,7 +103,7 @@ export function WorkshopSection({ active, onSelect }: Props) {
               aria-pressed={active === station.id}
               onClick={() => onSelect(active === station.id ? null : station.id)}
               className={cn(
-                "flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "flex min-w-0 items-center gap-3 rounded-xl border px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 active === station.id
                   ? "border-primary bg-primary/10"
                   : "border-border bg-background/40 hover:border-primary/40 hover:bg-background/70",
@@ -102,7 +115,7 @@ export function WorkshopSection({ active, onSelect }: Props) {
               />
               <span className="min-w-0">
                 <span className="block text-sm font-semibold">{station.label}</span>
-                <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
                   {station.blurb}
                 </span>
               </span>
