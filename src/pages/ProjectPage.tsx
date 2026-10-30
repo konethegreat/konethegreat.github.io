@@ -10,7 +10,10 @@ export function ProjectPage() {
   if (!project) return <NotFoundPage />
 
   return (
-    <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <article
+      className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8"
+      style={{ viewTransitionName: "case-hero" }}
+    >
       <Link to="/work" className="text-sm text-muted-foreground hover:text-foreground">
         Back to work
       </Link>

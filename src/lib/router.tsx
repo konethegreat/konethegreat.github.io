@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react"
+import { flushSync } from "react-dom"
 import { matchRoute, normalizePath, routeMeta } from "@/lib/routes"
 import { withViewTransition } from "@/lib/view-transition"
 
@@ -51,9 +52,11 @@ export function RouterProvider({ children }: { children: ReactNode }) {
     const next = normalizePath(url.pathname)
     if (next === currentPath() && url.hash === window.location.hash) return
     withViewTransition(() => {
-      if (options?.replace) window.history.replaceState(null, "", url)
-      else window.history.pushState(null, "", url)
-      setPath(next)
+      flushSync(() => {
+        if (options?.replace) window.history.replaceState(null, "", url)
+        else window.history.pushState(null, "", url)
+        setPath(next)
+      })
     })
   }, [])
 

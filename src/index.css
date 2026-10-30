@@ -476,8 +476,8 @@
     z-index: 100;
     padding: 0.6rem 1rem;
     border-radius: 999px;
-    background: #22d3ee;
-    color: #03111a;
+    background: var(--primary);
+    color: var(--primary-foreground);
     font-weight: 600;
     transition: top 0.2s ease;
   }
@@ -500,6 +500,109 @@
 .ring-conic {
   background: conic-gradient(from var(--ring-a), #22d3ee, #8b5cf6, #f472b6, #34d399, #22d3ee);
   animation: ring-spin 8s linear infinite;
+}
+
+/* Night workshop landing */
+.hero-glow {
+  background:
+    radial-gradient(58% 48% at 78% 18%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%),
+    radial-gradient(42% 38% at 12% 82%, color-mix(in oklab, var(--teal) 14%, transparent), transparent 70%);
+}
+.hero-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: radial-gradient(70% 62% at 50% 42%, #000 25%, transparent 78%);
+}
+@keyframes hero-spin {
+  to { transform: rotate(360deg); }
+}
+.hero-ring {
+  animation: hero-spin 48s linear infinite;
+  border-style: dashed;
+}
+.hero-ring-reverse {
+  animation: hero-spin 72s linear infinite reverse;
+}
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.mascot-breathe {
+  animation: mascot-float 7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.mascot-figure:hover .mascot-bubble {
+  border-color: var(--ring);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ring,
+  .hero-ring-reverse,
+  .mascot-breathe {
+    animation: none;
+  }
+}
+
+/* Circular menu: a ring that settles into place, items arriving just behind it. */
+.radial-ring {
+  --radial-radius: clamp(9.5rem, 30vw, 15rem);
+}
+@keyframes radial-ring-in {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes radial-item-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.radial-content[data-state="open"] .radial-ring {
+  animation: radial-ring-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.radial-content[data-state="open"] .radial-item {
+  animation: radial-item-in 0.5s cubic-bezier(0.34, 1.36, 0.5, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radial-content[data-state="open"] .radial-ring,
+  .radial-content[data-state="open"] .radial-item {
+    animation: none;
+  }
+}
+
+.live-marquee:hover .live-track,
+.live-marquee:focus-within .live-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+  .live-track > ul[aria-hidden="true"] {
+    display: none;
+  }
+  .live-track > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-right: 0;
+  }
 }
 
 /* Decorative animations stop when the visitor turns effects off (or prefers reduced motion). */

@@ -1,4 +1,5 @@
 import { Moon, Sun } from "lucide-react"
+import { NavigationMenu } from "@/components/nav/radial-menu"
 import { Link } from "@/components/ui/link"
 import { navItems } from "@/data/nav"
 import { useTheme } from "@/lib/theme"
@@ -8,7 +9,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="font-display text-sm uppercase tracking-[0.18em]">
+        <Link to="/" className="whitespace-nowrap font-display text-xs uppercase tracking-[0.14em] sm:text-sm sm:tracking-[0.18em]">
           Kone Tshivhinda
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -23,6 +24,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <NavigationMenu />
           <button
             type="button"
             onClick={toggle}
