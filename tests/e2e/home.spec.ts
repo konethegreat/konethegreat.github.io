@@ -16,7 +16,7 @@ test("the radial menu opens on the first item and Enter reaches Work", async ({ 
   await expect(page.getByRole("link", { name: "Work", exact: true })).toBeFocused()
   await page.keyboard.press("Enter")
   await expect(page).toHaveURL(/\/work$/)
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Work")
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Eight builds")
 })
 
 test("Ctrl K searches case studies", async ({ page }) => {

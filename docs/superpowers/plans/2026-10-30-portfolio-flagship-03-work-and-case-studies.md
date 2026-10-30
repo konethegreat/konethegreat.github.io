@@ -1,6 +1,6 @@
 # Work Archive and Case Studies Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Replace the placeholder Work page with a filterable archive, a calm data-driven case-study template for all eight projects, and an original lazy-loaded 3D workshop with a static fallback.
 
@@ -34,7 +34,7 @@
 - Produces: `CaseDecision { title: string; choice: string; why: string; tradeoff: string }`, `CaseStudy.decisions?: CaseDecision[]`, `nextCaseStudy(slug: string): CaseStudy`, `caseStudyBySlug`, `caseStudies`.
 - Consumes: existing `CaseStudy`, `caseStudies`, `projectBySlug`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Add to `tests/unit/content.test.ts`:
 
@@ -60,12 +60,12 @@ it("wraps the next case study from the last one", () => {
 })
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `npm test -- tests/unit/content.test.ts`
 Expected: FAIL because `nextCaseStudy` is not exported and decisions are missing.
 
-- [ ] **Step 3: Add the types**
+- [x] **Step 3: Add the types**
 
 In `src/data/types.ts`:
 
@@ -80,7 +80,7 @@ export interface CaseDecision {
 
 Add `decisions?: CaseDecision[]` to `CaseStudy`.
 
-- [ ] **Step 4: Add decisions to all eight studies and the helper**
+- [x] **Step 4: Add decisions to all eight studies and the helper**
 
 In `src/data/case-studies.ts`, add a `decisions` array to every entry. Use exactly these titles and facts:
 
@@ -107,7 +107,7 @@ export function nextCaseStudy(slug: string): CaseStudy {
 }
 ```
 
-- [ ] **Step 5: Verify and commit**
+- [x] **Step 5: Verify and commit**
 
 Run: `npm run typecheck && npm test`
 Expected: typecheck passes and all unit tests pass.
@@ -134,7 +134,7 @@ git commit -m "feat: add case-study decisions and next-project helper"
 - Produces: `StationId`, `Station`, `stations`, `stationProjects`, `projectMatchesStation`, `caseStudyProjects`, `archiveOnlyProjects`, `StationFilters`, `ProjectCard`, `ArchiveTable`.
 - Consumes: `caseStudies`, `projectBySlug`, `projects`, `StatusBadge`, `Link`, `useRouter`.
 
-- [ ] **Step 1: Write the failing data test**
+- [x] **Step 1: Write the failing data test**
 
 Create `tests/unit/work.test.ts`:
 
@@ -165,12 +165,12 @@ describe("work page data", () => {
 })
 ```
 
-- [ ] **Step 2: Run it to verify it fails**
+- [x] **Step 2: Run it to verify it fails**
 
 Run: `npm test -- tests/unit/work.test.ts`
 Expected: FAIL because `@/data/work` does not exist.
 
-- [ ] **Step 3: Create `src/data/work.ts`**
+- [x] **Step 3: Create `src/data/work.ts`**
 
 ```ts
 import { caseStudies } from "./case-studies"
@@ -222,12 +222,12 @@ export function projectsForStation(station: StationId | null): Project[] {
 }
 ```
 
-- [ ] **Step 4: Run the data test**
+- [x] **Step 4: Run the data test**
 
 Run: `npm test -- tests/unit/work.test.ts`
 Expected: PASS.
 
-- [ ] **Step 5: Build the filter, card and archive components**
+- [x] **Step 5: Build the filter, card and archive components**
 
 `StationFilters`:
 
@@ -297,7 +297,7 @@ export function StationFilters({ active, onSelect, count }: Props) {
 
 `ArchiveTable`: a semantic list of archive-only projects with `StatusBadge`, title, kicker, and external links from `project.links`. Do not render a row for a project without a link.
 
-- [ ] **Step 6: Rewrite `WorkPage`**
+- [x] **Step 6: Rewrite `WorkPage`**
 
 The page contains:
 1. Hero with `h1` "Work" and the statement "Eight case studies across agents, legal tech, civic tech and the studio. Every claim has a link."
@@ -306,7 +306,7 @@ The page contains:
 4. An archive section with `ArchiveTable` for `archiveOnlyProjects`.
 5. Empty state if a filter returns nothing: "No case study matches that station yet. Show all work." with a button that clears the filter.
 
-- [ ] **Step 7: Add the Playwright test**
+- [x] **Step 7: Add the Playwright test**
 
 Create `tests/e2e/work.spec.ts`:
 
@@ -331,7 +331,7 @@ test("a work card opens the shared-element case study", async ({ page }) => {
 })
 ```
 
-- [ ] **Step 8: Verify and commit**
+- [x] **Step 8: Verify and commit**
 
 Run: `npm run typecheck && npm test && npm run build && npx playwright test tests/e2e/work.spec.ts`
 Expected: all pass.
@@ -356,7 +356,7 @@ git commit -m "feat: add filterable work archive"
 - Produces: `CaseHero({ project, study })`, `CaseBody({ project, study })`, `CaseNext({ study })`.
 - Consumes: `Project`, `CaseStudy`, `StatusBadge`, `Link`, `nextCaseStudy`, `useRouter`.
 
-- [ ] **Step 1: Write the failing Playwright test**
+- [x] **Step 1: Write the failing Playwright test**
 
 ```ts
 import { test, expect } from "@playwright/test"
@@ -375,12 +375,12 @@ test("a case study with a live deployment links to it", async ({ page }) => {
 })
 ```
 
-- [ ] **Step 2: Run it to verify it fails**
+- [x] **Step 2: Run it to verify it fails**
 
 Run: `npx playwright test tests/e2e/case-study.spec.ts`
 Expected: FAIL because the current page has no decisions or proof headings.
 
-- [ ] **Step 3: Build `CaseHero`**
+- [x] **Step 3: Build `CaseHero`**
 
 Layout:
 - Breadcrumb `Work / {title}` using `Link to="/work"`.
@@ -392,7 +392,7 @@ Layout:
 - Actions: every `project.links` external anchor plus a technical-brief anchor only when `study.technicalBrief` exists. Use `target="_blank" rel="noopener noreferrer"`.
 - Cover: a wide `div` with `role="img"` and `aria-label={`${project.title} cover illustration. ${study.heroAlt}`}`. Inside, an inline SVG with accent bands and a caption "Illustrated cover, not a screenshot." This is deliberately not a fake UI.
 
-- [ ] **Step 4: Build `CaseBody`**
+- [x] **Step 4: Build `CaseBody`**
 
 Two-column layout: reading column plus `aside` rail (sticky at `lg`).
 
@@ -409,11 +409,11 @@ Reading column order:
 
 Rail: status badge, role, period, team, stack, and the live/source links. Keep links duplicated only if the hero actions are not visible on small screens; instead, hide the rail below `lg` and keep hero actions as the single set on phones.
 
-- [ ] **Step 5: Build `CaseNext`**
+- [x] **Step 5: Build `CaseNext`**
 
 Call `nextCaseStudy(study.slug)`, look up its project, and render a full-width link card: eyebrow "Next case study", title, tagline, and an arrow. The link's accessible name includes the next title.
 
-- [ ] **Step 6: Rewrite `ProjectPage`**
+- [x] **Step 6: Rewrite `ProjectPage`**
 
 ```tsx
 export function ProjectPage() {
@@ -434,7 +434,7 @@ export function ProjectPage() {
 
 Remove the old inline `viewTransitionName` from the article; it now lives on the `h1`.
 
-- [ ] **Step 7: Verify and commit**
+- [x] **Step 7: Verify and commit**
 
 Run: `npm run typecheck && npm run build && npx playwright test tests/e2e/case-study.spec.ts tests/e2e/a11y.spec.ts`
 Expected: all pass, including axe on `/work/vigil`.
@@ -460,7 +460,7 @@ git commit -m "feat: add the case-study template"
 - Produces: `WorkshopSection({ active, onSelect })`, default `WorkshopScene({ active, onSelect })`, `WorkshopFallback({ active, onSelect })`, `canRenderWorkshop(): boolean`.
 - Consumes: `stations`, `StationId`, `usePrefersReducedMotion`.
 
-- [ ] **Step 1: Install three**
+- [x] **Step 1: Install three**
 
 ```bash
 npm install three
@@ -469,7 +469,7 @@ npm install -D @types/three
 
 If `@types/three` is not required because the installed `three` ships declarations, keep it only if typecheck needs it.
 
-- [ ] **Step 2: Write the failing Playwright test**
+- [x] **Step 2: Write the failing Playwright test**
 
 ```ts
 import { test, expect } from "@playwright/test"
@@ -485,12 +485,12 @@ test("the workshop exposes six stations and filters on click", async ({ page }) 
 })
 ```
 
-- [ ] **Step 3: Run it to verify it fails**
+- [x] **Step 3: Run it to verify it fails**
 
 Run: `npx playwright test tests/e2e/workshop.spec.ts`
 Expected: FAIL because the workshop region does not exist.
 
-- [ ] **Step 4: Add the WebGL capability check**
+- [x] **Step 4: Add the WebGL capability check**
 
 `src/lib/webgl.ts`:
 
@@ -505,11 +505,11 @@ export function canRenderWorkshop(): boolean {
 }
 ```
 
-- [ ] **Step 5: Build the static fallback**
+- [x] **Step 5: Build the static fallback**
 
 `WorkshopFallback` renders an isometric SVG of six pedestals arranged in the same ring, coloured brass, copper and teal. The SVG is `aria-hidden`. The six station buttons are rendered once by `WorkshopSection`, not by the fallback. Add a caption: "Static workshop view. The live scene needs WebGL and a fine pointer."
 
-- [ ] **Step 6: Build `WorkshopScene`**
+- [x] **Step 6: Build `WorkshopScene`**
 
 Use only three.js primitives and no external assets.
 
@@ -566,7 +566,7 @@ Implementation requirements:
 - `prefers-reduced-motion` is handled by the wrapper (it never mounts the scene); the scene itself still avoids auto-rotation.
 - Dispose every geometry, material, texture and the renderer on unmount.
 
-- [ ] **Step 7: Build `WorkshopSection`**
+- [x] **Step 7: Build `WorkshopSection`**
 
 ```tsx
 const WorkshopScene = lazy(() => import("./WorkshopScene"))
@@ -602,7 +602,7 @@ export function WorkshopSection({ active, onSelect }: Props) {
 
 Add the `WorkshopSection` above the results grid in `WorkPage`. Clicking the active station again clears the filter (`onSelect(active === station.id ? null : station.id)`), so the six 3D stations behave like the filter buttons.
 
-- [ ] **Step 8: Verify and commit**
+- [x] **Step 8: Verify and commit**
 
 Run: `npm run typecheck && npm run build && npx playwright test tests/e2e/work.spec.ts tests/e2e/workshop.spec.ts`
 Expected: all pass. Confirm the build output shows a separate `WorkshopScene` chunk.
@@ -620,7 +620,7 @@ git commit -m "feat: add the original 3D workshop with static fallback"
 - Modify: `docs/superpowers/plans/2026-10-30-portfolio-flagship-03-work-and-case-studies.md` (tick boxes)
 - Test: all suites
 
-- [ ] **Step 1: Run the full gate**
+- [x] **Step 1: Run the full gate**
 
 ```bash
 npm run typecheck && npm test && npm run build && npx playwright test
@@ -628,7 +628,7 @@ npm run typecheck && npm test && npm run build && npx playwright test
 
 Expected: typecheck passes, 12+ unit tests pass, build passes, 62+ Playwright tests pass.
 
-- [ ] **Step 2: Manually check the work page**
+- [x] **Step 2: Manually check the work page**
 
 At 1440px and 390px, in light and dark:
 - Filters show the expected counts.
@@ -636,7 +636,7 @@ At 1440px and 390px, in light and dark:
 - Every card link opens the right case study.
 - No horizontal overflow at 320px.
 
-- [ ] **Step 3: Commit and push**
+- [x] **Step 3: Commit and push**
 
 ```bash
 git add -A
