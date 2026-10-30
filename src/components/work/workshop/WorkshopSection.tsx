@@ -79,7 +79,7 @@ export function WorkshopSection({ active, onSelect }: Props) {
         <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
           {sceneReady
             ? "Hover a station to light it. Click to filter the bench."
-            : "Static workshop view. The live scene needs WebGL and a fine pointer."}
+            : "Simplified workshop view. The full scene needs WebGL and a fine pointer."}
         </p>
 
         <div role="group" aria-label="Workshop stations" className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">

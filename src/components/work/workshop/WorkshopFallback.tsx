@@ -114,7 +114,7 @@ function Scene({ layout, active }: { layout: Layout; active: StationId | null })
         opacity="0.7"
       />
 
-      {ORDER.map((id) => {
+      {ORDER.map((id, index) => {
         const station = stations.find((entry) => entry.id === id)
         if (!station) return null
         const spot = layout.spots[id]
@@ -142,6 +142,8 @@ function Scene({ layout, active }: { layout: Layout; active: StationId | null })
               stroke={lit ? accent : "var(--border)"}
             />
             <ellipse
+              className="workshop-pulse fx-anim"
+              style={{ animationDelay: `${index * 0.4}s` }}
               cx="0"
               cy="-20"
               rx="24"
@@ -152,7 +154,9 @@ function Scene({ layout, active }: { layout: Layout; active: StationId | null })
               opacity={lit ? 1 : 0.45}
             />
             <g transform="translate(0 -30)">
-              <Sculpture id={id} accent={accent} />
+              <g className="workshop-float fx-anim" style={{ animationDelay: `${index * 0.45}s` }}>
+                <Sculpture id={id} accent={accent} />
+              </g>
             </g>
             <text
               y="48"

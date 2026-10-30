@@ -631,3 +631,28 @@ body::after {
     transition-duration: 0.001ms !important;
   }
 }
+
+@keyframes workshop-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes workshop-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.workshop-float {
+  animation: workshop-float 6s ease-in-out infinite;
+}
+.workshop-pulse {
+  animation: workshop-pulse 3.6s ease-in-out infinite;
+}
