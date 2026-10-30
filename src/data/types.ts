@@ -70,3 +70,53 @@ export interface JourneyNode {
   /** Optional deep link: a project slug to open or a section id to scroll to. */
   projectSlug?: string
 }
+
+export type CaseStudySection =
+  | { kind: "prose"; heading?: string; body: string[] }
+  | { kind: "list"; heading: string; items: string[] }
+  | { kind: "facts"; heading?: string; facts: { label: string; value: string }[] }
+  | { kind: "quote"; quote: string; attribution?: string }
+  | { kind: "figure"; src: string; alt: string; caption?: string; width: number; height: number }
+
+export interface CaseStudy {
+  slug: string
+  tagline: string
+  status: "live" | "archive" | "in-progress"
+  year: string
+  team: string
+  role: string
+  stack: string[]
+  summary: string
+  heroAlt: string
+  accent: "brass" | "copper" | "teal"
+  sections: CaseStudySection[]
+  technicalBrief?: string
+  gallery?: { src: string; alt: string; width: number; height: number }[]
+}
+
+export interface Service {
+  id: string
+  title: string
+  promise: string
+  deliverables: string[]
+  bestFor: string
+  timeline: string
+  from: string
+  icon: "layers" | "compass" | "code" | "spark" | "book" | "wrench"
+}
+
+export interface CreditEntry {
+  name: string
+  author: string
+  license: "MIT" | "ISC" | "OFL" | "original" | "inspiration"
+  href: string
+  usedFor: string
+}
+
+export interface LiveProject {
+  slug: string
+  name: string
+  url: string
+  tag: string
+  accent: "brass" | "copper" | "teal"
+}
