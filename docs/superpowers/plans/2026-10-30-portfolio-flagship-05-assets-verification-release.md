@@ -1,6 +1,6 @@
 # Portfolio Flagship: Assets, Verification and Release Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Give every case study real visual evidence and a downloadable technical brief, finish per-route metadata, prove the site through an accessibility and link matrix, and ship it.
 
@@ -37,7 +37,7 @@
 - Produces: `siteShots: Record<string, { desktop: SiteShot; phone: SiteShot }>` where `SiteShot` is `{ src, width, height, captured, source }`.
 - Slugs captured: `sa-jas`, `clearcut`, `munisolve`, `reservoir`, `ui-vault`, `k-one`, plus `timelex` (v1 prototype, gallery only).
 
-- [ ] **Step 1: Write the capture script**
+- [x] **Step 1: Write the capture script**
 
 ```js
 import { chromium } from "@playwright/test"
@@ -103,7 +103,7 @@ await writeFile("src/data/shots.generated.ts", header + JSON.stringify(results, 
 console.log(`wrote ${Object.keys(results).length} sites`)
 ```
 
-- [ ] **Step 2: Run it**
+- [x] **Step 2: Run it**
 
 Run: `npm run shots`
 Expected: seven sites captured, `src/data/shots.generated.ts` written, and every file present:
@@ -112,11 +112,11 @@ Expected: seven sites captured, `src/data/shots.generated.ts` written, and every
 find public/shots -name '*.webp' | sort
 ```
 
-- [ ] **Step 3: Inspect two captures**
+- [x] **Step 3: Inspect two captures**
 
 Open `public/shots/sa-jas/desktop.webp` and `public/shots/k-one/desktop.webp` with the Read tool. Reject blank, error-page or cookie-wall captures; rerun after fixing the wait if needed.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add scripts/capture-screenshots.mjs src/data/shots.generated.ts public/shots
@@ -157,7 +157,7 @@ export const caseMedia: Record<string, CaseMedia>
 
 - Consumes: `siteShots`, `caseStudies`, `projectBySlug`.
 
-- [ ] **Step 1: Write the failing unit test**
+- [x] **Step 1: Write the failing unit test**
 
 ```ts
 import { existsSync, statSync } from "node:fs"
@@ -194,12 +194,12 @@ describe("case media", () => {
 })
 ```
 
-- [ ] **Step 2: Run it and watch it fail**
+- [x] **Step 2: Run it and watch it fail**
 
 Run: `npx vitest run tests/unit/assets.test.ts`
 Expected: FAIL because `@/data/case-media` does not exist.
 
-- [ ] **Step 3: Create `src/data/case-media.ts`**
+- [x] **Step 3: Create `src/data/case-media.ts`**
 
 ```ts
 import { siteShots } from "./shots.generated"
@@ -292,7 +292,7 @@ export const caseMedia: Record<string, CaseMedia> = Object.fromEntries(
 )
 ```
 
-- [ ] **Step 4: Remove the dead fields and render real media**
+- [x] **Step 4: Remove the dead fields and render real media**
 
 In `src/data/types.ts` delete `technicalBrief?: string` and `gallery?: ...` from `CaseStudy`.
 
@@ -324,7 +324,7 @@ In `CaseBody.tsx` import `caseMedia`, read `const media = caseMedia[study.slug]`
 <figcaption className="mt-2 text-sm text-muted-foreground">{image.caption}</figcaption>
 ```
 
-- [ ] **Step 5: Add the browser proof**
+- [x] **Step 5: Add the browser proof**
 
 ```ts
 test("a live case study shows a dated screenshot and a phone view", async ({ page }) => {
@@ -341,12 +341,12 @@ test("Vigil keeps its labelled illustrated cover", async ({ page }) => {
 })
 ```
 
-- [ ] **Step 6: Run tests**
+- [x] **Step 6: Run tests**
 
 Run: `npx vitest run tests/unit/assets.test.ts && npm run test:e2e -- case-study.spec.ts`
 Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/data/case-media.ts src/data/types.ts src/components/case-study tests/unit/assets.test.ts tests/e2e/case-study.spec.ts
@@ -370,7 +370,7 @@ git commit -m "feat: show dated screenshots in case studies"
 - Consumes: `caseStudies`, `projectBySlug`, `caseMedia`.
 - Produces: `npm run briefs` writes exactly two A4 pages per PDF.
 
-- [ ] **Step 1: Write the brief builder**
+- [x] **Step 1: Write the brief builder**
 
 ```ts
 import { chromium } from "@playwright/test"
@@ -473,12 +473,12 @@ for (const study of caseStudies) {
 await browser.close()
 ```
 
-- [ ] **Step 2: Generate and inspect**
+- [x] **Step 2: Generate and inspect**
 
 Run: `npm run briefs`
 Expected: eight PDFs. Open `public/docs/vigil-brief.pdf` and `public/docs/sa-jas-brief.pdf` with Read. Confirm two pages, no clipped text, the October 2026 source label, and no em dashes.
 
-- [ ] **Step 3: Wire briefs into the archive and palette**
+- [x] **Step 3: Wire briefs into the archive and palette**
 
 In `ProjectCard.tsx`, import `FileDown` and `caseMedia`; after the live links add:
 
@@ -537,7 +537,7 @@ In `command-menu.tsx` add imports `FileDown, Copy, Moon, Sun, Sparkles`, `caseMe
 
 Use `const { resolved, toggle } = useTheme()`, `const { effects, toggleEffects } = useFx()`, `const [notice, setNotice] = useState("")`, and show `notice` in the footer in place of the hint when set.
 
-- [ ] **Step 4: Add browser tests**
+- [x] **Step 4: Add browser tests**
 
 In `case-study.spec.ts`:
 
@@ -569,12 +569,12 @@ test("Ctrl K can switch theme and effects", async ({ page }) => {
 })
 ```
 
-- [ ] **Step 5: Run**
+- [x] **Step 5: Run**
 
 Run: `npx vitest run && npm run test:e2e -- case-study.spec.ts work.spec.ts home.spec.ts`
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add scripts/build-briefs.ts public/docs src/components/work/ProjectCard.tsx src/components/nav/command-menu.tsx tests
@@ -593,7 +593,7 @@ git commit -m "feat: generate technical briefs and wire them into the archive"
 - Modify: `tests/unit/routes.test.ts`
 - Create: `tests/e2e/metadata.spec.ts`
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```ts
 it("lists every route in the sitemap with today's lastmod", () => {
@@ -625,7 +625,7 @@ for (const probe of probes) {
 }
 ```
 
-- [ ] **Step 2: Update the router**
+- [x] **Step 2: Update the router**
 
 Import `site` from `@/data/profile` and extend the metadata effect:
 
@@ -649,11 +649,11 @@ set('meta[name="twitter:url"]', canonical)
 
 Add `<meta name="twitter:url" content="https://konethegreat.github.io/" />` to `index.html`.
 
-- [ ] **Step 3: Write the sitemap**
+- [x] **Step 3: Write the sitemap**
 
 Fifteen `<url>` entries for `/`, `/work`, the eight case studies, `/services`, `/about`, `/playground`, `/contact`, `/credits`, each with `<lastmod>2026-10-30</lastmod>`, `monthly`, and priority 1.0 for home, 0.9 for work and case studies, 0.8 for services and about, 0.7 for playground and contact, 0.5 for credits.
 
-- [ ] **Step 4: Fix manifest and theme colour**
+- [x] **Step 4: Fix manifest and theme colour**
 
 Set `background_color` and `theme_color` to `#f4efe6` in `site.webmanifest`. In `index.html` set the default `theme-color` to `#f4efe6` and add:
 
@@ -661,12 +661,12 @@ Set `background_color` and `theme_color` to `#f4efe6` in `site.webmanifest`. In 
 <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
 ```
 
-- [ ] **Step 5: Run**
+- [x] **Step 5: Run**
 
 Run: `npx vitest run tests/unit/routes.test.ts && npm run test:e2e -- metadata.spec.ts routes.spec.ts`
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/lib/router.tsx index.html public/sitemap.xml public/site.webmanifest tests
@@ -683,7 +683,7 @@ git commit -m "feat: give every route its own canonical and social metadata"
 - Modify: `package.json`
 - Modify: `tests/unit/content.test.ts`
 
-- [ ] **Step 1: Make accessibility theme-complete**
+- [x] **Step 1: Make accessibility theme-complete**
 
 ```ts
 const themes = ["light", "dark"] as const
@@ -701,7 +701,7 @@ for (const theme of themes) {
 
 Apply the same init script and assertion to the radial and command menu tests for both themes.
 
-- [ ] **Step 2: Write the link checker**
+- [x] **Step 2: Write the link checker**
 
 ```ts
 import { caseStudies } from "../src/data/case-studies"
@@ -735,7 +735,7 @@ console.log(`checked ${urls.size} URLs`)
 
 Add `"check:links": "tsx scripts/check-links.ts"` to `package.json`.
 
-- [ ] **Step 3: Add content guards**
+- [x] **Step 3: Add content guards**
 
 In `tests/unit/content.test.ts`:
 
@@ -755,7 +755,7 @@ it("uses no em dashes in the data that becomes copy", () => {
 })
 ```
 
-- [ ] **Step 4: Run**
+- [x] **Step 4: Run**
 
 Run: `npx vitest run`
 Expected: PASS.
@@ -766,7 +766,7 @@ Expected: PASS in both themes.
 Run: `npm run check:links`
 Expected: every URL reports `ok`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add tests/e2e/a11y.spec.ts tests/unit/content.test.ts scripts/check-links.ts package.json
@@ -781,24 +781,24 @@ git commit -m "test: check every page in both themes and every public link"
 - Create (temporary, not committed): `scripts/review-phase5.mjs`
 - Modify: any page that fails review
 
-- [ ] **Step 1: Capture the matrix**
+- [x] **Step 1: Capture the matrix**
 
 Write a temporary Playwright script that loads `/` and `/work/vigil` at 320, 390, 768 and 1440 in both themes, scrolls each page in steps before capture, and writes PNGs to a scratch folder outside `public/`.
 
-- [ ] **Step 2: Read the captures**
+- [x] **Step 2: Read the captures**
 
 Read the 320 and 1440 light captures and the 390 dark capture for both pages. Check: no sideways scroll, covers are sharp, captions legible, no text under the floating nav, no blank bands.
 
-- [ ] **Step 3: Measure the delivery**
+- [x] **Step 3: Measure the delivery**
 
 Run: `npm run build`
 Record the `index-*.js` and `three-*.js` sizes. Confirm the three.js chunk is emitted separately and is not referenced by any non-workshop page.
 
-- [ ] **Step 4: Fix findings and rerun**
+- [x] **Step 4: Fix findings and rerun**
 
 Fix any visual defect at its source, then rerun the affected Playwright spec.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -811,7 +811,7 @@ git commit -m "fix: polish the screenshot and brief pass"
 
 **Files:** none
 
-- [ ] **Step 1: Run everything**
+- [x] **Step 1: Run everything**
 
 ```bash
 npm run typecheck
@@ -821,11 +821,11 @@ npm run test:e2e
 
 Expected: 0 failures, 0 serious or critical axe findings.
 
-- [ ] **Step 2: Close the plan and update the PR**
+- [x] **Step 2: Close the plan and update the PR**
 
 Tick every checkbox in this file, commit it, and update PR #4 with the Phase 5 numbers: screenshots, briefs, route metadata, accessibility matrix size, link check result and bundle sizes.
 
-- [ ] **Step 3: Merge and deploy**
+- [x] **Step 3: Merge and deploy**
 
 ```bash
 gh pr ready 4
@@ -835,10 +835,10 @@ gh run watch --exit-status
 
 Expected: the deploy workflow succeeds.
 
-- [ ] **Step 4: Verify production**
+- [x] **Step 4: Verify production**
 
 Check the live home page, `/work/sa-jas`, `/work/vigil`, `/credits` and `/this-does-not-exist`, plus one screenshot and one PDF. Confirm canonical tags on a case study, the sitemap listing all 15 routes, and that the 404 page returns the styled page.
 
-- [ ] **Step 5: Report**
+- [x] **Step 5: Report**
 
 Report the deployed URL, the verified pages, the brief count, screenshot count, bundle sizes, test totals and any known follow-up (per-project OG images remain deferred by the spec).
