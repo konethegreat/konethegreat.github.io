@@ -9,8 +9,8 @@
       content="Portfolio of Kone Tshivhinda, an AI systems engineer and full-stack developer in Johannesburg. Agentic, auditable, local-first and sovereign AI projects built on Claude and local models, with case studies, the stack and the public GitHub record."
     />
     <meta name="author" content="Kone Tshivhinda" />
-    <meta name="theme-color" content="#05060d" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://konethegreat.github.io/" />
 
@@ -80,12 +80,19 @@
 
     <style>
       html {
-        background: #05060d;
+        background: #f4efe6;
+      }
+      html[data-theme="dark"] {
+        background: #0b0b0f;
       }
       body {
         margin: 0;
-        background: #05060d;
-        color: #e9edf8;
+        background: #f4efe6;
+        color: #1a1815;
+      }
+      html[data-theme="dark"] body {
+        background: #0b0b0f;
+        color: #ece7dd;
       }
       .static-fallback {
         max-width: 46rem;
@@ -94,9 +101,23 @@
         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
       }
       .static-fallback a {
-        color: #67e8f9;
+        color: #25645e;
+      }
+      html[data-theme="dark"] .static-fallback a {
+        color: #d8a24a;
       }
     </style>
+    <script>
+      (function () {
+        try {
+          var choice = localStorage.getItem("kone-theme") || "system";
+          var dark = choice === "dark" || (choice === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          var theme = dark ? "dark" : "light";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (error) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root">

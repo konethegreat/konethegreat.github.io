@@ -1,38 +1,66 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------
-   Design tokens — shadcn-style semantic colours on a dark, neon base.
-   Palette follows the UI Vault (sky / indigo / violet on #020617) and the
-   21st.dev shutter hero (emerald accent), pushed to a more vibrant range.
-------------------------------------------------------------------- */
 :root {
-  color-scheme: dark;
-  --background: #05060d;
-  --foreground: #e9edf8;
-  --card: #0a0d1b;
-  --card-foreground: #e9edf8;
-  --popover: #090c1a;
-  --popover-foreground: #e9edf8;
-  --primary: #22d3ee;
-  --primary-foreground: #03111a;
-  --secondary: #121733;
-  --secondary-foreground: #dfe6ff;
-  --muted: #0e1226;
-  --muted-foreground: #9aa4c5;
-  --accent: #1a2046;
-  --accent-foreground: #f1f4ff;
-  --destructive: #fb7185;
-  --destructive-foreground: #1a0509;
-  --border: rgb(255 255 255 / 0.09);
-  --input: rgb(255 255 255 / 0.14);
-  --ring: #22d3ee;
   --radius: 0.875rem;
-  --grad: linear-gradient(100deg, #22d3ee 0%, #8b5cf6 52%, #f472b6 100%);
+}
+
+[data-theme="dark"],
+.theme-dark {
+  color-scheme: dark;
+  --background: #0b0b0f;
+  --foreground: #ece7dd;
+  --card: #14131a;
+  --card-foreground: #ece7dd;
+  --popover: #14131a;
+  --popover-foreground: #ece7dd;
+  --primary: #d8a24a;
+  --primary-foreground: #1a1206;
+  --secondary: #1e1c24;
+  --secondary-foreground: #ece7dd;
+  --muted: #1a1820;
+  --muted-foreground: #a9a296;
+  --accent: #26212a;
+  --accent-foreground: #f5efe4;
+  --destructive: #d96b5f;
+  --destructive-foreground: #1a0605;
+  --border: rgb(242 234 220 / 0.12);
+  --input: rgb(242 234 220 / 0.18);
+  --ring: #d8a24a;
+  --paper: #f2eadc;
+  --glass: rgb(20 19 26 / 0.55);
+  --grad: linear-gradient(100deg, #d8a24a 0%, #c0653b 55%, #2f7a72 100%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4efe6;
+  --foreground: #1a1815;
+  --card: #fffbf3;
+  --card-foreground: #1a1815;
+  --popover: #fffbf3;
+  --popover-foreground: #1a1815;
+  --primary: #9a6a1f;
+  --primary-foreground: #fffaf0;
+  --secondary: #ece5d8;
+  --secondary-foreground: #1a1815;
+  --muted: #e9e1d3;
+  --muted-foreground: #5e574c;
+  --accent: #e3d8c7;
+  --accent-foreground: #1a1815;
+  --destructive: #a24b2a;
+  --destructive-foreground: #fffaf0;
+  --border: rgb(26 24 21 / 0.12);
+  --input: rgb(26 24 21 / 0.18);
+  --ring: #9a6a1f;
+  --paper: #fffbf3;
+  --glass: rgb(255 251 243 / 0.62);
+  --grad: linear-gradient(100deg, #9a6a1f 0%, #a24b2a 55%, #25645e 100%);
 }
 
 @theme inline {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Black", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-background: var(--background);
