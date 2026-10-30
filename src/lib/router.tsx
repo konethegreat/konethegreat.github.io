@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react"
 import { flushSync } from "react-dom"
+import { site } from "@/data/profile"
 import { matchRoute, normalizePath, routeMeta } from "@/lib/routes"
 import { withViewTransition } from "@/lib/view-transition"
 
@@ -33,9 +34,20 @@ export function RouterProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const meta = routeMeta(path)
+    const canonical = `${site.url}${path === "/" ? "/" : path}`
     document.title = meta.title
-    const description = document.querySelector('meta[name="description"]')
-    if (description) description.setAttribute("content", meta.description)
+    const setMeta = (selector: string, attribute: string, value: string) => {
+      const node = document.querySelector(selector)
+      if (node) node.setAttribute(attribute, value)
+    }
+    setMeta('meta[name="description"]', "content", meta.description)
+    setMeta('link[rel="canonical"]', "href", canonical)
+    setMeta('meta[property="og:url"]', "content", canonical)
+    setMeta('meta[property="og:title"]', "content", meta.title)
+    setMeta('meta[property="og:description"]', "content", meta.description)
+    setMeta('meta[name="twitter:title"]', "content", meta.title)
+    setMeta('meta[name="twitter:description"]', "content", meta.description)
+    setMeta('meta[name="twitter:url"]', "content", canonical)
 
     const hash = window.location.hash.slice(1)
     if (hash) {
