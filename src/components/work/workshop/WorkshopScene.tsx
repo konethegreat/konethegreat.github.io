@@ -438,15 +438,19 @@ export default function WorkshopScene({ active, onSelect }: Props) {
       needsRender = true
     }
 
-    const clock = new THREE.Clock()
     let frame = 0
+    let last = performance.now()
+    let elapsed = 0
 
     const animate = () => {
       frame = requestAnimationFrame(animate)
+      const now = performance.now()
+      const delta = Math.min((now - last) / 1000, 0.1)
+      last = now
       if (!visible || document.hidden) return
 
-      const delta = Math.min(clock.getDelta(), 0.1)
-      const time = clock.elapsedTime
+      elapsed += delta
+      const time = elapsed
       const ambient = document.documentElement.dataset.fx !== "off"
       const current = activeRef.current
       if (current !== lastActive) {
