@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest"
+import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
 import { caseStudies, nextCaseStudy } from "@/data/case-studies"
 import { liveProjects } from "@/data/live"
+import { principles } from "@/data/profile"
 import { projects, projectBySlug } from "@/data/projects"
 import {
   engagementModels,
@@ -102,5 +104,36 @@ describe("content model", () => {
     expect(nextCaseStudy("vigil").slug).toBe("clearcut")
     expect(nextCaseStudy("k-one").slug).toBe("vigil")
     expect(nextCaseStudy("missing").slug).toBe("vigil")
+  })
+
+  it("tells the story in seven dated chapters with evidence", () => {
+    expect(aboutIntro.length).toBeGreaterThanOrEqual(3)
+    expect(aboutChapters).toHaveLength(7)
+    for (const chapter of aboutChapters) {
+      expect(chapter.date.trim()).not.toBe("")
+      expect(chapter.title.trim()).not.toBe("")
+      expect(chapter.body.trim()).not.toBe("")
+      expect(chapter.evidence.length).toBeGreaterThanOrEqual(2)
+      for (const link of chapter.evidence) {
+        expect(link.label.trim()).not.toBe("")
+        expect(link.to.startsWith("/") || link.to.startsWith("https://")).toBe(true)
+      }
+    }
+  })
+
+  it("keeps every principle and stack proof on a real case study", () => {
+    const studySlugs = new Set(caseStudies.map((study) => study.slug))
+    for (const principle of principles) {
+      expect(principle.proof.length).toBeGreaterThanOrEqual(2)
+      for (const proof of principle.proof) {
+        expect(studySlugs.has(proof.slug)).toBe(true)
+      }
+    }
+    for (const links of Object.values(stackProof)) {
+      for (const link of links) {
+        if (!link.to.startsWith("/work/")) continue
+        expect(studySlugs.has(link.to.replace("/work/", ""))).toBe(true)
+      }
+    }
   })
 })
