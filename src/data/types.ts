@@ -98,8 +98,6 @@ export interface CaseStudy {
   accent: "brass" | "copper" | "teal"
   decisions?: CaseDecision[]
   sections: CaseStudySection[]
-  technicalBrief?: string
-  gallery?: { src: string; alt: string; width: number; height: number }[]
 }
 
 export interface ProofLink {

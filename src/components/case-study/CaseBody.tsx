@@ -1,5 +1,6 @@
 import { Check } from "lucide-react"
 import { StatusBadge } from "@/components/ui/status-badge"
+import { caseMedia } from "@/data/case-media"
 import type { CaseStudy, CaseStudySection, Project } from "@/data/types"
 
 function Section({ section }: { section: CaseStudySection }) {
@@ -116,6 +117,7 @@ function Rail({ project, study }: { project: Project; study: CaseStudy }) {
 }
 
 export function CaseBody({ project, study }: { project: Project; study: CaseStudy }) {
+  const media = caseMedia[study.slug]
   return (
     <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-14">
       <div className="order-2 min-w-0 lg:order-1">
@@ -173,11 +175,11 @@ export function CaseBody({ project, study }: { project: Project; study: CaseStud
           ) : null}
         </section>
 
-        {study.gallery?.length ? (
+        {media.gallery.length ? (
           <section className="mt-14">
             <h2 className="font-serif text-3xl leading-tight sm:text-4xl">Gallery</h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              {study.gallery.map((image) => (
+              {media.gallery.map((image) => (
                 <figure key={image.src}>
                   <img
                     src={image.src}
@@ -185,9 +187,10 @@ export function CaseBody({ project, study }: { project: Project; study: CaseStud
                     width={image.width}
                     height={image.height}
                     loading="lazy"
+                    decoding="async"
                     className="h-auto w-full rounded-2xl border border-border"
                   />
-                  <figcaption className="mt-2 text-sm text-muted-foreground">{image.alt}</figcaption>
+                  <figcaption className="mt-2 text-sm text-muted-foreground">{image.caption}</figcaption>
                 </figure>
               ))}
             </div>

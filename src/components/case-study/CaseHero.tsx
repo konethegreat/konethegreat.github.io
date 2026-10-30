@@ -1,6 +1,7 @@
 import { ArrowUpRight, ChevronRight, CircleDot, FileDown } from "lucide-react"
 import { StatusBadge } from "@/components/ui/status-badge"
 import { Link } from "@/components/ui/link"
+import { caseMedia } from "@/data/case-media"
 import type { CaseStudy, Project } from "@/data/types"
 
 const accents = {
@@ -55,6 +56,7 @@ function CoverArt({ study }: { study: CaseStudy }) {
 }
 
 export function CaseHero({ project, study }: { project: Project; study: CaseStudy }) {
+  const media = caseMedia[study.slug]
   return (
     <header>
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -97,18 +99,34 @@ export function CaseHero({ project, study }: { project: Project; study: CaseStud
             <ArrowUpRight className="size-4" aria-hidden="true" />
           </a>
         ))}
-        {study.technicalBrief ? (
-          <a
-            href={study.technicalBrief}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition hover:bg-accent"
-          >
-            <FileDown className="size-4" aria-hidden="true" />
-            Technical brief (PDF)
-          </a>
-        ) : null}
+        <a
+          href={media.technicalBrief}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition hover:bg-accent"
+        >
+          <FileDown className="size-4" aria-hidden="true" />
+          Technical brief (PDF)
+        </a>
       </div>
 
-      <CoverArt study={study} />
+      {media.cover ? (
+        <figure className="mt-10 overflow-hidden rounded-[2rem] border border-border bg-card">
+          <img
+            src={media.cover.src}
+            alt={media.cover.alt}
+            width={media.cover.width}
+            height={media.cover.height}
+            fetchPriority="high"
+            className="h-auto w-full"
+          />
+          <figcaption className="border-t border-border px-5 py-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            {media.cover.caption}
+          </figcaption>
+        </figure>
+      ) : (
+        <CoverArt study={study} />
+      )}
     </header>
   )
 }
