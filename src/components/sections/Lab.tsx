@@ -21,7 +21,14 @@ export function Lab() {
   const refs = useRef<(HTMLButtonElement | null)[]>([])
 
   const onKey = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
-    const move = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : e.key === "Home" ? -i : e.key === "End" ? tabs.length - 1 - i : 0
+    if (e.key === "Home" || e.key === "End") {
+      e.preventDefault()
+      const next = e.key === "Home" ? 0 : tabs.length - 1
+      setActive(tabs[next].id)
+      refs.current[next]?.focus()
+      return
+    }
+    const move = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0
     if (!move) return
     e.preventDefault()
     const next = (i + move + tabs.length) % tabs.length
@@ -35,7 +42,6 @@ export function Lab() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           id="lab-title"
-          index="03"
           eyebrow="AI lab"
           title={
             <>
@@ -57,7 +63,7 @@ export function Lab() {
                 role="tab"
                 type="button"
                 aria-selected={active === t.id}
-                aria-controls={`lab-panel-${t.id}`}
+                aria-controls={active === t.id ? `lab-panel-${t.id}` : undefined}
                 tabIndex={active === t.id ? 0 : -1}
                 onClick={() => setActive(t.id)}
                 onKeyDown={(e) => onKey(e, i)}

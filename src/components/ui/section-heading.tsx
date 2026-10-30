@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 interface SectionHeadingProps {
   id: string
-  index: string
+  index?: string
   eyebrow: string
   title: ReactNode
   lead?: ReactNode
@@ -22,8 +22,12 @@ export function SectionHeading({ id, index, eyebrow, title, lead, align = "left"
             align === "center" && "justify-center",
           )}
         >
-          <span className="text-slate-400">{index}</span>
-          <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-cyan-400 to-transparent" />
+          {index && (
+            <>
+              <span className="text-slate-400">{index}</span>
+              <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-cyan-400 to-transparent" />
+            </>
+          )}
           {eyebrow}
         </p>
         <h2 id={id} className="font-display text-4xl font-semibold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">

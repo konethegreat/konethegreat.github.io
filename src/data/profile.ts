@@ -16,6 +16,12 @@ export const links = {
   ibmCert: "https://www.coursera.org/account/accomplishments/specialization/ESSIQ8HCQBA6",
 } as const
 
+export const availability = {
+  status: "Open to select work",
+  detail: "Johannesburg, South Africa (SAST)",
+  reply: "I read every message myself and reply by email.",
+} as const
+
 /** Public repositories on the GitHub account as GitHub counts them, profile README and this site's own repository included (a snapshot, see data/github.ts). */
 export const publicRepoCount = 23
 
@@ -34,13 +40,6 @@ export const rotatingWords = [
 
 export const heroIntro =
   "AI systems engineer and full-stack developer in Johannesburg. I design and build agentic, auditable, local-first software, from a sovereign intelligence platform to a desktop agent that finds jobs and tailors applications, with a human signing off every decision that matters."
-
-export const aboutParagraphs = [
-  "I ship agent-driven software from the first commit to production, mostly on my own: a sovereign operational-intelligence platform, a desktop agent that finds South African vacancies and tailors each application, and a live municipal service-delivery site with an AI assistant.",
-  "I also build civic tech, legal tech and local-first AI, from a private diary you can question with RAG, to an open invoicing core that agents call over MCP, to the design of a legal time-capture platform that asks a person only when it must. I run K-ONE IT SOLUTIONS, a small independent studio.",
-  "By day I am a founding engineer on a law firm's new engineering team, building multi-tenant, POPIA-aligned AI platforms with hybrid RAG, MCP tool use and human sign-off, alongside five colleagues.",
-  "I use every major AI coding tool every day (Claude Code, OpenAI Codex, GitHub Copilot, Gemini, Cursor, Kiro, Antigravity) and I am just as comfortable on local and sovereign models with Ollama and LM Studio.",
-]
 
 /** The headline numbers are counted from the project data, so they cannot drift from the cards. */
 const built = projects.filter((p) => p.group !== "coursework")
@@ -86,7 +85,7 @@ export const principles: Principle[] = [
     proof: [
       { label: "Vigil", slug: "vigil" },
       { label: "SA-JAS", slug: "sa-jas" },
-      { label: "TimeLex v2", slug: "timelex-v2" },
+      { label: "TimeLex", slug: "timelex" },
     ],
   },
   {
@@ -97,7 +96,7 @@ export const principles: Principle[] = [
     proof: [
       { label: "SA-JAS", slug: "sa-jas" },
       { label: "MuniSolve ZA", slug: "munisolve" },
-      { label: "Diary", slug: "diary" },
+      { label: "TimeLex", slug: "timelex" },
     ],
   },
   {
@@ -109,7 +108,7 @@ export const principles: Principle[] = [
       { label: "ClearCut", slug: "clearcut" },
       { label: "TimeLex", slug: "timelex" },
       { label: "SA-JAS", slug: "sa-jas" },
-      { label: "Diary", slug: "diary" },
+      { label: "UI Vault", slug: "ui-vault" },
     ],
   },
   {
@@ -119,15 +118,16 @@ export const principles: Principle[] = [
     body: "Privacy-sensitive work runs on local or open-weight models, with POPIA-aware data handling, so prompts and evidence do not have to leave the machine, or the country.",
     proof: [
       { label: "Vigil", slug: "vigil" },
-      { label: "Diary", slug: "diary" },
-      { label: "Local AI Document Generator", slug: "local-ai-docgen" },
+      { label: "TimeLex", slug: "timelex" },
+      { label: "Reservoir", slug: "reservoir" },
     ],
   },
 ]
 
 export const nowItems = [
   { label: "Founder", detail: "K-ONE IT SOLUTIONS" },
-  { label: "Building", detail: "ClearCut and TimeLex, open agent-native tools" },
+  { label: "Building", detail: "ClearCut, TimeLex and this portfolio" },
+  { label: "Learning", detail: "Rust, one small program at a time" },
   { label: "Next", detail: "A public case study of Vigil" },
 ] as const
 

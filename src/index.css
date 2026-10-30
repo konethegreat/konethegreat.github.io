@@ -1,38 +1,72 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------
-   Design tokens — shadcn-style semantic colours on a dark, neon base.
-   Palette follows the UI Vault (sky / indigo / violet on #020617) and the
-   21st.dev shutter hero (emerald accent), pushed to a more vibrant range.
-------------------------------------------------------------------- */
 :root {
-  color-scheme: dark;
-  --background: #05060d;
-  --foreground: #e9edf8;
-  --card: #0a0d1b;
-  --card-foreground: #e9edf8;
-  --popover: #090c1a;
-  --popover-foreground: #e9edf8;
-  --primary: #22d3ee;
-  --primary-foreground: #03111a;
-  --secondary: #121733;
-  --secondary-foreground: #dfe6ff;
-  --muted: #0e1226;
-  --muted-foreground: #9aa4c5;
-  --accent: #1a2046;
-  --accent-foreground: #f1f4ff;
-  --destructive: #fb7185;
-  --destructive-foreground: #1a0509;
-  --border: rgb(255 255 255 / 0.09);
-  --input: rgb(255 255 255 / 0.14);
-  --ring: #22d3ee;
   --radius: 0.875rem;
-  --grad: linear-gradient(100deg, #22d3ee 0%, #8b5cf6 52%, #f472b6 100%);
+}
+
+[data-theme="dark"],
+.theme-dark {
+  color-scheme: dark;
+  --background: #0b0b0f;
+  --foreground: #ece7dd;
+  --card: #14131a;
+  --card-foreground: #ece7dd;
+  --popover: #14131a;
+  --popover-foreground: #ece7dd;
+  --primary: #d8a24a;
+  --primary-foreground: #1a1206;
+  --secondary: #1e1c24;
+  --secondary-foreground: #ece7dd;
+  --muted: #1a1820;
+  --muted-foreground: #a9a296;
+  --accent: #26212a;
+  --accent-foreground: #f5efe4;
+  --destructive: #d96b5f;
+  --destructive-foreground: #1a0605;
+  --border: rgb(242 234 220 / 0.12);
+  --input: rgb(242 234 220 / 0.18);
+  --ring: #d8a24a;
+  --brass: #d8a24a;
+  --copper: #c0653b;
+  --teal: #4f9c93;
+  --paper: #f2eadc;
+  --glass: rgb(20 19 26 / 0.55);
+  --grad: linear-gradient(100deg, #d8a24a 0%, #c0653b 55%, #4f9c93 100%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4efe6;
+  --foreground: #1a1815;
+  --card: #fffbf3;
+  --card-foreground: #1a1815;
+  --popover: #fffbf3;
+  --popover-foreground: #1a1815;
+  --primary: #8a5c19;
+  --primary-foreground: #fffaf0;
+  --secondary: #ece5d8;
+  --secondary-foreground: #1a1815;
+  --muted: #e9e1d3;
+  --muted-foreground: #5e574c;
+  --accent: #e3d8c7;
+  --accent-foreground: #1a1815;
+  --destructive: #a24b2a;
+  --destructive-foreground: #fffaf0;
+  --border: rgb(26 24 21 / 0.12);
+  --input: rgb(26 24 21 / 0.18);
+  --ring: #8a5c19;
+  --brass: #8a5c19;
+  --copper: #a24b2a;
+  --teal: #25645e;
+  --paper: #fffbf3;
+  --glass: rgb(255 251 243 / 0.62);
+  --grad: linear-gradient(100deg, #9a6a1f 0%, #a24b2a 55%, #25645e 100%);
 }
 
 @theme inline {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Black", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-background: var(--background);
@@ -54,6 +88,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brass: var(--brass);
+  --color-copper: var(--copper);
+  --color-teal: var(--teal);
 
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 3px);
@@ -439,8 +476,8 @@
     z-index: 100;
     padding: 0.6rem 1rem;
     border-radius: 999px;
-    background: #22d3ee;
-    color: #03111a;
+    background: var(--primary);
+    color: var(--primary-foreground);
     font-weight: 600;
     transition: top 0.2s ease;
   }
@@ -463,6 +500,109 @@
 .ring-conic {
   background: conic-gradient(from var(--ring-a), #22d3ee, #8b5cf6, #f472b6, #34d399, #22d3ee);
   animation: ring-spin 8s linear infinite;
+}
+
+/* Night workshop landing */
+.hero-glow {
+  background:
+    radial-gradient(58% 48% at 78% 18%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%),
+    radial-gradient(42% 38% at 12% 82%, color-mix(in oklab, var(--teal) 14%, transparent), transparent 70%);
+}
+.hero-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: radial-gradient(70% 62% at 50% 42%, #000 25%, transparent 78%);
+}
+@keyframes hero-spin {
+  to { transform: rotate(360deg); }
+}
+.hero-ring {
+  animation: hero-spin 48s linear infinite;
+  border-style: dashed;
+}
+.hero-ring-reverse {
+  animation: hero-spin 72s linear infinite reverse;
+}
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.mascot-breathe {
+  animation: mascot-float 7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.mascot-figure:hover .mascot-bubble {
+  border-color: var(--ring);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ring,
+  .hero-ring-reverse,
+  .mascot-breathe {
+    animation: none;
+  }
+}
+
+/* Circular menu: a ring that settles into place, items arriving just behind it. */
+.radial-ring {
+  --radial-radius: clamp(9.5rem, 30vw, 15rem);
+}
+@keyframes radial-ring-in {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes radial-item-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.radial-content[data-state="open"] .radial-ring {
+  animation: radial-ring-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.radial-content[data-state="open"] .radial-item {
+  animation: radial-item-in 0.5s cubic-bezier(0.34, 1.36, 0.5, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radial-content[data-state="open"] .radial-ring,
+  .radial-content[data-state="open"] .radial-item {
+    animation: none;
+  }
+}
+
+.live-marquee:hover .live-track,
+.live-marquee:focus-within .live-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+  }
+  .live-track > ul[aria-hidden="true"] {
+    display: none;
+  }
+  .live-track > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-right: 0;
+  }
 }
 
 /* Decorative animations stop when the visitor turns effects off (or prefers reduced motion). */

@@ -59,8 +59,8 @@ export const projects: Project[] = [
     group: "ai",
     home: "konethegreat",
     role: "Solo build",
-    access: "code",
-    status: { label: "Public source snapshot", tone: "code" },
+    access: "live",
+    status: { label: "Live", tone: "live" },
     featured: true,
     pitch:
       "Desktop app where three AI agents find real South African vacancies, tailor an ATS-optimised CV and cover letter for each role, and drive a visible browser copilot through the application, always leaving the final Submit to the user.",
@@ -71,7 +71,10 @@ export const projects: Project[] = [
       "Evolving candidate memory with “Dreaming” curation, scheduled Routines, opt-in Anthropic computer-use form filling, parallel sub-agents, a referral pipeline and cost controls (usage ledger, daily budget guard).",
     ],
     stack: ["Electron", "React", "Express", "Playwright", "Claude", "Gemini", "OpenRouter"],
-    links: [{ label: "Source on GitHub", href: `${GH}/scratch`, kind: "code" }],
+    links: [
+      { label: "Open live site", href: "https://sajas.pages.dev/", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/scratch`, kind: "code" },
+    ],
     metrics: [
       { label: "AI agents", value: "3" },
       { label: "SA job boards", value: "12" },
@@ -109,6 +112,31 @@ export const projects: Project[] = [
     tags: ["Civic", "AI", "Web", "Maps"],
   },
   {
+    slug: "reservoir",
+    title: "Reservoir",
+    kicker: "A community memory of South African culture",
+    period: "Oct 2026",
+    group: "web-civic",
+    home: "konethegreat",
+    role: "Solo build",
+    access: "live",
+    status: { label: "Live", tone: "live" },
+    featured: true,
+    pitch:
+      "A free, open, community-grown memory of South African culture: plants, practices and languages, with community-controlled consent and a mission-native AI.",
+    highlights: [
+      "Offline-first data capture with a Rust core API, a provider-agnostic Python AI layer and a mobile client.",
+      "Knowledge sovereignty is modelled explicitly: communities control consent, attribution and reuse.",
+      "Architecture decisions and safety notes are published in the repository.",
+    ],
+    stack: ["Rust", "Python", "TypeScript", "SQLite", "PostgreSQL"],
+    links: [
+      { label: "Open live site", href: "https://konethegreat.github.io/reservoir/", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/reservoir`, kind: "code" },
+    ],
+    tags: ["Civic", "Culture", "Local-first", "AI"],
+  },
+  {
     slug: "clearcut",
     title: "ClearCut",
     kicker: "Agent-native invoicing for South Africa",
@@ -116,8 +144,8 @@ export const projects: Project[] = [
     group: "ai",
     home: "konethegreat",
     role: "Solo build",
-    access: "code",
-    status: { label: "Public source · alpha", tone: "code" },
+    access: "live",
+    status: { label: "Live · alpha", tone: "live" },
     featured: true,
     pitch:
       "An agent-native invoicing core for South Africa: one Rust codebase exposed as a REST API, an MCP server and a Claude plugin. It is designed so that agents draft and explain invoice work while policy and people approve it, and the VAT rules are already tested code.",
@@ -128,7 +156,10 @@ export const projects: Project[] = [
       "A deterministic core ready for models: extraction validation, cited event derivation and template narration behind a number guard that rejects any figure the evidence does not contain.",
     ],
     stack: ["Rust", "axum", "PostgreSQL", "MCP (rmcp)", "TypeScript", "Claude plugin"],
-    links: [{ label: "Source on GitHub", href: `${GH}/clearcut`, kind: "code" }],
+    links: [
+      { label: "Open live site", href: "https://145-241-100-85.sslip.io/", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/clearcut`, kind: "code" },
+    ],
     metrics: [
       { label: "Rust test functions", value: "282" },
       { label: "ADRs", value: "7" },
@@ -176,7 +207,7 @@ export const projects: Project[] = [
     role: "Solo build",
     access: "code",
     status: { label: "Public source", tone: "code" },
-    featured: true,
+    featured: false,
     pitch:
       "Private PWA that turns daily entries into an AI-coached life log, with RAG “ask my diary” over local embeddings.",
     highlights: [
@@ -262,18 +293,21 @@ export const projects: Project[] = [
     kicker: "React component library",
     period: "Ongoing",
     group: "web-civic",
-    home: "local",
+    home: "konethegreat",
     role: "Personal project",
-    access: "local",
-    status: { label: "Local project", tone: "private" },
+    access: "live",
+    status: { label: "Live", tone: "live" },
     pitch:
-      "A reusable library of animated React components (Particles, SplashCursor, Vortex) for rapid, polished UI builds.",
+      "A reusable library of animated React components (Particles, SplashCursor, Vortex) for rapid, polished UI builds, with live demos, an API, a CLI and a read-only MCP server.",
     highlights: [
       "The particles, splash cursor and vortex background on this site are ported from it, alongside four community components from 21st.dev: animated hero, hero shutter text, radial orbital timeline and stacking navbar.",
+      "A provenance-first index of UI and UX patterns with live demos, an API, a CLI and a read-only MCP server.",
     ],
     stack: ["React", "Vite", "Tailwind CSS", "shadcn/ui", "Framer Motion"],
-    links: [],
-    note: "Local project; the effects on this site are ported from it.",
+    links: [
+      { label: "Open live site", href: "https://konethegreat.github.io/ui-vault/", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/ui-vault`, kind: "code" },
+    ],
     tags: ["UI", "Design system", "React"],
   },
   {
@@ -296,19 +330,26 @@ export const projects: Project[] = [
     tags: ["DevOps", "Python", "Monitoring"],
   },
   {
-    slug: "k-one-website",
+    slug: "k-one",
     title: "K-ONE IT SOLUTIONS Website",
-    kicker: "Company website source",
+    kicker: "Company website",
     period: "Feb 2025",
     group: "web-civic",
     home: "konethegreat",
     role: "Founder project",
-    access: "code",
-    status: { label: "Public source", tone: "code" },
-    pitch: "The static company website for K-ONE IT SOLUTIONS, my independent studio.",
+    access: "live",
+    status: { label: "Live", tone: "live" },
+    pitch: "The company website for K-ONE IT SOLUTIONS, my independent software studio in Johannesburg.",
     highlights: ["Hand-built with HTML, CSS and PHP."],
     stack: ["HTML", "CSS", "PHP"],
-    links: [{ label: "Source on GitHub", href: `${GH}/k-one-it-solutions-website`, kind: "code" }],
+    links: [
+      {
+        label: "Open live site",
+        href: "https://k-one-it-solutions-website.erictshivhinda.workers.dev/",
+        kind: "live",
+      },
+      { label: "Source on GitHub", href: `${GH}/k-one-it-solutions-website`, kind: "code" },
+    ],
     tags: ["Web", "Studio"],
   },
   {

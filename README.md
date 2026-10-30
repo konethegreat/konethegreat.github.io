@@ -6,22 +6,22 @@ The portfolio of Kone Tshivhinda, an AI systems engineer and full-stack develope
 
 It is a static single-page site, built with React and deployed to GitHub Pages by a GitHub Actions workflow.
 
-## What is on the page
+## Pages
 
-| Section | What it shows |
+The site is a small multipage app with real URLs, so each case study can be linked and shared.
+
+| Route | What it shows |
 | --- | --- |
-| Hero | Name, a one-line pitch and the headline numbers (counted from the project data) |
-| About | Who I am, the principles I build by and the AI tools I use every day |
-| Work | Featured case studies plus a filterable archive of every project, each with an honest status label |
-| AI Lab | Four small working models of agents, hybrid RAG, agentic RAG and an autonomy ladder, each labelled real or scripted, plus a practices grid that says which are built and which are only designed |
-| Stack | Skills grouped by area, filterable, with the projects that prove each one |
-| Journey | A radial timeline of the path so far (a plain vertical timeline on phones) |
-| Career | Roles (the current one at a law firm, deliberately unnamed and described in general terms only), education, certifications and the IBM course list |
-| GitHub | The public account with its repositories and their languages, and the projects that live only on my machine |
-| Beyond | Photos from outside the code, with a lightbox |
-| Contact | Email (revealed on request), LinkedIn, GitHub, Credly and the IBM certificate |
+| `/` | The hero, live project links, selected work and a short services teaser |
+| `/work` | Featured case studies plus the full archive, each with an honest status label |
+| `/work/<slug>` | A case study with the problem, the build, the stack and the live and source links |
+| `/services` | Six ways to work together, scoped in a conversation and quoted in rand |
+| `/about` | The path so far, the principles and the studio |
+| `/playground` | Four working models of agents, hybrid RAG, agentic RAG and an autonomy ladder, plus the UI Vault shelf |
+| `/contact` | Email, LinkedIn, GitHub, Credly and availability |
+| `/credits` | Third-party components, fonts and libraries, with authors, sources and licenses |
 
-Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>⌘</kbd> + <kbd>K</kbd>) anywhere for the command menu: jump to a section, open a case study, copy the email address or turn the visual effects off.
+Press <kbd>Ctrl</kbd> + <kbd>K</kbd> (or <kbd>⌘</kbd> + <kbd>K</kbd>) anywhere for the command menu: jump to a page, open a case study, copy the email address or switch the theme.
 
 ## Status labels are meant literally
 
@@ -50,6 +50,8 @@ npm ci            # install the exact versions in package-lock.json
 npm run dev       # dev server with hot reload
 npm run build     # type-check, then build into dist/
 npm run preview   # serve the production build on http://localhost:4173
+npm test          # unit tests
+npm run test:e2e  # build, then Playwright and axe checks
 ```
 
 ## Where things live

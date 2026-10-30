@@ -1,0 +1,17 @@
+[
+  { "path": "/", "title": "Kone Tshivhinda · AI systems engineer · Johannesburg", "description": "The portfolio of Kone Tshivhinda, an AI systems engineer and full-stack developer in Johannesburg. Agent systems, retrieval, local-first AI and product engineering, with live work and technical briefs." },
+  { "path": "/work", "title": "Work · Kone Tshivhinda", "description": "Eight case studies across AI agents, legal tech, civic tech, local-first software and the K-ONE studio, each with live and source links." },
+  { "path": "/work/vigil", "title": "Vigil · Kone Tshivhinda", "description": "Sovereign operational intelligence for Africa: governed evidence, analyst sign-off and a locally verifiable audit chain." },
+  { "path": "/work/clearcut", "title": "ClearCut · Kone Tshivhinda", "description": "Agent-native invoicing for South Africa: a Rust core, REST API, MCP server and Claude plugin with tested VAT rules." },
+  { "path": "/work/timelex", "title": "TimeLex · Kone Tshivhinda", "description": "Open, API-first legal practice management with an autonomy ladder, bring-your-own keys and a threat model." },
+  { "path": "/work/sa-jas", "title": "SA-JAS · Kone Tshivhinda", "description": "A desktop job agent suite that finds South African vacancies, tailors applications and leaves the final submit to the person." },
+  { "path": "/work/munisolve", "title": "MuniSolve ZA · Kone Tshivhinda", "description": "Municipal fault reporting with citizen and admin workflows, a live heat map and a rate-limited assistant." },
+  { "path": "/work/reservoir", "title": "Reservoir · Kone Tshivhinda", "description": "A free, open, community-grown memory of South African culture with community-controlled consent and a mission-native AI." },
+  { "path": "/work/ui-vault", "title": "UI Vault · Kone Tshivhinda", "description": "A provenance-first index of UI and UX patterns with live demos, an API, a CLI and a read-only MCP server." },
+  { "path": "/work/k-one", "title": "K-ONE IT SOLUTIONS · Kone Tshivhinda", "description": "An independent software studio in Johannesburg building AI systems, web and mobile apps, and cloud infrastructure." },
+  { "path": "/services", "title": "Services · Kone Tshivhinda", "description": "Six ways to work together: agent systems, retrieval, product engineering, local-first AI, cloud delivery, and technical audits." },
+  { "path": "/about", "title": "About · Kone Tshivhinda", "description": "The path from IBM coursework and K-ONE to legal-tech platforms, civic software and sovereign AI systems in Johannesburg." },
+  { "path": "/playground", "title": "Playground · Kone Tshivhinda", "description": "Working models of agents, hybrid retrieval and autonomy, plus the UI Vault shelf." },
+  { "path": "/contact", "title": "Contact · Kone Tshivhinda", "description": "Start a project or a conversation. Email, LinkedIn, GitHub and availability." },
+  { "path": "/credits", "title": "Credits and licenses · Kone Tshivhinda", "description": "Third-party components, fonts and libraries used by this site, with authors, sources and licenses." }
+]

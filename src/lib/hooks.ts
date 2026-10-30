@@ -17,36 +17,6 @@ export function useMediaQuery(query: string, serverValue = false): boolean {
 export const usePrefersReducedMotion = () => useMediaQuery("(prefers-reduced-motion: reduce)")
 /** True for mouse / trackpad style pointers (used to gate hover-only effects). */
 export const useFinePointer = () => useMediaQuery("(hover: hover) and (pointer: fine)")
-export const useIsDesktop = () => useMediaQuery("(min-width: 1024px)", true)
-
-/** Highlights the section currently crossing the middle of the viewport. */
-export function useScrollSpy(ids: readonly string[]): string {
-  const [active, setActive] = useState(ids[0] ?? "")
-  useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null)
-    if (!elements.length) return
-    const visible = new Map<string, number>()
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio)
-          else visible.delete(entry.target.id)
-        }
-        if (visible.size) {
-          // choose the earliest section in document order among the visible ones
-          const first = ids.find((id) => visible.has(id))
-          if (first) setActive(first)
-        }
-      },
-      { rootMargin: "-40% 0px -52% 0px", threshold: [0, 0.01, 0.5, 1] },
-    )
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [ids])
-  return active
-}
 
 /** Count up to `target` once `start` flips true. */
 export function useCountUp(target: number, start: boolean, duration = 1400, reduced = false): number {
@@ -101,12 +71,4 @@ export function clearHash() {
   } catch {
     /* ignore */
   }
-}
-
-export function scrollToId(id: string) {
-  const el = document.getElementById(id)
-  if (!el) return
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" })
-  setHash(id)
 }

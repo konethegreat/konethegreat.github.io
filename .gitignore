@@ -14,3 +14,9 @@ Thumbs.db
 
 # scratch output from scripts/make-assets.mjs
 scripts/.og-render.html
+
+# test output
+test-results/
+playwright-report/
+blob-report/
+.playwright/

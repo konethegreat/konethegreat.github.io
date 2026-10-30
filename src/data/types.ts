@@ -70,3 +70,93 @@ export interface JourneyNode {
   /** Optional deep link: a project slug to open or a section id to scroll to. */
   projectSlug?: string
 }
+
+export type CaseStudySection =
+  | { kind: "prose"; heading?: string; body: string[] }
+  | { kind: "list"; heading: string; items: string[] }
+  | { kind: "facts"; heading?: string; facts: { label: string; value: string }[] }
+  | { kind: "quote"; quote: string; attribution?: string }
+  | { kind: "figure"; src: string; alt: string; caption?: string; width: number; height: number }
+
+export interface CaseDecision {
+  title: string
+  choice: string
+  why: string
+  tradeoff: string
+}
+
+export interface CaseStudy {
+  slug: string
+  tagline: string
+  status: "live" | "archive" | "in-progress"
+  year: string
+  team: string
+  role: string
+  stack: string[]
+  summary: string
+  heroAlt: string
+  accent: "brass" | "copper" | "teal"
+  decisions?: CaseDecision[]
+  sections: CaseStudySection[]
+}
+
+export interface ProofLink {
+  label: string
+  slug: string
+}
+
+export type ServiceIcon = "agents" | "retrieval" | "product" | "local" | "cloud" | "quality"
+
+export interface Service {
+  id: string
+  title: string
+  outcome: string
+  included: string[]
+  fits: string
+  proof: ProofLink[]
+  shape: string
+  icon: ServiceIcon
+}
+
+export interface EngagementModel {
+  id: string
+  name: string
+  detail: string
+  rhythm: string
+}
+
+export interface ProcessStep {
+  id: string
+  name: string
+  detail: string
+}
+
+export interface ServiceHonesty {
+  id: string
+  title: string
+  items: string[]
+}
+
+export interface ServiceFaq {
+  q: string
+  a: string
+}
+
+export interface CreditEntry {
+  name: string
+  author: string
+  license: "MIT" | "ISC" | "OFL" | "Apache-2.0" | "original" | "inspiration"
+  href: string
+  usedFor: string
+  /** Plain statement of what this site changed, or that nothing was copied. */
+  adapted: string
+  group: "components" | "libraries" | "typefaces"
+}
+
+export interface LiveProject {
+  slug: string
+  name: string
+  url: string
+  tag: string
+  accent: "brass" | "copper" | "teal"
+}
