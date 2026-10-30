@@ -4,7 +4,7 @@ test("work filters case studies by station", async ({ page }) => {
   await page.goto("/work")
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Eight builds")
   await expect(page.getByRole("link", { name: "Read the case study" })).toHaveCount(8)
-  await page.getByRole("button", { name: "Agents", exact: true }).click()
+  await page.getByRole("button", { name: "Agents" }).click()
   await expect(page.getByRole("link", { name: "Read the case study" })).toHaveCount(3)
   await page.getByRole("button", { name: "All work" }).click()
   await expect(page.getByRole("link", { name: "Read the case study" })).toHaveCount(8)

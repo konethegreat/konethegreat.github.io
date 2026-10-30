@@ -12,7 +12,7 @@ export function SiteHeader() {
         <Link to="/" className="whitespace-nowrap font-display text-xs uppercase tracking-[0.14em] sm:text-sm sm:tracking-[0.18em]">
           Kone Tshivhinda
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.id}
@@ -35,7 +35,7 @@ export function SiteHeader() {
           </button>
           <Link
             to="/contact"
-            className="hidden rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground sm:inline-flex"
+            className="hidden rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground lg:inline-flex"
           >
             Start a project
           </Link>

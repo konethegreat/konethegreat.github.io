@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { ArchiveTable } from "@/components/work/ArchiveTable"
 import { ProjectCard } from "@/components/work/ProjectCard"
-import { StationFilters } from "@/components/work/StationFilters"
+import { WorkshopSection } from "@/components/work/workshop/WorkshopSection"
 import { Link } from "@/components/ui/link"
 import { archiveOnlyProjects, projectsForStation, type StationId } from "@/data/work"
 
@@ -26,20 +26,28 @@ export function WorkPage() {
         </div>
       </section>
 
-      <section aria-labelledby="archive-title" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 id="archive-title" className="sr-only">
-          Case studies
-        </h2>
-        <StationFilters active={active} onSelect={setActive} count={shown.length} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <WorkshopSection active={active} onSelect={setActive} />
+      </div>
+
+      <section aria-labelledby="archive-title" className="mx-auto mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-3 border-t border-border pt-8">
+          <h2 id="archive-title" className="font-serif text-3xl leading-none sm:text-4xl">
+            Case studies
+          </h2>
+          <p aria-live="polite" className="font-mono text-xs text-muted-foreground">
+            {shown.length} case {shown.length === 1 ? "study" : "studies"} shown
+          </p>
+        </div>
 
         {shown.length ? (
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         ) : (
-          <div className="mt-10 rounded-3xl border border-border bg-card/60 p-8">
+          <div className="mt-6 rounded-3xl border border-border bg-card/60 p-8">
             <p className="text-muted-foreground">No case study matches that station yet.</p>
             <button
               type="button"
