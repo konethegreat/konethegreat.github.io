@@ -8,6 +8,9 @@ test("the effects switch explains itself and turns autoplay off", async ({ page 
   await expect(toggle).toHaveAttribute("aria-checked", "false")
   expect(await page.evaluate(() => localStorage.getItem("kt-effects"))).toBe("off")
   await expect(page.getByText(/wait for you to press play/)).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.dataset.fx)).toBe("off")
+  await page.goto("/")
+  expect(await page.evaluate(() => document.documentElement.dataset.fx)).toBe("off")
 })
 
 test("the UI Vault shelf shows live work, credits and the full vault link", async ({ page }) => {

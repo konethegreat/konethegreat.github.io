@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/layout/SiteFooter"
 import { SiteHeader } from "@/components/layout/SiteHeader"
+import { FxProvider } from "@/lib/fx"
 import { RouterProvider, useRouteMatch } from "@/lib/router"
 import { AboutPage } from "@/pages/AboutPage"
 import { ContactPage } from "@/pages/ContactPage"
@@ -36,15 +37,17 @@ function RouteView() {
 
 export default function App() {
   return (
-    <RouterProvider>
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-      <SiteHeader />
-      <main id="main" tabIndex={-1} className="min-h-[70vh] outline-none">
-        <RouteView />
-      </main>
-      <SiteFooter />
-    </RouterProvider>
+    <FxProvider>
+      <RouterProvider>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" tabIndex={-1} className="min-h-[70vh] outline-none">
+          <RouteView />
+        </main>
+        <SiteFooter />
+      </RouterProvider>
+    </FxProvider>
   )
 }

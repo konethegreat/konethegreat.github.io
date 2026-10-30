@@ -154,10 +154,13 @@ describe("content model", () => {
     for (const credit of unlicensed) {
       expect(credit.adapted).toContain("No source copied")
     }
+    for (const name of ["React", "Vite", "Tailwind CSS", "three.js", "Radix UI", "lucide", "cmdk"]) {
+      expect(credits.some((credit) => credit.name === name)).toBe(true)
+    }
   })
 
   it("hosts the license texts the credits page links to", () => {
-    for (const file of ["mit.txt", "isc.txt", "ofl-1.1.txt"]) {
+    for (const file of ["mit.txt", "isc.txt", "ofl-1.1.txt", "apache-2.0.txt"]) {
       expect(existsSync(join(process.cwd(), "public", "licenses", file))).toBe(true)
     }
   })

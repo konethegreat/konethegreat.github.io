@@ -23,10 +23,13 @@ export function EffectsSwitch() {
           role="switch"
           aria-checked={on}
           aria-describedby="effects-note"
-          disabled={reduced}
-          onClick={toggleEffects}
+          aria-disabled={reduced}
+          onClick={() => {
+            if (!reduced) toggleEffects()
+          }}
           className={cn(
-            "relative inline-flex h-8 w-14 shrink-0 items-center rounded-full border border-border transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "relative inline-flex h-8 w-14 shrink-0 items-center rounded-full border border-border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            reduced && "cursor-not-allowed opacity-60",
             on ? "bg-primary" : "bg-muted",
           )}
         >

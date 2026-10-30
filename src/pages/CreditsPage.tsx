@@ -23,6 +23,7 @@ const licenseHref: Record<CreditEntry["license"], string | null> = {
   MIT: "/licenses/mit.txt",
   ISC: "/licenses/isc.txt",
   OFL: "/licenses/ofl-1.1.txt",
+  "Apache-2.0": "/licenses/apache-2.0.txt",
   original: null,
   inspiration: null,
 }
@@ -31,6 +32,7 @@ const licenseLabel: Record<CreditEntry["license"], string> = {
   MIT: "MIT license",
   ISC: "ISC license",
   OFL: "OFL license",
+  "Apache-2.0": "Apache 2.0 license",
   original: "Original work",
   inspiration: "No license recorded",
 }

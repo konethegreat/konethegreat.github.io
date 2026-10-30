@@ -37,7 +37,7 @@ export function PhotoGrid() {
           {item && (
             <div>
               <DialogTitle className="sr-only">{item.caption}</DialogTitle>
-              <DialogDescription className="sr-only">{item.alt}</DialogDescription>
+              <DialogDescription className="sr-only">A larger view of this photo.</DialogDescription>
               <Photo
                 name={item.photo}
                 alt={item.alt}

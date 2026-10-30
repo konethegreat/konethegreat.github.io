@@ -147,7 +147,7 @@ export interface ServiceFaq {
 export interface CreditEntry {
   name: string
   author: string
-  license: "MIT" | "ISC" | "OFL" | "original" | "inspiration"
+  license: "MIT" | "ISC" | "OFL" | "Apache-2.0" | "original" | "inspiration"
   href: string
   usedFor: string
   /** Plain statement of what this site changed, or that nothing was copied. */

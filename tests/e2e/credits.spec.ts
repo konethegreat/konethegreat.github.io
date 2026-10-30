@@ -16,8 +16,12 @@ test("credits names authors, sources, licenses and what changed", async ({ page 
 test("credits links every library and typeface to its source", async ({ page }) => {
   await page.goto("/credits")
   const libraries = page.getByRole("region", { name: "Libraries" })
-  await expect(libraries.getByRole("article")).toHaveCount(7)
+  await expect(libraries.getByRole("article")).toHaveCount(11)
   await expect(libraries.getByRole("link", { name: "React" })).toHaveAttribute("href", "https://react.dev")
+  await expect(libraries.getByRole("link", { name: "Apache 2.0 license" })).toHaveAttribute(
+    "href",
+    "/licenses/apache-2.0.txt",
+  )
   const typefaces = page.getByRole("region", { name: "Typefaces" })
   await expect(typefaces.getByRole("article")).toHaveCount(4)
   await expect(typefaces.getByRole("link", { name: "OFL license" }).first()).toHaveAttribute(

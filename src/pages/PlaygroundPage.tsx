@@ -3,13 +3,11 @@ import { EffectsSwitch } from "@/components/playground/EffectsSwitch"
 import { VaultShelf } from "@/components/playground/VaultShelf"
 import { Lab } from "@/components/sections/Lab"
 import { Link } from "@/components/ui/link"
-import { FxProvider } from "@/lib/fx"
 import { ProjectDialogProvider } from "@/lib/project-dialog"
 
 export function PlaygroundPage() {
   return (
-    <FxProvider>
-      <ProjectDialogProvider>
+    <ProjectDialogProvider>
         <section className="relative isolate overflow-hidden px-4 pb-10 pt-12 sm:px-6 sm:pt-16 lg:px-8">
           <div aria-hidden="true" className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-50" />
           <div className="mx-auto max-w-7xl">
@@ -54,7 +52,6 @@ export function PlaygroundPage() {
             </Link>
           </div>
         </section>
-      </ProjectDialogProvider>
-    </FxProvider>
+    </ProjectDialogProvider>
   )
 }
