@@ -1,15 +1,10 @@
 export const navItems = [
-  { id: "about", label: "About" },
+  { id: "home", label: "Home" },
   { id: "work", label: "Work" },
-  { id: "lab", label: "AI Lab" },
-  { id: "stack", label: "Stack" },
-  { id: "journey", label: "Journey" },
-  { id: "career", label: "Career" },
-  { id: "github", label: "GitHub" },
-  { id: "beyond", label: "Beyond" },
+  { id: "services", label: "Services" },
+  { id: "about", label: "About" },
+  { id: "playground", label: "Playground" },
+  { id: "contact", label: "Contact" },
 ] as const
-
-/** Every section the page spy watches, in document order. */
-export const sectionIds = ["top", ...navItems.map((n) => n.id), "contact"] as const
 
 export type NavId = (typeof navItems)[number]["id"]
