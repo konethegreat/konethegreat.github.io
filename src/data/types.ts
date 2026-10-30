@@ -102,15 +102,46 @@ export interface CaseStudy {
   gallery?: { src: string; alt: string; width: number; height: number }[]
 }
 
+export interface ProofLink {
+  label: string
+  slug: string
+}
+
+export type ServiceIcon = "agents" | "retrieval" | "product" | "local" | "cloud" | "quality"
+
 export interface Service {
   id: string
   title: string
-  promise: string
-  deliverables: string[]
-  bestFor: string
-  timeline: string
-  from: string
-  icon: "layers" | "compass" | "code" | "spark" | "book" | "wrench"
+  outcome: string
+  included: string[]
+  fits: string
+  proof: ProofLink[]
+  shape: string
+  icon: ServiceIcon
+}
+
+export interface EngagementModel {
+  id: string
+  name: string
+  detail: string
+  rhythm: string
+}
+
+export interface ProcessStep {
+  id: string
+  name: string
+  detail: string
+}
+
+export interface ServiceHonesty {
+  id: string
+  title: string
+  items: string[]
+}
+
+export interface ServiceFaq {
+  q: string
+  a: string
 }
 
 export interface CreditEntry {

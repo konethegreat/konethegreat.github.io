@@ -2,7 +2,13 @@ import { describe, expect, it } from "vitest"
 import { caseStudies, nextCaseStudy } from "@/data/case-studies"
 import { liveProjects } from "@/data/live"
 import { projects, projectBySlug } from "@/data/projects"
-import { services } from "@/data/services"
+import {
+  engagementModels,
+  processSteps,
+  serviceFaq,
+  serviceHonesty,
+  services,
+} from "@/data/services"
 
 describe("content model", () => {
   it("has a case study for every routable project", () => {
@@ -25,10 +31,59 @@ describe("content model", () => {
     expect(projects.some((project) => project.slug === "k-one-website")).toBe(false)
   })
 
-  it("gives every service at least three deliverables", () => {
+  it("has six service offers with real proof links", () => {
+    const studySlugs = new Set(caseStudies.map((study) => study.slug))
+    expect(services).toHaveLength(6)
+    expect(services.map((service) => service.title)).toEqual([
+      "Agent systems",
+      "Knowledge and retrieval",
+      "Product engineering",
+      "Sovereign and local-first AI",
+      "Cloud delivery and operations",
+      "Technical audits and documentation",
+    ])
     for (const service of services) {
-      expect(service.deliverables.length).toBeGreaterThanOrEqual(3)
+      expect(service.included.length).toBeGreaterThanOrEqual(4)
+      expect(service.proof.length).toBeGreaterThanOrEqual(2)
+      expect(service.outcome.trim()).not.toBe("")
+      expect(service.fits.trim()).not.toBe("")
+      expect(service.shape.trim()).not.toBe("")
+      for (const proof of service.proof) {
+        expect(studySlugs.has(proof.slug)).toBe(true)
+      }
     }
+  })
+
+  it("keeps the engagement, process, honesty and FAQ content complete", () => {
+    expect(engagementModels).toHaveLength(4)
+    expect(processSteps.map((step) => step.name)).toEqual([
+      "Discover",
+      "Design",
+      "Build",
+      "Prove",
+      "Hand over",
+    ])
+    expect(serviceHonesty.map((note) => note.title)).toEqual([
+      "What K-ONE does",
+      "What K-ONE does not do",
+      "When a specialist is the better choice",
+    ])
+    expect(serviceFaq.length).toBeGreaterThanOrEqual(4)
+    for (const note of serviceHonesty) {
+      expect(note.items.length).toBeGreaterThanOrEqual(3)
+    }
+  })
+
+  it("never puts a price or an em dash in service copy", () => {
+    const copy = JSON.stringify({
+      services,
+      engagementModels,
+      processSteps,
+      serviceHonesty,
+      serviceFaq,
+    })
+    expect(copy).not.toMatch(/R\s?\d/)
+    expect(copy).not.toContain("\u2014")
   })
 
   it("gives every case study three decisions with all fields filled", () => {

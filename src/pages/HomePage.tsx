@@ -59,9 +59,9 @@ export function HomePage() {
                 <span className="font-mono text-xs text-muted-foreground">0{index + 1}</span>
                 <div>
                   <h3 className="text-xl font-semibold">{service.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{service.promise}</p>
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{service.outcome}</p>
                   <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                    {service.timeline} · {service.from}
+                    {service.shape}
                   </p>
                 </div>
               </li>
