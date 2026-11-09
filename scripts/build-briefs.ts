@@ -93,7 +93,10 @@ function html(study: (typeof caseStudies)[number]) {
 await mkdir("public/docs", { recursive: true })
 const browser = await chromium.launch()
 const page = await browser.newPage()
-for (const study of caseStudies) {
+const only = process.argv[2]
+const selected = only ? caseStudies.filter((study) => study.slug === only) : caseStudies
+if (selected.length === 0) throw new Error(`no case study matches "${only}"`)
+for (const study of selected) {
   await page.setContent(html(study), { waitUntil: "load" })
   const pages = await page.evaluate(() => document.querySelectorAll(".page").length)
   if (pages !== 2) throw new Error(`${study.slug}: expected 2 pages, found ${pages}`)

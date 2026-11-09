@@ -11,9 +11,9 @@ describe("work page data", () => {
     }
   })
 
-  it("lists all eight case-study projects once", () => {
+  it("lists all nine case-study projects once", () => {
     expect(caseStudyProjects.map((project) => project.slug)).toEqual([
-      "vigil", "clearcut", "timelex", "sa-jas", "munisolve", "reservoir", "ui-vault", "k-one",
+      "vigil", "clearcut", "timelex", "sa-jas", "munisolve", "reservoir", "ui-vault", "k-one", "agentos-studio",
     ])
   })
 
