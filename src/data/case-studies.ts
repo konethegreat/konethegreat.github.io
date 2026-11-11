@@ -610,10 +610,10 @@ export const caseStudies: CaseStudy[] = [
       {
         kind: "facts",
         facts: [
-          { label: "Version", value: "0.13.0" },
+          { label: "Version", value: "1.0.0" },
           { label: "Hub tools", value: "13" },
           { label: "Agents", value: "4" },
-          { label: "Rust tests", value: "320" },
+          { label: "Rust tests", value: "436" },
         ],
       },
       {
@@ -632,15 +632,15 @@ export const caseStudies: CaseStudy[] = [
           "Missions with an isolated git worktree and a run timeline that records every bus line, tool call, review and done status.",
           "A Brain view over the Obsidian vault with typed notes, link counts and recall ranked by match, recency and link in-degree.",
           "An agent registry with start commands, cost models, quota headroom and measured mission outcomes.",
-          "Local SQLite storage, credentials in the OS keychain and no telemetry.",
+          "Local SQLite storage, provider keys kept in Hermes' own env file, and no telemetry.",
         ],
       },
       {
         kind: "prose",
         heading: "What is real",
         body: [
-          "Version 0.13.0 is public, MIT licensed, and installable from GitHub Releases on Windows, macOS and Linux. The installers are unsigned, so the operating system asks once before the first run.",
-          "The full Rust suite passed 320 tests with 0 failures and 52 ignored on 9 November 2026. The download site is built and reviewed but not deployed yet, so this page links the repository and the architecture docs, not a live site.",
+          "Version 1.0.0 is public and MIT licensed, with installers for Windows, macOS and Linux on the download site (https://agentos-studio-website.erictshivhinda.workers.dev) and GitHub Releases. The installers are unsigned, so the operating system asks once before the first run.",
+          "The full Rust suite passed 436 tests with 0 failures and 62 ignored on 11 November 2026.",
         ],
       },
     ],
