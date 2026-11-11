@@ -52,6 +52,41 @@ export const projects: Project[] = [
     tags: ["AI", "Agents", "Local LLM", "Sovereign", "POPIA", "Java"],
   },
   {
+    slug: "agentos-studio",
+    title: "AgentOS Studio",
+    kicker: "A local control plane for a coding fleet",
+    period: "Oct-Nov 2026",
+    group: "ai",
+    home: "konethegreat",
+    role: "Solo build",
+    access: "code",
+    status: { label: "Live", tone: "live" },
+    featured: true,
+    pitch:
+      "One Rust binary that is both a desktop app and the MCP hub the agents call: a shared bus, one memory, one run timeline, and a merge gate that refuses to close a mission whose checks have not passed.",
+    highlights: [
+      "The Tauri window and the agentos-hub MCP server (13 tools over JSON-RPC 2.0) are the same program, so the queue the agents use is the queue the window shows.",
+      "Missions run in isolated git worktrees with a run timeline that records every bus line, tool call, review and done status, each with its source store.",
+      "The Brain view reads the Obsidian vault: typed notes, link counts and recall ranked by keyword match, recency and how much the vault points at a note.",
+      "An agent registry with start commands, cost models, quota headroom and the missions each agent has actually approved or failed.",
+      "Local-first: SQLite and the vault on disk, provider keys kept in Hermes' own env file and never shown, no telemetry.",
+    ],
+    stack: ["Rust", "Tauri 2", "React 19", "TypeScript", "SQLite", "MCP"],
+    links: [
+      { label: "Download", href: "https://agentos-studio-website.erictshivhinda.workers.dev", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/agentos-studio`, kind: "code" },
+      { label: "Architecture docs", href: `${GH}/agentos-studio/blob/main/docs/ARCHITECTURE.md`, kind: "docs" },
+    ],
+    metrics: [
+      { label: "hub tools", value: "13" },
+      { label: "agents", value: "4" },
+      { label: "Rust tests", value: "436" },
+    ],
+    note:
+      "Version 1.0.0, released 11 November 2026, MIT licensed. Download it from the download site or GitHub Releases for Windows, macOS and Linux. The installers are unsigned, so the operating system asks once before the first run. The full Rust suite passed 436 tests with 0 failures and 62 ignored on 11 November 2026.",
+    tags: ["AI", "Agents", "Orchestration", "Rust", "Local-first", "MCP"],
+  },
+  {
     slug: "sa-jas",
     title: "SA-JAS",
     kicker: "South African Job Agent Suite",

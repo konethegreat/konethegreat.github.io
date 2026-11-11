@@ -17,7 +17,7 @@ import {
 
 describe("content model", () => {
   it("has a case study for every routable project", () => {
-    const slugs = ["vigil", "clearcut", "timelex", "sa-jas", "munisolve", "reservoir", "ui-vault", "k-one"]
+    const slugs = ["vigil", "clearcut", "timelex", "sa-jas", "munisolve", "reservoir", "ui-vault", "k-one", "agentos-studio"]
     for (const slug of slugs) {
       expect(caseStudies.some((study) => study.slug === slug)).toBe(true)
       expect(projectBySlug(slug)).toBeDefined()
@@ -105,7 +105,8 @@ describe("content model", () => {
 
   it("wraps the next case study from the last one", () => {
     expect(nextCaseStudy("vigil").slug).toBe("clearcut")
-    expect(nextCaseStudy("k-one").slug).toBe("vigil")
+    expect(nextCaseStudy("k-one").slug).toBe("agentos-studio")
+    expect(nextCaseStudy("agentos-studio").slug).toBe("vigil")
     expect(nextCaseStudy("missing").slug).toBe("vigil")
   })
 

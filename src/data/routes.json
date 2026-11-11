@@ -1,6 +1,7 @@
 [
   { "path": "/", "title": "Kone Tshivhinda · AI systems engineer · Johannesburg", "description": "The portfolio of Kone Tshivhinda, an AI systems engineer and full-stack developer in Johannesburg. Agent systems, retrieval, local-first AI and product engineering, with live work and technical briefs." },
-  { "path": "/work", "title": "Work · Kone Tshivhinda", "description": "Eight case studies across AI agents, legal tech, civic tech, local-first software and the K-ONE studio, each with live and source links." },
+  { "path": "/work", "title": "Work · Kone Tshivhinda", "description": "Nine case studies across AI agents, legal tech, civic tech, local-first software and the K-ONE studio, each with live and source links." },
+  { "path": "/work/agentos-studio", "title": "AgentOS Studio · Kone Tshivhinda", "description": "A local control plane for a multi-agent coding fleet: one Rust binary is both the desktop app and the MCP hub its agents call." },
   { "path": "/work/vigil", "title": "Vigil · Kone Tshivhinda", "description": "Sovereign operational intelligence for Africa: governed evidence, analyst sign-off and a locally verifiable audit chain." },
   { "path": "/work/clearcut", "title": "ClearCut · Kone Tshivhinda", "description": "Agent-native invoicing for South Africa: a Rust core, REST API, MCP server and Claude plugin with tested VAT rules." },
   { "path": "/work/timelex", "title": "TimeLex · Kone Tshivhinda", "description": "Open, API-first legal practice management with an autonomy ladder, bring-your-own keys and a threat model." },

@@ -17,7 +17,7 @@ export function WorkPage() {
         <div className="mx-auto max-w-7xl">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">Work</p>
           <h1 className="mt-4 max-w-4xl text-balance font-serif text-5xl leading-[0.94] sm:text-7xl lg:text-[6rem]">
-            Eight builds, one standard.
+            Nine builds, one standard.
           </h1>
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
             Agents, legal tech, civic tech and the studio. Every case study opens with what the

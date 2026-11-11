@@ -574,6 +574,77 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
   },
+  {
+    slug: "agentos-studio",
+    tagline: "One binary for a fleet of coding agents",
+    status: "in-progress",
+    year: "2026",
+    team: "Solo build",
+    role: "Product, architecture, full-stack engineering",
+    stack: ["Rust", "Tauri 2", "React 19", "TypeScript", "SQLite", "MCP"],
+    summary:
+      "A local control plane for a multi-agent fleet: one Rust binary is both a desktop app and the MCP hub the agents call, with a shared bus, one memory, one run timeline and a merge gate that waits for the checks.",
+    heroAlt: "A brass control desk with four agent terminals feeding one timeline",
+    accent: "brass",
+    decisions: [
+      {
+        title: "One binary, two roles",
+        choice: "The desktop window and the agentos-hub MCP server ship as one Rust program, with the server started from the same executable.",
+        why: "Two programs drift: the window shows a queue the agents do not use, or the agents write a record the window cannot read.",
+        tradeoff: "Every change to the hub is a change to the desktop app, so both ship on the same release.",
+      },
+      {
+        title: "A local record, no telemetry",
+        choice: "State lives in SQLite and the Obsidian vault on the machine, and credentials stay in the operating system keychain.",
+        why: "The record holds client repositories, branch names and agent conversations. Hosting it would create a breach target without making the fleet better.",
+        tradeoff: "No hosted dashboard, and backups are the owner's job.",
+      },
+      {
+        title: "Merge only after the checks",
+        choice: "Missions move through plan, worktree, review, merge and verify, and a merge is refused when its checks have not passed.",
+        why: "An agent that merges without evidence turns a small mistake into a broken main branch.",
+        tradeoff: "Every merge waits for CI.",
+      },
+    ],
+    sections: [
+      {
+        kind: "facts",
+        facts: [
+          { label: "Version", value: "1.0.0" },
+          { label: "Hub tools", value: "13" },
+          { label: "Agents", value: "4" },
+          { label: "Rust tests", value: "436" },
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "The problem",
+        body: [
+          "A fleet of coding agents fails in the gaps between the agents. One tool holds the task queue, another holds the memory, a third holds the pull requests, and nobody can answer who did what, when, and on whose instruction.",
+          "AgentOS Studio puts that record in one place on the machine. The same binary is the window a person uses and the hub the agents call, so the queue, the memory, the worktrees and the audit trail cannot drift apart.",
+        ],
+      },
+      {
+        kind: "list",
+        heading: "What is built",
+        items: [
+          "One Rust binary that serves the Tauri desktop window and the agentos-hub MCP server with 13 tools over JSON-RPC 2.0.",
+          "Missions with an isolated git worktree and a run timeline that records every bus line, tool call, review and done status.",
+          "A Brain view over the Obsidian vault with typed notes, link counts and recall ranked by match, recency and link in-degree.",
+          "An agent registry with start commands, cost models, quota headroom and measured mission outcomes.",
+          "Local SQLite storage, provider keys kept in Hermes' own env file, and no telemetry.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "What is real",
+        body: [
+          "Version 1.0.0 is public and MIT licensed, with installers for Windows, macOS and Linux on the download site (https://agentos-studio-website.erictshivhinda.workers.dev) and GitHub Releases. The installers are unsigned, so the operating system asks once before the first run.",
+          "The full Rust suite passed 436 tests with 0 failures and 62 ignored on 11 November 2026.",
+        ],
+      },
+    ],
+  },
 ]
 
 export const caseStudyBySlug = (slug: string) => caseStudies.find((study) => study.slug === slug)
