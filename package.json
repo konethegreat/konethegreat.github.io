@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "prebuild": "node scripts/ensure-deps.mjs",
     "build": "tsc --noEmit && vite build && node scripts/copy-routes.mjs",
     "preview": "vite preview --host --port 4173",
     "typecheck": "tsc --noEmit",
+    "pretest": "node scripts/ensure-deps.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "npm run build && playwright test",
