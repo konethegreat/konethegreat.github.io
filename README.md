@@ -54,6 +54,8 @@ npm test          # unit tests
 npm run test:e2e  # build, then Playwright and axe checks
 ```
 
+`npm run build` and `npm test` first run `scripts/ensure-deps.mjs` (the `prebuild` and `pretest` scripts). If TypeScript, Vite or Vitest is missing from `node_modules`, as in a fresh checkout, it runs `npm ci` before the check starts. When they are installed it does nothing.
+
 ## Where things live
 
 ```text
@@ -68,7 +70,7 @@ src/
     lab/        retrieval engine (BM25, trigrams, Reciprocal Rank Fusion), agentic pipeline, corpus
 public/
   images/       web-sized WebP photos
-scripts/        photo processing and make-assets.mjs (icons and the social-share image)
+scripts/        photo processing, make-assets.mjs (icons and the social-share image), ensure-deps.mjs (installs missing dependencies before build and test)
 ```
 
 ### The AI Lab's retrieval engine
