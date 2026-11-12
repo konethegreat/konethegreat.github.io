@@ -95,6 +95,8 @@ A case study can be linked directly: `https://konethegreat.github.io/#project/vi
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which installs from the lockfile, type-checks, builds and publishes `dist/` to GitHub Pages. In the repository settings, **Pages → Build and deployment → Source** is set to **GitHub Actions**. `public/404.html` is served for any address that does not exist.
 
+**Checks.** Every pull request to `main` runs `.github/workflows/ci.yml` on Node 22 with the npm cache and read-only repository access. It installs from the lockfile with `npm ci`, then runs `npm run build` (type-check and Vite build) and `npm test` (the Vitest unit tests). The end-to-end tests (`npm run test:e2e`) are not part of CI and are run locally.
+
 ## Accessibility, privacy and performance
 
 - Built to WCAG 2.2 AA and checked with axe-core on the page and in every dialog, on desktop and phone widths, including the reduced-motion render. Colour contrast is measured from rendered pixels, not only from tokens.

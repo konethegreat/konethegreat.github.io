@@ -9,7 +9,7 @@ Tasks that touch the same file say so and must be done in the order listed, not 
 ## Phase 1: Run the existing checks on every pull request
 
 - [x] Add `.github/workflows/ci.yml` that runs on `pull_request` to `main` with `permissions: contents: read`, Node 22 and the npm cache, then runs `npm ci`, `npm run build` and `npm test`. Use the same action versions as `.github/workflows/deploy.yml` and do not change `deploy.yml`, `package.json` or the lockfile. Verify: the pull request that adds it shows the new check passing.
-- [ ] Add a "Checks" paragraph to the Deployment section of `README.md` naming `.github/workflows/ci.yml`, what it runs and that e2e tests (`npm run test:e2e`) are run locally. Depends on the previous task. Verify: the README text matches the workflow file.
+- [x] Add a "Checks" paragraph to the Deployment section of `README.md` naming `.github/workflows/ci.yml`, what it runs and that e2e tests (`npm run test:e2e`) are run locally. Depends on the previous task. Verify: the README text matches the workflow file.
 
 ## Phase 2: Tests that protect the content and data files
 
