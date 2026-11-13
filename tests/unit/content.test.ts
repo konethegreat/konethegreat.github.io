@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, statSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
@@ -174,9 +174,24 @@ describe("content model", () => {
     }
   })
 
-  it("uses no em dashes in the data that becomes copy", () => {
-    for (const file of ["case-studies.ts", "projects.ts", "services.ts", "about.ts", "credits.ts"]) {
-      expect(readFileSync(join(process.cwd(), "src", "data", file), "utf8")).not.toContain("—")
+  it("uses no em dashes or en dashes in any src/data .ts file", () => {
+    const dataDir = join(process.cwd(), "src", "data")
+    const dashExcludedFiles = ["photos.generated.ts", "shots.generated.ts"]
+    const dashes = [
+      { char: "\u2014", name: "em dash (U+2014)" },
+      { char: "\u2013", name: "en dash (U+2013)" },
+    ]
+    const files = readdirSync(dataDir)
+      .filter((file) => file.endsWith(".ts") && !dashExcludedFiles.includes(file))
+      .sort()
+    expect(files.length).toBeGreaterThan(0)
+    const found: string[] = []
+    for (const file of files) {
+      const text = readFileSync(join(dataDir, file), "utf8")
+      for (const dash of dashes) {
+        if (text.includes(dash.char)) found.push(`src/data/${file} contains an ${dash.name}`)
+      }
     }
+    expect(found, found.join("\n")).toEqual([])
   })
 })

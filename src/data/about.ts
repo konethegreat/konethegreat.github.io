@@ -24,7 +24,7 @@ export const aboutIntro = [
 export const aboutChapters: AboutChapter[] = [
   {
     id: "learning",
-    date: "2024 – 2025",
+    date: "2024 - 2025",
     year: "Before 2025",
     title: "Learning the unglamorous parts",
     body: "IBM Full Stack Software Developer coursework, then a long stretch of building small things to understand how the pieces fit: APIs, databases, deployment and the parts that decide whether software survives contact with a real user.",
@@ -46,8 +46,8 @@ export const aboutChapters: AboutChapter[] = [
   },
   {
     id: "civic-legal",
-    date: "2025 – 2026",
-    year: "2025–26",
+    date: "2025 - 2026",
+    year: "2025 - 26",
     title: "Civic tech and the trust problem",
     body: "MuniSolve ZA put municipal faults on a live map and a bounded assistant behind them. TimeLex asked the harder question in legal work: how much can a system do before a person must sign off? Both projects moved the same idea forward: usefulness without pretending the machine is the authority.",
     evidence: [
@@ -69,7 +69,7 @@ export const aboutChapters: AboutChapter[] = [
   },
   {
     id: "firm-team",
-    date: "June 2026 – now",
+    date: "June 2026 - now",
     year: "2026",
     title: "Inside a law firm, building the team",
     body: "By day I am a founding engineer on a six-person team building a law firm's software engineering department. The work is multi-tenant, POPIA-aligned and grounded in human sign-off: hybrid retrieval, MCP tools, local models for sensitive material and a written record for every consequential decision. The firm's code is private, so the evidence here is the public work built alongside it in the same patterns.",
@@ -80,7 +80,7 @@ export const aboutChapters: AboutChapter[] = [
   },
   {
     id: "k-one",
-    date: "2025 – now",
+    date: "2025 - now",
     year: "Now",
     title: "K-ONE, still small on purpose",
     body: "K-ONE IT SOLUTIONS is the studio: I scope the work, build it and answer for it afterwards. The company site, the social platform and the health monitor were the first proof. Everything since has run through the same channel, one project at a time.",
