@@ -6,7 +6,7 @@ import { caseStudies, nextCaseStudy } from "@/data/case-studies"
 import { credits } from "@/data/credits"
 import { langColor, repoMeta } from "@/data/github"
 import { liveProjects } from "@/data/live"
-import { principles } from "@/data/profile"
+import { principles, publicRepoCount } from "@/data/profile"
 import { projects, projectBySlug } from "@/data/projects"
 import {
   engagementModels,
@@ -243,5 +243,9 @@ describe("content model", () => {
     const langs = new Set(Object.values(repoMeta).map((entry) => entry.lang))
     const missing = [...langs].filter((lang) => !/^#[0-9a-fA-F]{6}$/.test(langColor[lang] ?? "")).sort()
     expect(missing, `src/data/github.ts has no valid hex langColor for: ${missing.join(", ")}`).toEqual([])
+  })
+
+  it("keeps publicRepoCount at least as large as the repoMeta entries", () => {
+    expect(publicRepoCount).toBeGreaterThanOrEqual(Object.keys(repoMeta).length)
   })
 })

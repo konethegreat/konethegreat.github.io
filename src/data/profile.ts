@@ -23,7 +23,7 @@ export const availability = {
 } as const
 
 /** Public repositories on the GitHub account as GitHub counts them, profile README and this site's own repository included (a snapshot, see data/github.ts). */
-export const publicRepoCount = 23
+export const publicRepoCount = 28
 
 /** Assembled in the browser so the address is not sitting in the page source as plain text. */
 export const emailParts = { user: "erictshivhinda", domain: "gmail.com" } as const
