@@ -610,10 +610,10 @@ export const caseStudies: CaseStudy[] = [
       {
         kind: "facts",
         facts: [
-          { label: "Version", value: "1.0.0" },
+          { label: "Version", value: "1.2.7" },
+          { label: "Release date", value: "13 November 2026" },
           { label: "Hub tools", value: "13" },
           { label: "Agents", value: "4" },
-          { label: "Rust tests", value: "436" },
         ],
       },
       {
@@ -639,8 +639,7 @@ export const caseStudies: CaseStudy[] = [
         kind: "prose",
         heading: "What is real",
         body: [
-          "Version 1.0.0 is public and MIT licensed, with installers for Windows, macOS and Linux on the download site (https://agentos-studio-website.erictshivhinda.workers.dev) and GitHub Releases. The installers are unsigned, so the operating system asks once before the first run.",
-          "The full Rust suite passed 436 tests with 0 failures and 62 ignored on 11 November 2026.",
+          "Version 1.2.7, released 13 November 2026, is public and MIT licensed, with installers for Windows (NSIS and MSI), macOS (Apple Silicon and Intel DMG) and Linux (AppImage, deb and rpm) on the download site (https://agentos-studio-website.erictshivhinda.workers.dev) and GitHub Releases. The installers are unsigned, so the operating system asks once before the first run.",
         ],
       },
     ],

@@ -80,10 +80,9 @@ export const projects: Project[] = [
     metrics: [
       { label: "hub tools", value: "13" },
       { label: "agents", value: "4" },
-      { label: "Rust tests", value: "436" },
     ],
     note:
-      "Version 1.0.0, released 11 November 2026, MIT licensed. Download it from the download site or GitHub Releases for Windows, macOS and Linux. The installers are unsigned, so the operating system asks once before the first run. The full Rust suite passed 436 tests with 0 failures and 62 ignored on 11 November 2026.",
+      "Version 1.2.7, released 13 November 2026, MIT licensed. Download it from the download site or GitHub Releases with installers for Windows (NSIS and MSI), macOS (Apple Silicon and Intel DMG) and Linux (AppImage, deb and rpm). The installers are unsigned, so the operating system asks once before the first run.",
     tags: ["AI", "Agents", "Orchestration", "Rust", "Local-first", "MCP"],
   },
   {
