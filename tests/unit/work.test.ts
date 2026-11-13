@@ -21,4 +21,14 @@ describe("work page data", () => {
     const studySlugs = new Set(caseStudyProjects.map((project) => project.slug))
     expect(archiveOnlyProjects.some((project) => studySlugs.has(project.slug))).toBe(false)
   })
+
+  it("lists Animation and Game Studio in the archive with its showcase and source links", () => {
+    const studio = archiveOnlyProjects.find((project) => project.slug === "animation-and-game-studio")
+    expect(studio, "animation-and-game-studio is missing from the /work archive").toBeDefined()
+    expect(studio?.pitch).toBe("2D and 3D animation plus playable games, built in the open.")
+    expect(studio?.links.map((link) => link.href)).toEqual([
+      "https://konethegreat.github.io/animation-and-game-studio/",
+      "https://github.com/konethegreat/animation-and-game-studio",
+    ])
+  })
 })

@@ -408,6 +408,30 @@ export const projects: Project[] = [
     links: [{ label: "Source on GitHub", href: `${GH}/k-one-solutions-media`, kind: "code" }],
     tags: ["Web", "Studio", "React"],
   },
+  {
+    slug: "animation-and-game-studio",
+    title: "Animation and Game Studio",
+    kicker: "2D and 3D animation plus playable games",
+    period: "Nov 2026",
+    group: "web-civic",
+    home: "konethegreat",
+    role: "Personal project",
+    access: "live",
+    status: { label: "Live", tone: "live" },
+    pitch: "2D and 3D animation plus playable games, built in the open.",
+    highlights: [
+      "Five pieces: a 2D squash and stretch study, a robot companion turntable in Blender, a one-screen arcade game made with Godot and playable in the browser, a character walk loop exported as GLB, and the short film The Maker at Work.",
+      "Everything is authored as code: a project.yaml manifest per piece and a studio CLI that dispatches to rendering adapters for Pillow, Blender, Godot and Unity.",
+      "ffprobe, frame scans, GLB inspection and build size checks run before a render is accepted. Vite and Three.js build the showcase, and GitHub Actions deploys it to Pages.",
+    ],
+    stack: ["Python", "Pillow", "Blender", "Godot", "FFmpeg", "Vite", "Three.js", "GitHub Actions"],
+    links: [
+      { label: "Open live showcase", href: "https://konethegreat.github.io/animation-and-game-studio/", kind: "live" },
+      { label: "Source on GitHub", href: `${GH}/animation-and-game-studio`, kind: "code" },
+    ],
+    note: "Proprietary: all rights reserved by Kone Tshivhinda. The source can be viewed and the published work played, but copying, redistribution and derivative works need written permission.",
+    tags: ["Animation", "Games", "Studio"],
+  },
 
   /* -------------------------------------------------- coursework */
   {
