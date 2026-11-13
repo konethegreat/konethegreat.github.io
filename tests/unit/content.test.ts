@@ -254,6 +254,14 @@ describe("content model", () => {
     expect(kOne?.note).toMatch(/legacy\/php-site/)
   })
 
+  it("leaves the law firm's demo snapshot repositories out of projects.ts", () => {
+    // PR #3 removed these as the law firm's work; both READMEs describe the firm's systems.
+    const firmRepos = ["performance-management-tool", "systems-project-management-"]
+    const text = JSON.stringify(projects)
+    const linked = firmRepos.filter((repo) => text.includes(`github.com/konethegreat/${repo}`))
+    expect(linked, `src/data/projects.ts links law firm repositories: ${linked.join(", ")}`).toEqual([])
+  })
+
   it("keeps publicRepoCount at least as large as the repoMeta entries", () => {
     expect(publicRepoCount).toBeGreaterThanOrEqual(Object.keys(repoMeta).length)
   })
