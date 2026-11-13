@@ -1,4 +1,5 @@
 import { links, publicRepoCount } from "./profile"
+import { projects } from "./projects"
 
 /** Snapshot date for the repository facts on the GitHub section. */
 export const githubSnapshot = "November 2026"
@@ -47,15 +48,23 @@ export const langColor: Record<string, string> = {
   GDScript: "#355570",
 }
 
+/** Titles of the projects whose `access` is "live" in data/projects.ts, so the fact below cannot drift from the cards. */
+export const liveProductNames: string[] = projects.filter((p) => p.access === "live").map((p) => p.title)
+
+/** Joins names as "A, B and C". */
+export function listNames(names: readonly string[]): string {
+  if (names.length <= 1) return names.join("")
+  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`
+}
+
 export const account = {
   handle: "konethegreat",
   href: links.github,
   badge: "Public work",
-  blurb:
-    "The public home for my own projects: live products, open alpha-stage builds, source snapshots of earlier work, studio work and my IBM coursework. Everything listed below can be opened.",
+  blurb: `The public home for my own projects: ${liveProductNames.length} live products, open alpha-stage builds, source snapshots of earlier work, studio work and my IBM coursework. Everything listed below can be opened.`,
   facts: [
     { label: "Public repositories", value: `${publicRepoCount}, including my profile README and this site` },
-    { label: "Live products", value: "MuniSolve ZA and a TimeLex prototype" },
+    { label: "Live products", value: listNames(liveProductNames) },
     { label: "Coursework", value: "IBM Full Stack capstones (several are forks of course templates)" },
   ],
 } as const
