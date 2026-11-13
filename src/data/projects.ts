@@ -375,8 +375,12 @@ export const projects: Project[] = [
     access: "live",
     status: { label: "Live", tone: "live" },
     pitch: "The company website for K-ONE IT SOLUTIONS, my independent software studio in Johannesburg.",
-    highlights: ["Hand-built with HTML, CSS and PHP."],
-    stack: ["HTML", "CSS", "PHP"],
+    highlights: [
+      "Built with Astro and Tailwind CSS as a static site, with React islands where a page needs interactivity.",
+      "Hosted on Cloudflare Workers Static Assets, with a GitHub Actions build check on every push and pull request.",
+      "No PHP, no database and no server code: the site builds to plain files.",
+    ],
+    stack: ["Astro", "Tailwind CSS", "Cloudflare Workers Static Assets"],
     links: [
       {
         label: "Open live site",
@@ -385,6 +389,7 @@ export const projects: Project[] = [
       },
       { label: "Source on GitHub", href: `${GH}/k-one-it-solutions-website`, kind: "code" },
     ],
+    note: "The first version was static HTML with a PHP contact handler. It was retired in October 2026 and is kept on the legacy/php-site branch.",
     tags: ["Web", "Studio"],
   },
   {
