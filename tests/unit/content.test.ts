@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest"
 import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
 import { caseStudies, nextCaseStudy } from "@/data/case-studies"
 import { credits } from "@/data/credits"
-import { langColor, repoMeta } from "@/data/github"
+import { account, langColor, listNames, repoMeta } from "@/data/github"
 import { liveProjects } from "@/data/live"
 import { principles, publicRepoCount } from "@/data/profile"
 import { projects, projectBySlug } from "@/data/projects"
@@ -264,5 +264,29 @@ describe("content model", () => {
 
   it("keeps publicRepoCount at least as large as the repoMeta entries", () => {
     expect(publicRepoCount).toBeGreaterThanOrEqual(Object.keys(repoMeta).length)
+  })
+
+  it("names every live project, and only those, in the GitHub Live products fact", () => {
+    const live = projects.filter((p) => p.access === "live")
+    expect(live.length).toBeGreaterThan(0)
+    const fact = account.facts.find((f) => f.label === "Live products")?.value ?? ""
+    expect(fact).not.toMatch(/MuniSolve ZA and a TimeLex prototype/)
+    expect(fact).toBe(listNames(live.map((p) => p.title)))
+    for (const project of live) {
+      expect(fact).toContain(project.title)
+      const link = project.links.find((l) => l.kind === "live")
+      expect(link?.href, `${project.slug} has no live link`).toMatch(/^https:\/\//)
+    }
+    for (const project of projects.filter((p) => p.access !== "live")) {
+      expect(fact.split(/, | and /)).not.toContain(project.title)
+    }
+    expect(account.blurb).toContain(`${live.length} live products`)
+  })
+
+  it("joins names as A, B and C", () => {
+    expect(listNames([])).toBe("")
+    expect(listNames(["A"])).toBe("A")
+    expect(listNames(["A", "B"])).toBe("A and B")
+    expect(listNames(["A", "B", "C"])).toBe("A, B and C")
   })
 })
