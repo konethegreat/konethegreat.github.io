@@ -6,7 +6,7 @@ export const roles: Role[] = [
     title: "Software Engineer",
     org: "A law firm",
     place: "Johannesburg, South Africa",
-    period: "June 2026 – Present",
+    period: "June 2026 - Present",
     current: true,
     summary: "Founding engineer on a six-member team building the firm's software engineering department and its AI platforms from scratch.",
     bullets: [
@@ -41,7 +41,7 @@ export const roles: Role[] = [
     title: "Founder",
     org: "K-ONE IT SOLUTIONS",
     place: "Johannesburg, South Africa",
-    period: "2025 – Present",
+    period: "2025 - Present",
     current: true,
     summary: "Independent IT and software studio.",
     bullets: [
@@ -56,7 +56,7 @@ export const roles: Role[] = [
     title: "Intern Assistant Platoon Leader",
     org: "GAO Tek Inc.",
     place: "Canada (remote)",
-    period: "July 2024 – August 2024",
+    period: "July 2024 - August 2024",
     bullets: [
       { lead: "Operations", text: "Directed operations for multiple technical squads, ensuring seamless coordination and high productivity." },
       { lead: "Mentoring", text: "Mentored and provided technical support to interns so project benchmarks were met." },
@@ -68,7 +68,7 @@ export const roles: Role[] = [
     title: "Intern Assistant Squad Leader & Tech Support",
     org: "GAO Tek Inc.",
     place: "Canada (remote)",
-    period: "April 2024 – July 2024",
+    period: "April 2024 - July 2024",
     bullets: [
       { lead: "Quality control", text: "Managed quality control by reviewing technical descriptions and code and giving constructive feedback." },
       { lead: "Alignment", text: "Facilitated team meetings to align technical execution with management's strategic goals." },

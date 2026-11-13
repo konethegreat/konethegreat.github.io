@@ -6,7 +6,7 @@ export const journey: JourneyNode[] = [
     id: 1,
     title: "Leadership foundations",
     short: "Leadership",
-    date: "School years – 2020",
+    date: "School years - 2020",
     category: "Leadership",
     icon: "Crown",
     content:
@@ -19,7 +19,7 @@ export const journey: JourneyNode[] = [
     id: 2,
     title: "Diploma in IT",
     short: "Diploma",
-    date: "Feb 2022 – Dec 2024",
+    date: "Feb 2022 - Dec 2024",
     category: "Education",
     icon: "GraduationCap",
     content: "Diploma in Information Technology (NQF 6) at Damelin, completed in December 2024.",
@@ -31,7 +31,7 @@ export const journey: JourneyNode[] = [
     id: 3,
     title: "GAO Tek internships",
     short: "GAO Tek",
-    date: "Apr – Aug 2024",
+    date: "Apr - Aug 2024",
     category: "Experience",
     icon: "Users",
     content:
@@ -58,7 +58,7 @@ export const journey: JourneyNode[] = [
     id: 5,
     title: "Civic & legal-tech builds",
     short: "Builds",
-    date: "Feb – Jun 2026",
+    date: "Feb - Jun 2026",
     category: "Projects",
     icon: "Landmark",
     content:
@@ -85,7 +85,7 @@ export const journey: JourneyNode[] = [
     id: 10,
     title: "Founding engineer at a law firm",
     short: "Law firm",
-    date: "Jun 2026 – now",
+    date: "Jun 2026 - now",
     category: "Experience",
     icon: "Briefcase",
     content:

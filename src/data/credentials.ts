@@ -4,7 +4,7 @@ export const education = [
   {
     title: "Diploma in Information Technology (NQF 6)",
     org: "Damelin",
-    period: "February 2022 – December 2024",
+    period: "February 2022 - December 2024",
     icon: "GraduationCap",
   },
   {
