@@ -11,7 +11,7 @@ export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
   "timelex-automated-time-tracking": { lang: "JavaScript" },
   "timelex-automated-time-tracking-v2": { lang: "TypeScript" },
   "server-health-monitor": { lang: "Python" },
-  "k-one-it-solutions-website": { lang: "HTML" },
+  "k-one-it-solutions-website": { lang: "Astro" },
   "k-one-solutions-media": { lang: "JavaScript" },
   "oaqjp-final-project-emb-ai": { lang: "Python", fork: true },
   "xrwvm-fullstack_developer_capstone": { lang: "JavaScript", fork: true },
@@ -38,6 +38,7 @@ export const langColor: Record<string, string> = {
   Shell: "#89e051",
   Rust: "#dea584",
   Java: "#b07219",
+  Astro: "#ff5a03",
 }
 
 export const account = {
