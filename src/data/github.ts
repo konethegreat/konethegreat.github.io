@@ -1,7 +1,7 @@
 import { links, publicRepoCount } from "./profile"
 
 /** Snapshot date for the repository facts on the GitHub section. */
-export const githubSnapshot = "October 2026"
+export const githubSnapshot = "November 2026"
 
 /** Primary language (the largest share of source bytes, as GitHub's own bar shows it) and fork status for each public repository on konethegreat. */
 export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
@@ -27,6 +27,11 @@ export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
   "konethegreat.github.io": { lang: "TypeScript" },
   "agentos-studio": { lang: "Rust" },
   "ui-vault": { lang: "TypeScript" },
+  konethegreat: { lang: "Shell" },
+  "agentos-studio-website": { lang: "HTML" },
+  "performance-management-tool": { lang: "JavaScript" },
+  "systems-project-management-": { lang: "TypeScript" },
+  "animation-and-game-studio": { lang: "GDScript" },
 }
 
 /** GitHub's own language colours, used for the little dot beside each repository. */
@@ -39,6 +44,7 @@ export const langColor: Record<string, string> = {
   Rust: "#dea584",
   Java: "#b07219",
   Astro: "#ff5a03",
+  GDScript: "#355570",
 }
 
 export const account = {
