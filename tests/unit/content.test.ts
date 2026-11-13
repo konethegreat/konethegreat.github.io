@@ -245,6 +245,15 @@ describe("content model", () => {
     expect(missing, `src/data/github.ts has no valid hex langColor for: ${missing.join(", ")}`).toEqual([])
   })
 
+  it("describes the k-one site as Astro on Cloudflare, with the PHP site retired", () => {
+    const kOne = projectBySlug("k-one")
+    expect(kOne).toBeDefined()
+    expect(kOne?.stack).toEqual(["Astro", "Tailwind CSS", "Cloudflare Workers Static Assets"])
+    expect(kOne?.highlights.join(" ")).not.toMatch(/HTML, CSS and PHP/)
+    expect(kOne?.note).toMatch(/retired in October 2026/)
+    expect(kOne?.note).toMatch(/legacy\/php-site/)
+  })
+
   it("keeps publicRepoCount at least as large as the repoMeta entries", () => {
     expect(publicRepoCount).toBeGreaterThanOrEqual(Object.keys(repoMeta).length)
   })
