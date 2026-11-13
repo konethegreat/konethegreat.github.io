@@ -25,6 +25,8 @@ export const repoMeta: Record<string, { lang: string; fork?: boolean }> = {
   timelex: { lang: "Rust" },
   Vigil: { lang: "Java" },
   "konethegreat.github.io": { lang: "TypeScript" },
+  "agentos-studio": { lang: "Rust" },
+  "ui-vault": { lang: "TypeScript" },
 }
 
 /** GitHub's own language colours, used for the little dot beside each repository. */

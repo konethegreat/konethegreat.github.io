@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest"
 import { aboutChapters, aboutIntro, stackProof } from "@/data/about"
 import { caseStudies, nextCaseStudy } from "@/data/case-studies"
 import { credits } from "@/data/credits"
+import { repoMeta } from "@/data/github"
 import { liveProjects } from "@/data/live"
 import { principles } from "@/data/profile"
 import { projects, projectBySlug } from "@/data/projects"
@@ -223,5 +224,18 @@ describe("content model", () => {
       factVersion,
       `src/data/projects.ts names AgentOS Studio ${noteVersion} but src/data/case-studies.ts names ${factVersion}`,
     ).toBe(noteVersion)
+  })
+
+  it("has a repoMeta entry in github.ts for every konethegreat repository linked from projects.ts", () => {
+    // GitHub reports no language for reservoir (gh api repos/konethegreat/reservoir/languages returns {}).
+    const noLanguageRepos = ["reservoir"]
+    const repoLink = /https:\/\/github\.com\/konethegreat\/([A-Za-z0-9._-]+)/g
+    const linked = new Set<string>()
+    for (const match of JSON.stringify(projects).matchAll(repoLink)) linked.add(match[1])
+    expect(linked.size, "src/data/projects.ts links no konethegreat repositories").toBeGreaterThan(0)
+    const missing = [...linked]
+      .filter((repo) => !noLanguageRepos.includes(repo) && !Object.hasOwn(repoMeta, repo))
+      .sort()
+    expect(missing, `src/data/github.ts has no repoMeta entry for: ${missing.join(", ")}`).toEqual([])
   })
 })
